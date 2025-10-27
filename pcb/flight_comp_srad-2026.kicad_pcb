@@ -436,7 +436,7 @@
 			)
 		)
 		(property "Value" "MS5607-02BA"
-			(at 0 3.65 0)
+			(at 1.425 3.824999 0)
 			(layer "F.Fab")
 			(uuid "9252b433-cb7d-43d8-b3f5-c87cada8ca9d")
 			(effects
@@ -3760,7 +3760,7 @@
 			)
 		)
 		(property "Value" "ADXL375BCCZ-RL7"
-			(at 0 0 0)
+			(at -1.429899 -4.3 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(uuid "9c4fdd41-6d29-4fbf-b31d-4706205ad407")
@@ -4867,6 +4867,17 @@
 			(uuid "779cf570-e160-48b1-b639-291614179422")
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/components/3d_models/ADXL375BCCZ-RL7.STEP"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz -90 -0 -0)
+			)
+		)
 	)
 	(footprint "Connector_PinHeader_2.00mm:PinHeader_1x13_P2.00mm_Vertical"
 		(layer "F.Cu")
