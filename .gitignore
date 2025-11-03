@@ -7,3 +7,4 @@ fp-info-cache
 *.kicad_pro.lck
 *.kicad_pcb.lck
 *.kicad_sch.lck
+'#auto_saved_files#'
