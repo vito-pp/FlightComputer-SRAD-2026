@@ -65,6 +65,7 @@
 			(psnegative no)
 			(psa4output no)
 			(plot_black_and_white yes)
+			(plotinvisibletext no)
 			(sketchpadsonfab no)
 			(plotpadnumbers no)
 			(hidednponfab no)
@@ -221,6 +222,21 @@
 	(net 140 "/RX")
 	(net 141 "/TX")
 	(net 142 "/XOUT")
+	(net 143 "unconnected-(U7-FL-Pad21)")
+	(net 144 "unconnected-(U7-REGOUT-Pad10)")
+	(net 145 "unconnected-(U7-ODR-Pad12)")
+	(net 146 "unconnected-(U7-SCLK-Pad24)")
+	(net 147 "unconnected-(U7-FL-Pad13)")
+	(net 148 "unconnected-(U7-FL-Pad19)")
+	(net 149 "unconnected-(U7-VPP-Pad20)")
+	(net 150 "unconnected-(U7-VDD-Pad11)")
+	(net 151 "unconnected-(U7-~{RESET}-Pad18)")
+	(net 152 "unconnected-(U7-MISO-Pad9)")
+	(net 153 "unconnected-(U7-EXP-Pad25)")
+	(net 154 "unconnected-(U7-MOSI-Pad1)")
+	(net 155 "unconnected-(U7-NCS-Pad23)")
+	(net 156 "unconnected-(U7-VDDIO-Pad8)")
+	(net 157 "unconnected-(U7-FL-Pad6)")
 	(footprint "Capacitor_SMD:C_0805_2012Metric"
 		(layer "F.Cu")
 		(uuid "06254be7-0134-4269-8996-d86ee4fbbbf3")
@@ -249,7 +265,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" ""
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -448,7 +464,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" ""
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -647,7 +663,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" ""
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -846,7 +862,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" ""
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -1386,7 +1402,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" ""
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -1585,7 +1601,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" ""
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -2011,7 +2027,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" ""
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -2557,7 +2573,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" ""
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -2755,7 +2771,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" ""
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -2984,7 +3000,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" ""
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -4092,6 +4108,673 @@
 			)
 		)
 	)
+	(footprint "IIM-20670:QFN50P450X450X115-25N"
+		(layer "F.Cu")
+		(uuid "64086b90-2414-49f0-b566-3fe8855a48ea")
+		(at 226.62 69.75)
+		(property "Reference" "U7"
+			(at -0.095 -4.5 0)
+			(layer "F.SilkS")
+			(uuid "2d284455-8fa9-4445-ac6d-7ea8febaf958")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Value" "IIM-20670"
+			(at 10.065 4.5 0)
+			(layer "F.Fab")
+			(uuid "90c0271e-9769-4a0a-bad3-3a2e7c5c1e4e")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "4dbee867-2a90-438c-8b8f-312613a1408c")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "e140f374-a1b2-44dc-a750-c12ddba585a7")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "DigiKey_Part_Number" "1428-IIM-20670CT-ND"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "e9cd34d6-f645-4fba-8a96-069dd61e2789")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "SnapEDA_Link" "https://www.snapeda.com/parts/IIM-20670/TDK/view-part/?ref=snap"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "0659f278-b33c-43eb-9440-3de5ae5fbca3")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MAXIMUM_PACKAGE_HEIGHT" "1.15mm"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "a9c5d9e9-8e22-44a7-8e4e-cd2ec0ed896f")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Package" "None"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "a5c00293-8a40-47ab-9796-50c5bca7a983")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Check_prices" "https://www.snapeda.com/parts/IIM-20670/TDK/view-part/?ref=eda"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "2cdb47cd-0ad5-4317-9e16-b842bad31736")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "STANDARD" "IPC-7351B"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "98a16eea-094e-45e3-a640-9abf940fcd0e")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "PARTREV" "1.1"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "515da5f8-ff2b-4b71-b245-11c37fb630ff")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MF" "TDK InvenSense"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "b56b7601-1a67-4378-b3d5-b2fcedf98247")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MP" "IIM-20670"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "dc67ff18-f413-4f1c-98e5-b6cc520bc149")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Description_1" "Accelerometer, Gyroscope, 6 Axis Sensor SPI Output"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "d0e91919-8c4d-4252-9723-a9dfe227d833")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "TDK InvenSense"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "859943d6-c528-4faa-ba78-db9da0b21c92")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(path "/eb08cb91-ee3a-4b67-89fe-8fae554766f6")
+		(sheetname "/")
+		(sheetfile "flight_comp_srad-2026.kicad_sch")
+		(attr smd)
+		(fp_line
+			(start -2.25 -2.25)
+			(end -2.25 -1.7)
+			(stroke
+				(width 0.127)
+				(type solid)
+			)
+			(layer "F.SilkS")
+			(uuid "38537d1d-182a-48c6-b372-9d434b5dfa7b")
+		)
+		(fp_line
+			(start -2.25 -2.25)
+			(end -1.7 -2.25)
+			(stroke
+				(width 0.127)
+				(type solid)
+			)
+			(layer "F.SilkS")
+			(uuid "61f579a6-8d77-4329-81c5-9b190c986a88")
+		)
+		(fp_line
+			(start -2.25 2.25)
+			(end -2.25 1.7)
+			(stroke
+				(width 0.127)
+				(type solid)
+			)
+			(layer "F.SilkS")
+			(uuid "4579b201-9879-40b3-8c22-da537d6785e8")
+		)
+		(fp_line
+			(start -2.25 2.25)
+			(end -1.7 2.25)
+			(stroke
+				(width 0.127)
+				(type solid)
+			)
+			(layer "F.SilkS")
+			(uuid "5e73372b-3610-4c93-a2f3-4b40ba04a82e")
+		)
+		(fp_line
+			(start 2.25 -2.25)
+			(end 1.7 -2.25)
+			(stroke
+				(width 0.127)
+				(type solid)
+			)
+			(layer "F.SilkS")
+			(uuid "1cb3a77d-4cc9-4b8e-b1e1-77ceba9a1901")
+		)
+		(fp_line
+			(start 2.25 -2.25)
+			(end 2.25 -1.7)
+			(stroke
+				(width 0.127)
+				(type solid)
+			)
+			(layer "F.SilkS")
+			(uuid "612b3985-1b34-48c1-924a-f18e3e19e207")
+		)
+		(fp_line
+			(start 2.25 2.25)
+			(end 1.7 2.25)
+			(stroke
+				(width 0.127)
+				(type solid)
+			)
+			(layer "F.SilkS")
+			(uuid "35f98d18-e4cf-499a-8a7a-cb6bd60b8501")
+		)
+		(fp_line
+			(start 2.25 2.25)
+			(end 2.25 1.7)
+			(stroke
+				(width 0.127)
+				(type solid)
+			)
+			(layer "F.SilkS")
+			(uuid "b0f7e3dc-e945-4641-b182-8021ccc71bdc")
+		)
+		(fp_circle
+			(center -3.3 -1.25)
+			(end -3.2 -1.25)
+			(stroke
+				(width 0.2)
+				(type solid)
+			)
+			(fill no)
+			(layer "F.SilkS")
+			(uuid "fbbc0f0d-5733-46a4-b02e-aac804080132")
+		)
+		(fp_poly
+			(pts
+				(xy -0.93 -0.93) (xy 0.93 -0.93) (xy 0.93 0.93) (xy -0.93 0.93)
+			)
+			(stroke
+				(width 0.01)
+				(type solid)
+			)
+			(fill yes)
+			(layer "F.Paste")
+			(uuid "05297ef3-abc9-4528-a06a-e379ed9c0e99")
+		)
+		(fp_line
+			(start -2.865 -2.865)
+			(end 2.865 -2.865)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "F.CrtYd")
+			(uuid "f278300c-5f9c-4547-ba0e-3368e077fada")
+		)
+		(fp_line
+			(start -2.865 2.865)
+			(end -2.865 -2.865)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "F.CrtYd")
+			(uuid "ba62a07d-778c-4bc7-af53-87b35f3b171d")
+		)
+		(fp_line
+			(start -2.865 2.865)
+			(end 2.865 2.865)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "F.CrtYd")
+			(uuid "8dc85401-9917-44a6-b316-21b45109df14")
+		)
+		(fp_line
+			(start 2.865 2.865)
+			(end 2.865 -2.865)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "F.CrtYd")
+			(uuid "f6589be1-18f1-4bfc-b6ed-9476cf41a903")
+		)
+		(fp_line
+			(start -2.25 2.25)
+			(end -2.25 -2.25)
+			(stroke
+				(width 0.127)
+				(type solid)
+			)
+			(layer "F.Fab")
+			(uuid "7b273304-63ba-45e8-83c3-2ea783b9c67a")
+		)
+		(fp_line
+			(start 2.25 -2.25)
+			(end -2.25 -2.25)
+			(stroke
+				(width 0.127)
+				(type solid)
+			)
+			(layer "F.Fab")
+			(uuid "d4c06be7-fcf0-4747-842b-cae2f36e3aa5")
+		)
+		(fp_line
+			(start 2.25 2.25)
+			(end -2.25 2.25)
+			(stroke
+				(width 0.127)
+				(type solid)
+			)
+			(layer "F.Fab")
+			(uuid "61e0196d-ed0a-4cc5-a0dc-4d0e3208f068")
+		)
+		(fp_line
+			(start 2.25 2.25)
+			(end 2.25 -2.25)
+			(stroke
+				(width 0.127)
+				(type solid)
+			)
+			(layer "F.Fab")
+			(uuid "f088e49f-94a0-4c35-bad5-d29fb2c4b9bb")
+		)
+		(fp_circle
+			(center -3.3 -1.25)
+			(end -3.2 -1.25)
+			(stroke
+				(width 0.2)
+				(type solid)
+			)
+			(fill no)
+			(layer "F.Fab")
+			(uuid "2ad0bc7c-2883-495b-8f45-947570f7f616")
+		)
+		(pad "1" smd roundrect
+			(at -2.13 -1.25)
+			(size 0.97 0.26)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(roundrect_rratio 0.095)
+			(net 154 "unconnected-(U7-MOSI-Pad1)")
+			(pinfunction "MOSI")
+			(pintype "input")
+			(solder_mask_margin 0.102)
+			(uuid "e7e74c33-bc8d-43bf-890d-3607497bc2d9")
+		)
+		(pad "2" smd roundrect
+			(at -2.13 -0.75)
+			(size 0.97 0.26)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(roundrect_rratio 0.095)
+			(net 11 "GND")
+			(pinfunction "GND")
+			(pintype "power_in")
+			(solder_mask_margin 0.102)
+			(uuid "e4fd3eb9-409d-48a7-bb82-1f2e2f59d86b")
+		)
+		(pad "3" smd roundrect
+			(at -2.13 -0.25)
+			(size 0.97 0.26)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(roundrect_rratio 0.095)
+			(net 11 "GND")
+			(pinfunction "GND")
+			(pintype "power_in")
+			(solder_mask_margin 0.102)
+			(uuid "328acfa4-7407-4df7-9a5d-92d36e83b626")
+		)
+		(pad "4" smd roundrect
+			(at -2.13 0.25)
+			(size 0.97 0.26)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(roundrect_rratio 0.095)
+			(net 11 "GND")
+			(pinfunction "GND")
+			(pintype "power_in")
+			(solder_mask_margin 0.102)
+			(uuid "c1cb95e3-2b06-4d93-93f4-f6d9970c5aad")
+		)
+		(pad "5" smd roundrect
+			(at -2.13 0.75)
+			(size 0.97 0.26)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(roundrect_rratio 0.095)
+			(net 11 "GND")
+			(pinfunction "GND")
+			(pintype "power_in")
+			(solder_mask_margin 0.102)
+			(uuid "b509a0a3-b52f-4788-8f8c-bb9ea438e499")
+		)
+		(pad "6" smd roundrect
+			(at -2.13 1.25)
+			(size 0.97 0.26)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(roundrect_rratio 0.095)
+			(net 157 "unconnected-(U7-FL-Pad6)")
+			(pinfunction "FL")
+			(pintype "no_connect")
+			(solder_mask_margin 0.102)
+			(uuid "fab7d465-2b10-43a3-b7cd-f323fbbed8b6")
+		)
+		(pad "7" smd roundrect
+			(at -1.25 2.13)
+			(size 0.26 0.97)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(roundrect_rratio 0.095)
+			(net 11 "GND")
+			(pinfunction "GND")
+			(pintype "power_in")
+			(solder_mask_margin 0.102)
+			(uuid "2f50df4f-5419-4069-a644-5f0c5704b067")
+		)
+		(pad "8" smd roundrect
+			(at -0.75 2.13)
+			(size 0.26 0.97)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(roundrect_rratio 0.095)
+			(net 156 "unconnected-(U7-VDDIO-Pad8)")
+			(pinfunction "VDDIO")
+			(pintype "power_in")
+			(solder_mask_margin 0.102)
+			(uuid "f543cae8-d3ea-4bdb-a283-9ecfd0784e29")
+		)
+		(pad "9" smd roundrect
+			(at -0.25 2.13)
+			(size 0.26 0.97)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(roundrect_rratio 0.095)
+			(net 152 "unconnected-(U7-MISO-Pad9)")
+			(pinfunction "MISO")
+			(pintype "output")
+			(solder_mask_margin 0.102)
+			(uuid "dc41ee72-12e4-4c3c-ace6-5b9d83c206a8")
+		)
+		(pad "10" smd roundrect
+			(at 0.25 2.13)
+			(size 0.26 0.97)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(roundrect_rratio 0.095)
+			(net 144 "unconnected-(U7-REGOUT-Pad10)")
+			(pinfunction "REGOUT")
+			(pintype "passive")
+			(solder_mask_margin 0.102)
+			(uuid "35a4a90d-790c-428d-aba7-46caa0873354")
+		)
+		(pad "11" smd roundrect
+			(at 0.75 2.13)
+			(size 0.26 0.97)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(roundrect_rratio 0.095)
+			(net 150 "unconnected-(U7-VDD-Pad11)")
+			(pinfunction "VDD")
+			(pintype "power_in")
+			(solder_mask_margin 0.102)
+			(uuid "b33942e8-3cde-425a-9f46-2fdee04ddfef")
+		)
+		(pad "12" smd roundrect
+			(at 1.25 2.13)
+			(size 0.26 0.97)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(roundrect_rratio 0.095)
+			(net 145 "unconnected-(U7-ODR-Pad12)")
+			(pinfunction "ODR")
+			(pintype "output")
+			(solder_mask_margin 0.102)
+			(uuid "3cb7755b-e2ff-431a-a69d-1ab4163a1707")
+		)
+		(pad "13" smd roundrect
+			(at 2.13 1.25)
+			(size 0.97 0.26)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(roundrect_rratio 0.095)
+			(net 147 "unconnected-(U7-FL-Pad13)")
+			(pinfunction "FL")
+			(pintype "no_connect")
+			(solder_mask_margin 0.102)
+			(uuid "746b4234-a596-4b92-b861-55efc0836894")
+		)
+		(pad "14" smd roundrect
+			(at 2.13 0.75)
+			(size 0.97 0.26)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(roundrect_rratio 0.095)
+			(net 11 "GND")
+			(pinfunction "GND")
+			(pintype "power_in")
+			(solder_mask_margin 0.102)
+			(uuid "3e46f2e2-9a9b-4699-a8d9-4e08a89a10bf")
+		)
+		(pad "15" smd roundrect
+			(at 2.13 0.25)
+			(size 0.97 0.26)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(roundrect_rratio 0.095)
+			(net 11 "GND")
+			(pinfunction "GND")
+			(pintype "power_in")
+			(solder_mask_margin 0.102)
+			(uuid "9c10e2cb-86f1-4f6d-bbe4-38d94e9a8869")
+		)
+		(pad "16" smd roundrect
+			(at 2.13 -0.25)
+			(size 0.97 0.26)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(roundrect_rratio 0.095)
+			(net 11 "GND")
+			(pinfunction "GND")
+			(pintype "power_in")
+			(solder_mask_margin 0.102)
+			(uuid "54e47698-8f6c-42c6-a0a7-62a971f742e9")
+		)
+		(pad "17" smd roundrect
+			(at 2.13 -0.75)
+			(size 0.97 0.26)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(roundrect_rratio 0.095)
+			(net 11 "GND")
+			(pinfunction "GND")
+			(pintype "power_in")
+			(solder_mask_margin 0.102)
+			(uuid "2f54223c-617b-4d2f-aea4-e7f9b291cf68")
+		)
+		(pad "18" smd roundrect
+			(at 2.13 -1.25)
+			(size 0.97 0.26)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(roundrect_rratio 0.095)
+			(net 151 "unconnected-(U7-~{RESET}-Pad18)")
+			(pinfunction "~{RESET}")
+			(pintype "input")
+			(solder_mask_margin 0.102)
+			(uuid "c2e7c62b-0ac5-4cae-b6f7-a4926682dc78")
+		)
+		(pad "19" smd roundrect
+			(at 1.25 -2.13)
+			(size 0.26 0.97)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(roundrect_rratio 0.095)
+			(net 148 "unconnected-(U7-FL-Pad19)")
+			(pinfunction "FL")
+			(pintype "no_connect")
+			(solder_mask_margin 0.102)
+			(uuid "84aa4c20-d08d-4dcd-a1ae-d5c16adb19af")
+		)
+		(pad "20" smd roundrect
+			(at 0.75 -2.13)
+			(size 0.26 0.97)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(roundrect_rratio 0.095)
+			(net 149 "unconnected-(U7-VPP-Pad20)")
+			(pinfunction "VPP")
+			(pintype "power_in")
+			(solder_mask_margin 0.102)
+			(uuid "8873a0b4-90a4-42c7-9f5e-f4404584e6f4")
+		)
+		(pad "21" smd roundrect
+			(at 0.25 -2.13)
+			(size 0.26 0.97)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(roundrect_rratio 0.095)
+			(net 143 "unconnected-(U7-FL-Pad21)")
+			(pinfunction "FL")
+			(pintype "no_connect")
+			(solder_mask_margin 0.102)
+			(uuid "1f1efdc0-016d-4d46-af7e-3dec83a34a80")
+		)
+		(pad "22" smd roundrect
+			(at -0.25 -2.13)
+			(size 0.26 0.97)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(roundrect_rratio 0.095)
+			(net 11 "GND")
+			(pinfunction "GND")
+			(pintype "power_in")
+			(solder_mask_margin 0.102)
+			(uuid "d7ccd2d3-61ce-4411-a86f-d78616b13700")
+		)
+		(pad "23" smd roundrect
+			(at -0.75 -2.13)
+			(size 0.26 0.97)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(roundrect_rratio 0.095)
+			(net 155 "unconnected-(U7-NCS-Pad23)")
+			(pinfunction "NCS")
+			(pintype "input")
+			(solder_mask_margin 0.102)
+			(uuid "ea8da8f4-e2f5-48d4-977e-b0c1180cc82f")
+		)
+		(pad "24" smd roundrect
+			(at -1.25 -2.13)
+			(size 0.26 0.97)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(roundrect_rratio 0.095)
+			(net 146 "unconnected-(U7-SCLK-Pad24)")
+			(pinfunction "SCLK")
+			(pintype "input")
+			(solder_mask_margin 0.102)
+			(uuid "5e1de7ee-c489-4cce-8605-7cf68de7cf04")
+		)
+		(pad "25" smd rect
+			(at 0 0)
+			(size 2.94 2.94)
+			(layers "F.Cu" "F.Mask")
+			(net 153 "unconnected-(U7-EXP-Pad25)")
+			(pinfunction "EXP")
+			(pintype "power_in")
+			(solder_mask_margin 0.102)
+			(uuid "e25928d8-c0ee-4c34-be16-dd89a3539c57")
+		)
+		(embedded_fonts no)
+	)
 	(footprint "Capacitor_SMD:C_0805_2012Metric"
 		(layer "F.Cu")
 		(uuid "6bb8189c-4230-436c-9c47-782a7f66a453")
@@ -4120,7 +4803,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" ""
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -4319,7 +5002,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" ""
 			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
@@ -4638,7 +5321,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" ""
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -5202,7 +5885,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" ""
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -5401,7 +6084,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" ""
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -5600,7 +6283,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" ""
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -5799,7 +6482,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" ""
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -5998,7 +6681,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" ""
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -6197,7 +6880,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" ""
 			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
@@ -6903,7 +7586,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" ""
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -7102,7 +7785,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" ""
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -8440,7 +9123,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" ""
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -8639,7 +9322,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" ""
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -8838,7 +9521,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" ""
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -9037,7 +9720,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" ""
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -9411,7 +10094,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" ""
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -9875,7 +10558,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" ""
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -10074,7 +10757,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" ""
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -10481,7 +11164,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" ""
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -10580,7 +11263,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" ""
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -10781,7 +11464,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" ""
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
