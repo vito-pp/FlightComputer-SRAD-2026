@@ -7274,7 +7274,7 @@
 	)
 	(text "Pressure sensor"
 		(exclude_from_sim no)
-		(at -145.034 374.142 0)
+		(at -128.524 257.302 0)
 		(effects
 			(font
 				(size 1.905 1.905)
@@ -12245,7 +12245,7 @@
 	)
 	(symbol
 		(lib_id "SRAD:MAX-M10M-00B")
-		(at -87.63 325.12 0)
+		(at -71.12 208.28 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -12254,7 +12254,7 @@
 		(fields_autoplaced yes)
 		(uuid "28c56120-4d00-439a-a475-4e9ed3676a2d")
 		(property "Reference" "U5"
-			(at -87.63 299.72 0)
+			(at -71.12 182.88 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12262,7 +12262,7 @@
 			)
 		)
 		(property "Value" "MAX-M10M-00B"
-			(at -87.63 302.26 0)
+			(at -71.12 185.42 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12270,7 +12270,7 @@
 			)
 		)
 		(property "Footprint" "MAX_M10M_00B:XCVR_MAX-M10M-00B"
-			(at -87.63 325.12 0)
+			(at -71.12 208.28 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12280,7 +12280,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at -87.63 325.12 0)
+			(at -71.12 208.28 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12289,7 +12289,7 @@
 			)
 		)
 		(property "Description" ""
-			(at -87.63 325.12 0)
+			(at -71.12 208.28 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12298,7 +12298,7 @@
 			)
 		)
 		(property "PARTREV" "C1"
-			(at -87.63 325.12 0)
+			(at -71.12 208.28 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12308,7 +12308,7 @@
 			)
 		)
 		(property "MANUFACTURER" "u-blox"
-			(at -87.63 325.12 0)
+			(at -71.12 208.28 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12318,7 +12318,7 @@
 			)
 		)
 		(property "MAXIMUM_PACKAGE_HEIGHT" "2.7mm"
-			(at -87.63 325.12 0)
+			(at -71.12 208.28 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12328,7 +12328,7 @@
 			)
 		)
 		(property "STANDARD" "Manufacturer Recommendations"
-			(at -87.63 325.12 0)
+			(at -71.12 208.28 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13082,7 +13082,7 @@
 	)
 	(symbol
 		(lib_id "SRAD:XBP9B-DMSTB002")
-		(at -66.04 389.89 0)
+		(at -49.53 273.05 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -13091,7 +13091,7 @@
 		(fields_autoplaced yes)
 		(uuid "80651c5f-ed22-4301-9ae4-5da770c63845")
 		(property "Reference" "U7"
-			(at -66.04 361.95 0)
+			(at -49.53 245.11 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13099,7 +13099,7 @@
 			)
 		)
 		(property "Value" "XBP9B-DMSTB002"
-			(at -66.04 364.49 0)
+			(at -49.53 247.65 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13107,7 +13107,7 @@
 			)
 		)
 		(property "Footprint" "XBEEPRO:XBEEPRO"
-			(at -66.04 389.89 0)
+			(at -49.53 273.05 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13117,7 +13117,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at -66.04 389.89 0)
+			(at -49.53 273.05 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13126,7 +13126,7 @@
 			)
 		)
 		(property "Description" ""
-			(at -66.04 389.89 0)
+			(at -49.53 273.05 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13135,7 +13135,7 @@
 			)
 		)
 		(property "MF" "Digi International"
-			(at -66.04 389.89 0)
+			(at -49.53 273.05 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13145,7 +13145,7 @@
 			)
 		)
 		(property "Description_1" "General ISM < 1GHz - Transceiver Module 900MHz Antenna Not Included, RP-SMA Through Hole"
-			(at -66.04 389.89 0)
+			(at -49.53 273.05 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13155,7 +13155,7 @@
 			)
 		)
 		(property "Package" "Module Digi International"
-			(at -66.04 389.89 0)
+			(at -49.53 273.05 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13165,7 +13165,7 @@
 			)
 		)
 		(property "Price" "None"
-			(at -66.04 389.89 0)
+			(at -49.53 273.05 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13175,7 +13175,7 @@
 			)
 		)
 		(property "Check_prices" "https://www.snapeda.com/parts/XBP9B-DMSTB002/Digi+International/view-part/?ref=eda"
-			(at -66.04 389.89 0)
+			(at -49.53 273.05 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13185,7 +13185,7 @@
 			)
 		)
 		(property "SnapEDA_Link" "https://www.snapeda.com/parts/XBP9B-DMSTB002/Digi+International/view-part/?ref=snap"
-			(at -66.04 389.89 0)
+			(at -49.53 273.05 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13195,7 +13195,7 @@
 			)
 		)
 		(property "MP" "XBP9B-DMSTB002"
-			(at -66.04 389.89 0)
+			(at -49.53 273.05 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13205,7 +13205,7 @@
 			)
 		)
 		(property "Availability" "In Stock"
-			(at -66.04 389.89 0)
+			(at -49.53 273.05 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13215,7 +13215,7 @@
 			)
 		)
 		(property "MANUFACTURER" "Digi International"
-			(at -66.04 389.89 0)
+			(at -49.53 273.05 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13552,7 +13552,7 @@
 	)
 	(symbol
 		(lib_id "SRAD:ADXL375BCCZ-RL7")
-		(at -189.23 438.15 0)
+		(at -172.72 321.31 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -13561,7 +13561,7 @@
 		(fields_autoplaced yes)
 		(uuid "94c3fc0c-c18a-4283-a0e9-3e64eb706529")
 		(property "Reference" "U4"
-			(at -153.67 427.99 0)
+			(at -137.16 311.15 0)
 			(effects
 				(font
 					(size 1.524 1.524)
@@ -13569,7 +13569,7 @@
 			)
 		)
 		(property "Value" "ADXL375BCCZ-RL7"
-			(at -153.67 430.53 0)
+			(at -137.16 313.69 0)
 			(effects
 				(font
 					(size 1.524 1.524)
@@ -13577,7 +13577,7 @@
 			)
 		)
 		(property "Footprint" "Package_LGA:LGA-14_3x5mm_P0.8mm_LayoutBorder1x6y"
-			(at -189.23 438.15 0)
+			(at -172.72 321.31 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13587,7 +13587,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.analog.com/media/en/technical-documentation/data-sheets/ADXL375-EP.pdf"
-			(at -189.23 438.15 0)
+			(at -172.72 321.31 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13597,7 +13597,7 @@
 			)
 		)
 		(property "Description" ""
-			(at -189.23 438.15 0)
+			(at -172.72 321.31 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14671,7 +14671,7 @@
 	)
 	(symbol
 		(lib_id "SRAD:IIM-20670")
-		(at -161.29 307.34 0)
+		(at -144.78 190.5 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -14680,7 +14680,7 @@
 		(fields_autoplaced yes)
 		(uuid "e8366405-54fc-451b-acaf-eef052b6afa2")
 		(property "Reference" "U1"
-			(at -161.29 284.48 0)
+			(at -144.78 167.64 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14688,7 +14688,7 @@
 			)
 		)
 		(property "Value" "IIM-20670"
-			(at -161.29 287.02 0)
+			(at -144.78 170.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14696,7 +14696,7 @@
 			)
 		)
 		(property "Footprint" "IIM_20670:QFN50P450X450X115-25N"
-			(at -161.29 307.34 0)
+			(at -144.78 190.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14706,7 +14706,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at -161.29 307.34 0)
+			(at -144.78 190.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14715,7 +14715,7 @@
 			)
 		)
 		(property "Description" ""
-			(at -161.29 307.34 0)
+			(at -144.78 190.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14724,7 +14724,7 @@
 			)
 		)
 		(property "PARTREV" "1.1"
-			(at -161.29 307.34 0)
+			(at -144.78 190.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14734,7 +14734,7 @@
 			)
 		)
 		(property "STANDARD" "IPC-7351B"
-			(at -161.29 307.34 0)
+			(at -144.78 190.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14744,7 +14744,7 @@
 			)
 		)
 		(property "MAXIMUM_PACKAGE_HEIGHT" "1.15mm"
-			(at -161.29 307.34 0)
+			(at -144.78 190.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14754,7 +14754,7 @@
 			)
 		)
 		(property "MANUFACTURER" "TDK InvenSense"
-			(at -161.29 307.34 0)
+			(at -144.78 190.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14849,7 +14849,7 @@
 	)
 	(symbol
 		(lib_id "SRAD:MS561101BA03-50")
-		(at -144.78 400.05 0)
+		(at -128.27 283.21 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -14858,7 +14858,7 @@
 		(fields_autoplaced yes)
 		(uuid "f6c55089-58d9-4c22-808a-608af4815ab6")
 		(property "Reference" "A1"
-			(at -144.78 384.81 0)
+			(at -128.27 267.97 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14866,7 +14866,7 @@
 			)
 		)
 		(property "Value" "MS561101BA03-50"
-			(at -144.78 387.35 0)
+			(at -128.27 270.51 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14874,7 +14874,7 @@
 			)
 		)
 		(property "Footprint" "MS561101BA03_50:XDCR_MS561101BA03-50"
-			(at -144.78 400.05 0)
+			(at -128.27 283.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14884,7 +14884,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at -144.78 400.05 0)
+			(at -128.27 283.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14893,7 +14893,7 @@
 			)
 		)
 		(property "Description" ""
-			(at -144.78 400.05 0)
+			(at -128.27 283.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14902,7 +14902,7 @@
 			)
 		)
 		(property "PARTREV" "06/2017"
-			(at -144.78 400.05 0)
+			(at -128.27 283.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14912,7 +14912,7 @@
 			)
 		)
 		(property "STANDARD" "Manufacturer Recommendations"
-			(at -144.78 400.05 0)
+			(at -128.27 283.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14922,7 +14922,7 @@
 			)
 		)
 		(property "MAXIMUM_PACKAGE_HEIGHT" "1.1mm"
-			(at -144.78 400.05 0)
+			(at -128.27 283.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14932,7 +14932,7 @@
 			)
 		)
 		(property "MANUFACTURER" "TE Connectivity"
-			(at -144.78 400.05 0)
+			(at -128.27 283.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
