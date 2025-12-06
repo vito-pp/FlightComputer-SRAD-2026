@@ -10,4 +10,5 @@
   (lib (name "W25Q128JVSIQ")(type "KiCad")(uri "C:/Users/jbplo/OneDrive/Desktop/rocketry/FlightComputer-SRAD-2026/components/W25Q128JVSIQ")(options "")(descr ""))
   (lib (name "XBEEPRO")(type "KiCad")(uri "${KIPRJMOD}/components/footprints.pretty/XBEEPRO.pretty")(options "")(descr ""))
   (lib (name "PTS810SJK250SMTRLFS")(type "KiCad")(uri "C:/Users/jbplo/OneDrive/Desktop/rocketry/FlightComputer-SRAD-2026/components/PTS810SJK250SMTRLFS")(options "")(descr ""))
+  (lib (name "W3011")(type "KiCad")(uri "C:/Users/jbplo/OneDrive/Desktop/rocketry/FlightComputer-SRAD-2026/components/W3011")(options "")(descr ""))
 )
