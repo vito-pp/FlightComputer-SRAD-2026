@@ -8112,6 +8112,16 @@
 		)
 		(uuid "79e31622-925e-4c0a-9866-c90d26ac4f2e")
 	)
+	(text "Closest -> Furthest"
+		(exclude_from_sim no)
+		(at 271.018 344.424 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "7e3fe27a-9727-47c7-87b7-7067ac9fea13")
+	)
 	(text "I2C / SPI"
 		(exclude_from_sim no)
 		(at 179.324 202.438 0)
@@ -8143,7 +8153,7 @@
 		)
 		(uuid "aae2034b-4c58-4336-b45f-8f3258982ab3")
 	)
-	(text "XBEE SX900RF\nRF transceiver"
+	(text "XBEE Pro SX 900 RF\nRF transceiver"
 		(exclude_from_sim no)
 		(at 228.854 303.53 0)
 		(effects
@@ -8469,6 +8479,12 @@
 		(uuid "747f066d-dd78-441d-a4a5-12fc565144a2")
 	)
 	(junction
+		(at 259.08 369.57)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "763cea7e-4e77-46d4-9469-5c9ebf560068")
+	)
+	(junction
 		(at 473.71 30.48)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -8497,6 +8513,18 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "8f8c8f46-3339-4715-b6b0-c50859897b42")
+	)
+	(junction
+		(at 269.24 328.93)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "95d6c4c4-c968-48f1-bae3-249c7f9e70d9")
+	)
+	(junction
+		(at 259.08 340.36)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "970d238f-68be-48b6-a1ab-64d8d0803ffd")
 	)
 	(junction
 		(at 485.14 30.48)
@@ -8599,6 +8627,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "c1c966ae-2226-4c84-8920-829ea25c8d57")
+	)
+	(junction
+		(at 259.08 328.93)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "c2cb6662-7b34-4e8b-8a46-f342972fec90")
 	)
 	(junction
 		(at 180.34 54.61)
@@ -9272,6 +9306,16 @@
 	)
 	(wire
 		(pts
+			(xy 259.08 340.36) (xy 269.24 340.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "36c4c488-7fe1-4c00-9a22-12058a89ef4c")
+	)
+	(wire
+		(pts
 			(xy 524.51 148.59) (xy 524.51 152.4)
 		)
 		(stroke
@@ -9752,6 +9796,16 @@
 	)
 	(wire
 		(pts
+			(xy 269.24 330.2) (xy 269.24 328.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5ca44245-452d-4274-82df-0a30a8d326b1")
+	)
+	(wire
+		(pts
 			(xy 106.68 52.07) (xy 116.84 52.07)
 		)
 		(stroke
@@ -9872,7 +9926,7 @@
 	)
 	(wire
 		(pts
-			(xy 259.08 325.12) (xy 259.08 328.93)
+			(xy 269.24 325.12) (xy 269.24 328.93)
 		)
 		(stroke
 			(width 0)
@@ -10632,6 +10686,16 @@
 	)
 	(wire
 		(pts
+			(xy 259.08 337.82) (xy 259.08 340.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a45d1340-4693-4b92-b1af-d1dc18aa6ccc")
+	)
+	(wire
+		(pts
 			(xy 36.83 339.09) (xy 49.53 339.09)
 		)
 		(stroke
@@ -10752,6 +10816,16 @@
 	)
 	(wire
 		(pts
+			(xy 259.08 328.93) (xy 269.24 328.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "affc22da-c082-4f61-a7c4-7bb6deac07b3")
+	)
+	(wire
+		(pts
 			(xy 464.82 45.72) (xy 464.82 50.8)
 		)
 		(stroke
@@ -10759,6 +10833,16 @@
 			(type default)
 		)
 		(uuid "b0f9c6d2-471e-485c-b59e-d0f1ec316b71")
+	)
+	(wire
+		(pts
+			(xy 269.24 340.36) (xy 269.24 337.82)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b17f0b2b-0c06-48bc-82a2-9aa60682a977")
 	)
 	(wire
 		(pts
@@ -11092,6 +11176,16 @@
 	)
 	(wire
 		(pts
+			(xy 259.08 340.36) (xy 259.08 369.57)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d751a1e4-3ef6-4f7f-8695-9976d9c821d2")
+	)
+	(wire
+		(pts
 			(xy 101.6 328.93) (xy 115.57 328.93)
 		)
 		(stroke
@@ -11329,6 +11423,16 @@
 			(type default)
 		)
 		(uuid "eb5f6b69-9465-4dfe-9718-a17c8ca2ac44")
+	)
+	(wire
+		(pts
+			(xy 259.08 328.93) (xy 259.08 330.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ebf63753-bda1-47dc-a421-b095cc9f3301")
 	)
 	(wire
 		(pts
@@ -14739,7 +14843,7 @@
 				)
 			)
 		)
-		(property "Footprint" "RF_Module:Digi_XBee_SMT"
+		(property "Footprint" "SRAD_fligh_comp2026:XBEEPRO"
 			(at 227.33 349.25 0)
 			(effects
 				(font
@@ -16431,7 +16535,7 @@
 	)
 	(symbol
 		(lib_id "power:+3V3")
-		(at 259.08 325.12 0)
+		(at 269.24 325.12 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -16440,7 +16544,7 @@
 		(fields_autoplaced yes)
 		(uuid "3d11d934-9ef6-4b42-9816-422bc10cfecd")
 		(property "Reference" "#PWR03"
-			(at 259.08 328.93 0)
+			(at 269.24 328.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16449,7 +16553,7 @@
 			)
 		)
 		(property "Value" "+3V3"
-			(at 259.08 320.04 0)
+			(at 269.24 320.04 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16457,7 +16561,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 259.08 325.12 0)
+			(at 269.24 325.12 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16466,7 +16570,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 259.08 325.12 0)
+			(at 269.24 325.12 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16475,7 +16579,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+3V3\""
-			(at 259.08 325.12 0)
+			(at 269.24 325.12 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19010,6 +19114,76 @@
 		)
 	)
 	(symbol
+		(lib_id "TCLib:C")
+		(at 259.08 334.01 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "b3c53f16-1a7c-4474-a5b5-98835d8580ec")
+		(property "Reference" "CXB_1"
+			(at 262.89 332.7399 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "C"
+			(at 262.89 335.2799 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "TCLib:C_0805"
+			(at 242.57 330.708 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 259.08 334.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 241.808 326.136 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "a27945e1-1898-4a9e-ad79-4f8601dd887d")
+		)
+		(pin "1"
+			(uuid "fa6bc870-96b7-4f31-be2f-b90f79405fc9")
+		)
+		(instances
+			(project ""
+				(path "/142d7a80-3dfb-4605-bdd8-7dd9e7ca17c7"
+					(reference "CXB_1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GND")
 		(at 316.23 55.88 0)
 		(unit 1)
@@ -20850,6 +21024,76 @@
 			(project "flight_comp_srad-2026"
 				(path "/142d7a80-3dfb-4605-bdd8-7dd9e7ca17c7"
 					(reference "A1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "TCLib:C")
+		(at 269.24 334.01 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "f80e65f2-bbe5-47a1-9dc6-555cd19aa86c")
+		(property "Reference" "CXB_2"
+			(at 273.05 332.7399 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "C"
+			(at 273.05 335.2799 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "TCLib:C_0805"
+			(at 252.73 330.708 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 269.24 334.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 251.968 326.136 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "43b8fc4a-1211-49a7-9441-9a072beaf4f6")
+		)
+		(pin "1"
+			(uuid "791a93ab-196b-4b7b-8415-487ee9599287")
+		)
+		(instances
+			(project "flight_comp_srad-2026"
+				(path "/142d7a80-3dfb-4605-bdd8-7dd9e7ca17c7"
+					(reference "CXB_2")
 					(unit 1)
 				)
 			)
