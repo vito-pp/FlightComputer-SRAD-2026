@@ -8143,7 +8143,7 @@
 		)
 		(uuid "aae2034b-4c58-4336-b45f-8f3258982ab3")
 	)
-	(text "XBEE SX900RF\nRF transceiver"
+	(text "XBEE Pro SX 900 RF\nRF transceiver"
 		(exclude_from_sim no)
 		(at 228.854 303.53 0)
 		(effects
