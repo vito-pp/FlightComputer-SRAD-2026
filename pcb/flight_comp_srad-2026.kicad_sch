@@ -15303,7 +15303,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 53.0352 260.35 0)
 			(effects
 				(font
@@ -20199,7 +20199,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "TCLib:C_0805"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 233.68 330.708 0)
 			(effects
 				(font
@@ -22307,7 +22307,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "TCLib:C_0805"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 246.38 330.708 0)
 			(effects
 				(font
