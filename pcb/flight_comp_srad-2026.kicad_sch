@@ -8198,28 +8198,6 @@
 		)
 		(uuid "7e3fe27a-9727-47c7-87b7-7067ac9fea13")
 	)
-	(text "falta poner botones \n"
-		(exclude_from_sim no)
-		(at 516.636 206.756 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-				(italic yes)
-			)
-		)
-		(uuid "87347c63-240c-481a-a313-600d736935e9")
-	)
-	(text "en el footprint hay 3 entradas \nde 3V3, ponemos un capa más?"
-		(exclude_from_sim no)
-		(at 332.486 145.034 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-				(italic yes)
-			)
-		)
-		(uuid "8e7de8d4-3f0d-4ab7-87a3-dfcc47b47bab")
-	)
 	(text "I2C0 bus"
 		(exclude_from_sim no)
 		(at 211.836 185.674 0)
@@ -8239,17 +8217,6 @@
 			)
 		)
 		(uuid "9cf4d0cf-bfe5-456d-aa9f-1b799069eec5")
-	)
-	(text "chequear footprint cap tantalio\n"
-		(exclude_from_sim no)
-		(at 56.642 265.43 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-				(italic yes)
-			)
-		)
-		(uuid "a6583993-04fd-45a6-b0a7-d8e425ab0473")
 	)
 	(text "SPI\n"
 		(exclude_from_sim no)
@@ -8352,17 +8319,6 @@
 			(justify left bottom)
 		)
 		(uuid "cb432322-d8e5-4128-9eac-b2aa2789f49f")
-	)
-	(text "usamos interrupciones para el ADXL?"
-		(exclude_from_sim no)
-		(at 121.158 244.348 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-				(italic yes)
-			)
-		)
-		(uuid "e6c9449d-81f6-43e9-b6de-96277f303360")
 	)
 	(text "XTAL"
 		(exclude_from_sim no)
