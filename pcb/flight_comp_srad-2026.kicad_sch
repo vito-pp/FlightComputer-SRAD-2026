@@ -8167,6 +8167,17 @@
 		)
 		(uuid "5011c434-ed38-45e8-98ee-2e1e83ac8723")
 	)
+	(text "chequear la impedancia de la linea del USB"
+		(exclude_from_sim no)
+		(at 110.744 59.182 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(italic yes)
+			)
+		)
+		(uuid "60419a41-959b-482a-be2a-13ddeb049387")
+	)
 	(text "chequear valores \nresistencias"
 		(exclude_from_sim no)
 		(at 76.2 75.946 0)
@@ -8177,6 +8188,17 @@
 			)
 		)
 		(uuid "61ccd01b-b86c-483d-9072-1413eff4ac47")
+	)
+	(text "falta guia de onda"
+		(exclude_from_sim no)
+		(at 44.196 124.46 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(italic yes)
+			)
+		)
+		(uuid "6dd4729f-2aee-4aed-9ae3-847506fa2662")
 	)
 	(text "I2C1 bus"
 		(exclude_from_sim no)
@@ -8271,7 +8293,7 @@
 	)
 	(text "Has to be close to a mounting hole for stability"
 		(exclude_from_sim no)
-		(at 111.76 259.08 0)
+		(at 99.568 249.428 0)
 		(effects
 			(font
 				(size 1.27 1.27)
