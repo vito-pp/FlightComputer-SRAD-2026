@@ -8220,6 +8220,16 @@
 		)
 		(uuid "7e3fe27a-9727-47c7-87b7-7067ac9fea13")
 	)
+	(text "JLC04161H-7628C\nW=0.9\nGap=0.3\nThickness=0.646 mm"
+		(exclude_from_sim no)
+		(at 132.334 145.542 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "893e389d-f562-47a4-a17b-ce1f869af740")
+	)
 	(text "I2C0 bus"
 		(exclude_from_sim no)
 		(at 211.836 185.674 0)
@@ -9400,7 +9410,7 @@
 	)
 	(wire
 		(pts
-			(xy 100.33 144.78) (xy 121.92 144.78)
+			(xy 100.33 144.78) (xy 115.57 144.78)
 		)
 		(stroke
 			(width 0)
@@ -9790,7 +9800,7 @@
 	)
 	(wire
 		(pts
-			(xy 100.33 147.32) (xy 121.92 147.32)
+			(xy 100.33 147.32) (xy 115.57 147.32)
 		)
 		(stroke
 			(width 0)
@@ -12468,6 +12478,16 @@
 		)
 		(uuid "44d37bd1-f1c0-461a-a9ce-d39759f07e80")
 	)
+	(label "RF_IN"
+		(at 45.72 132.08 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "4705f498-3cea-4b73-a0ec-8895a42e3c99")
+	)
 	(label "UART_Rx0"
 		(at 500.38 212.09 180)
 		(effects
@@ -12659,7 +12679,7 @@
 		(uuid "8df73728-55a2-409a-aed4-df5ec64d2302")
 	)
 	(label "RP_SDA0"
-		(at 121.92 144.78 180)
+		(at 115.57 144.78 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -12689,7 +12709,7 @@
 		(uuid "9035991a-0075-4910-aa50-dc0858ce86ca")
 	)
 	(label "RP_SCL0"
-		(at 121.92 147.32 180)
+		(at 115.57 147.32 180)
 		(effects
 			(font
 				(size 1.27 1.27)
