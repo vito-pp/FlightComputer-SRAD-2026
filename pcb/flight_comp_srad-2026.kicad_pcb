@@ -1383,7 +1383,7 @@
 	(footprint "my_lib:Logo_ITBA_rocketry"
 		(layer "F.Cu")
 		(uuid "2147d0ed-71af-4274-9282-784e148a2a92")
-		(at 197.641396 68.971604)
+		(at 197.741396 69.571604)
 		(property "Reference" "G***"
 			(at 0.5 -7.5 0)
 			(layer "F.SilkS")
@@ -2514,6 +2514,7 @@
 		(property "Reference" "H4"
 			(at 0 -3.45 0)
 			(layer "F.SilkS")
+			(hide yes)
 			(uuid "0cb9e07e-2b5c-4e5c-b391-c479e1a688bd")
 			(effects
 				(font
@@ -3735,6 +3736,7 @@
 		(property "Reference" "U3"
 			(at -7.9175 4.815 90)
 			(layer "F.SilkS")
+			(hide yes)
 			(uuid "a6f89539-57fb-43ad-86b5-7d2a890dec0e")
 			(effects
 				(font
@@ -6862,6 +6864,7 @@
 		(property "Reference" "D1"
 			(at 2 0 0)
 			(layer "F.SilkS")
+			(hide yes)
 			(uuid "c9f5d9ae-dbaa-4251-be11-e2bc3c9c5225")
 			(effects
 				(font
@@ -8102,6 +8105,7 @@
 		(property "Reference" "Y1"
 			(at 2.415 1.4 180)
 			(layer "F.SilkS")
+			(hide yes)
 			(uuid "ca77be9b-9d0d-4a68-8760-d7d5e5dde06f")
 			(effects
 				(font
@@ -8605,8 +8609,9 @@
 		(descr "LED SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: http://www.tortai-tech.com/upload/download/2011102023233369053.pdf), generated with kicad-footprint-generator")
 		(tags "LED")
 		(property "Reference" "D2"
-			(at 2 0 180)
+			(at 2.1875 0 180)
 			(layer "F.SilkS")
+			(hide yes)
 			(uuid "30d74455-a873-4e05-8446-e5ec2aab9e66")
 			(effects
 				(font
@@ -9045,6 +9050,7 @@
 		(property "Reference" "J3"
 			(at 1.925 -3.365 90)
 			(layer "F.SilkS")
+			(hide yes)
 			(uuid "b0ea6eab-0654-4137-98ee-9325deb63c71")
 			(effects
 				(font
@@ -10099,6 +10105,7 @@
 		(property "Reference" "U7"
 			(at -13.65556 9.3391 90)
 			(layer "F.SilkS")
+			(hide yes)
 			(uuid "e9ae3dfb-75aa-4062-930d-a111b317bf6e")
 			(effects
 				(font
@@ -11374,10 +11381,11 @@
 		(at 209.37 79.73 -90)
 		(descr "SOIC, 8 Pin (JEITA/EIAJ 08-001-BBA and Atmel/Microchip, 208 mils width, https://www.jeita.or.jp/japanese/standard/book/ED-7311-19/#target/page_no=21, https://ww1.microchip.com/downloads/en/DeviceDoc/20005045C.pdf#page=23, https://ww1.microchip.com/downloads/en/DeviceDoc/doc2535.pdf#page=162), generated with kicad-footprint-generator ipc_gullwing_generator.py")
 		(tags "SOIC SO P-SOP SOP SOP-8 SO SO-8 8S2 S2AE/F K04-056 CASE-751BE SO8W 8-Pin-SOIC PSA W8-2 W8-4 W8MS-1")
-		(property "Reference" "U6"
-			(at -4.9175 -3.78 90)
+		(property "Reference" "FLASH"
+			(at 0.87 -20.13 270)
 			(layer "F.SilkS")
-			(uuid "d89284c2-b774-4753-907f-23d63c324a91")
+			(hide yes)
+			(uuid "8aff124f-a745-4be3-bbbd-e3c165eaeef6")
 			(effects
 				(font
 					(size 1 1)
@@ -11389,7 +11397,7 @@
 			(at 0 3.6 90)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "f75e0de3-16d1-44e8-94c3-1e53a3858b82")
+			(uuid "6a8261ef-5e49-4317-8784-cb9a2e13e401")
 			(effects
 				(font
 					(size 1 1)
@@ -11401,7 +11409,7 @@
 			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "152bb0e9-bbf5-4f40-adac-a27e0955d62c")
+			(uuid "2b533df9-99b6-4852-9a40-db6d8301b304")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11413,7 +11421,7 @@
 			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "c373bb67-fc26-493d-afd7-c37b448f854e")
+			(uuid "04609227-5de0-4b37-bb29-6f0e0ad108c1")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11608,7 +11616,7 @@
 			(layer "F.Fab")
 			(uuid "8cb21a37-b7ed-4f85-8ad2-ce4494c25ae0")
 		)
-		(fp_text user "${REFERENCE}"
+		(fp_text user "U6"
 			(at 0 0 90)
 			(layer "F.Fab")
 			(uuid "ed30a369-5fa5-454d-a043-bff103daa77c")
@@ -13689,6 +13697,7 @@
 		(property "Reference" "R8"
 			(at 0 1.65 90)
 			(layer "B.SilkS")
+			(hide yes)
 			(uuid "21486637-daa7-439d-8665-b2d480823ee4")
 			(effects
 				(font
@@ -15120,6 +15129,7 @@
 		(property "Reference" "U1"
 			(at 4.285 -3.27 90)
 			(layer "B.SilkS")
+			(hide yes)
 			(uuid "52d40a0f-ffe9-4b55-ba19-7799698d20f5")
 			(effects
 				(font
@@ -17274,6 +17284,7 @@
 		(property "Reference" "CXB_2"
 			(at 0 1.43 0)
 			(layer "B.SilkS")
+			(hide yes)
 			(uuid "7ccf2ca6-10f9-4085-a53f-52ed5828b817")
 			(effects
 				(font
@@ -17480,6 +17491,7 @@
 		(property "Reference" "CXB_1"
 			(at 0 1.43 0)
 			(layer "B.SilkS")
+			(hide yes)
 			(uuid "9dd20138-4f1c-4a93-8909-545839fbb2a5")
 			(effects
 				(font
@@ -18544,6 +18556,136 @@
 		(fill no)
 		(layer "Edge.Cuts")
 		(uuid "7a706399-0e5d-42d4-b5ea-85a5b8166d17")
+	)
+	(gr_text "Pensa Piccolo, Vito\nPérez Losada, Javier Baltasar\nStefoni Rey Iraola, Pedro"
+		(at 157.5 65.8 0)
+		(layer "F.SilkS")
+		(uuid "04fa34fe-f1e2-444f-b621-19a1f7a1a2fb")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.2)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+	)
+	(gr_text "SWITCH 1"
+		(at 214.4 67.8 0)
+		(layer "F.SilkS")
+		(uuid "10acb2ff-3565-4d00-a846-90ce0741b593")
+		(effects
+			(font
+				(size 0.7 0.7)
+				(thickness 0.175)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+	)
+	(gr_text "FLASH\n"
+		(at 212.5 77.3 270)
+		(layer "F.SilkS")
+		(uuid "1db0072a-622c-4843-8738-9b7408dc479e")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.2)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+	)
+	(gr_text "MAX M10M\nGPS"
+		(at 173.5 72.6 0)
+		(layer "F.SilkS")
+		(uuid "216f60d8-3554-41e1-a8cb-0c435032a9bf")
+		(effects
+			(font
+				(size 0.7 0.7)
+				(thickness 0.175)
+				(bold yes)
+			)
+			(justify right bottom)
+		)
+	)
+	(gr_text "LED2"
+		(at 203.2 96.5 270)
+		(layer "F.SilkS")
+		(uuid "28e28747-1fea-4d8d-8d16-4c5195747a3a")
+		(effects
+			(font
+				(size 0.5 0.5)
+				(thickness 0.125)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+	)
+	(gr_text "SWITCH 2"
+		(at 191.5 91.2 0)
+		(layer "F.SilkS")
+		(uuid "315cd500-2976-4ee0-a291-5049d5df0656")
+		(effects
+			(font
+				(size 0.5 0.5)
+				(thickness 0.125)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+	)
+	(gr_text "LED1\n"
+		(at 199.3 97.2 90)
+		(layer "F.SilkS")
+		(uuid "60bbf0bf-ed02-4e25-be49-607fac322fc7")
+		(effects
+			(font
+				(size 0.5 0.5)
+				(thickness 0.125)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+	)
+	(gr_text "ADXL ACCL."
+		(at 210.5 63.5 0)
+		(layer "B.SilkS")
+		(uuid "3657c127-cdde-4a8c-b3ef-899aa335464a")
+		(effects
+			(font
+				(size 0.7 0.7)
+				(thickness 0.175)
+				(bold yes)
+			)
+			(justify left bottom mirror)
+		)
+	)
+	(gr_text "MS5611 \nBAROM.\n"
+		(at 205.6 76.9 270)
+		(layer "B.SilkS")
+		(uuid "424cecb4-81bc-4ba0-a78e-62e7b6afd966")
+		(effects
+			(font
+				(size 0.7 0.7)
+				(thickness 0.175)
+				(bold yes)
+			)
+			(justify left bottom mirror)
+		)
+	)
+	(gr_text "IIM-20670\nACCL & GYRO\n"
+		(at 193.2 71.5 0)
+		(layer "B.SilkS")
+		(uuid "f97c801c-13c2-4246-b53a-f7aebff17183")
+		(effects
+			(font
+				(size 0.7 0.7)
+				(thickness 0.175)
+				(bold yes)
+			)
+			(justify left bottom mirror)
+		)
 	)
 	(segment
 		(start 213.57 86.395)
