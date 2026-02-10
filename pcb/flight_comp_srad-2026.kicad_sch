@@ -2545,12 +2545,13 @@
 					(hide yes)
 				)
 			)
-			(property "Description" ""
+			(property "Description" "Buzzers Transducer, Externally Driven Piezo 3V 4kHz 60dB @ 3V, 10cm Through Hole PC Pins"
 				(at 0 0 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
+					(justify bottom)
 					(hide yes)
 				)
 			)
@@ -2675,16 +2676,6 @@
 				)
 			)
 			(property "AVAILABILITY" "Unavailable"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "DESCRIPTION" "Buzzers Transducer, Externally Driven Piezo 3V 4kHz 60dB @ 3V, 10cm Through Hole PC Pins"
 				(at 0 0 0)
 				(effects
 					(font
@@ -9249,12 +9240,6 @@
 		(uuid "6b4cb489-7bd5-4001-9182-270c44fa727a")
 	)
 	(junction
-		(at 537.21 255.27)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "70e162ba-b4eb-47cc-ad1a-b9b1335a8672")
-	)
-	(junction
 		(at 90.17 369.57)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -9427,6 +9412,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "b433536e-ef64-4323-928a-6554f7c9c883")
+	)
+	(junction
+		(at 537.21 255.27)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "b66106c1-7fda-4528-861a-d99333103b4a")
 	)
 	(junction
 		(at 121.92 50.8)
@@ -11948,6 +11939,16 @@
 	)
 	(wire
 		(pts
+			(xy 537.21 252.73) (xy 537.21 255.27)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9b9fa4f3-2655-4efc-8815-0db92efacca6")
+	)
+	(wire
+		(pts
 			(xy 547.37 269.24) (xy 537.21 269.24)
 		)
 		(stroke
@@ -13108,16 +13109,6 @@
 	)
 	(wire
 		(pts
-			(xy 537.21 252.73) (xy 537.21 255.27)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "eed0acd4-ab1e-4649-94d0-bb9ed978ce6a")
-	)
-	(wire
-		(pts
 			(xy 90.17 364.49) (xy 90.17 367.03)
 		)
 		(stroke
@@ -13685,16 +13676,6 @@
 			(justify right bottom)
 		)
 		(uuid "55e4ca31-ea7e-4141-9909-4a7c18a5649f")
-	)
-	(label "3V3"
-		(at 537.21 252.73 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "5ac98222-f465-4c30-8190-ac895e82bc0d")
 	)
 	(label "~{USB_BOOT}"
 		(at 229.87 54.61 0)
@@ -23669,6 +23650,72 @@
 			(project ""
 				(path "/142d7a80-3dfb-4605-bdd8-7dd9e7ca17c7"
 					(reference "Y1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3V3")
+		(at 537.21 252.73 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "e2f7ae96-9ca7-45d2-857f-3e55befedb9d")
+		(property "Reference" "#PWR034"
+			(at 537.21 256.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 537.21 247.65 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 537.21 252.73 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 537.21 252.73 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 537.21 252.73 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "337f1c14-c746-41ac-bf13-b2dd89e817cc")
+		)
+		(instances
+			(project ""
+				(path "/142d7a80-3dfb-4605-bdd8-7dd9e7ca17c7"
+					(reference "#PWR034")
 					(unit 1)
 				)
 			)
