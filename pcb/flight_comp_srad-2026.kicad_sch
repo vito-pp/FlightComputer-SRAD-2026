@@ -8240,7 +8240,7 @@
 		)
 		(uuid "7e3fe27a-9727-47c7-87b7-7067ac9fea13")
 	)
-	(text "JLC04161H-7628C\nW=0.9\nGap=0.3\nThickness=0.646 mm"
+	(text "JLC04161H-7628E\nW=0.7\nGap=0.4\nThickness=0.4284 mm"
 		(exclude_from_sim no)
 		(at 132.334 145.542 0)
 		(effects
