@@ -3,9 +3,9 @@
     "GenerationSoftware": {
       "Vendor": "KiCad",
       "Application": "Pcbnew",
-      "Version": "9.0.4"
+      "Version": "9.0.6"
     },
-    "CreationDate": "2026-02-10T01:04:34-03:00"
+    "CreationDate": "2026-02-11T12:54:48-03:00"
   },
   "GeneralSpecs": {
     "ProjectId": {
@@ -49,12 +49,12 @@
     },
     {
       "Path": "flight_comp_srad-2026-In1_Cu.gbr",
-      "FileFunction": "Copper,L5,Inr",
+      "FileFunction": "Copper,L2,Inr",
       "FilePolarity": "Positive"
     },
     {
       "Path": "flight_comp_srad-2026-In2_Cu.gbr",
-      "FileFunction": "Copper,L7,Inr",
+      "FileFunction": "Copper,L3,Inr",
       "FilePolarity": "Positive"
     },
     {
