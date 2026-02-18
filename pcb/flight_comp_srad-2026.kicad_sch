@@ -2501,6 +2501,350 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "PS1240P02BT:PS1240P02BT"
+			(pin_names
+				(offset 1.016)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "LS"
+				(at -3.81 3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left bottom)
+				)
+			)
+			(property "Value" "PS1240P02BT"
+				(at -3.81 -5.08 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left bottom)
+				)
+			)
+			(property "Footprint" "PS1240P02BT:XDCR_PS1240P02BT"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Buzzers Transducer, Externally Driven Piezo 3V 4kHz 60dB @ 3V, 10cm Through Hole PC Pins"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "MF" "TDK Corporation"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "MAXIMUM_PACKAGE_HEIGHT" "7.0mm"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "PACKAGE" "SIP-5 TDK"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "PRICE" "None"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Package" "Custom Package TDK"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Check_prices" "https://www.snapeda.com/parts/PS1240P02BT/TDK/view-part/?ref=eda"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Price" "None"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "SnapEDA_Link" "https://www.snapeda.com/parts/PS1240P02BT/TDK/view-part/?ref=snap"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "MP" "PS1240P02BT"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Purchase-URL" "https://www.snapeda.com/api/url_track_click_mouser/?unipart_id=5799192&manufacturer=TDK Corporation&part_name=PS1240P02BT&search_term=None"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Description_1" "Buzzers Transducer, Externally Driven Piezo 3 V - 4kHz 60dB @ 3V, 10cm Through Hole PC Pins"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Availability" "In Stock"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "AVAILABILITY" "Unavailable"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(symbol "PS1240P02BT_0_0"
+				(polyline
+					(pts
+						(xy -2.54 0) (xy -1.905 0)
+					)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.905 0) (xy -1.905 2.54)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.905 -2.54) (xy -1.905 0)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.27 2.54) (xy -1.27 -2.54)
+					)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.27 -2.54) (xy 1.27 -2.54)
+					)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 2.54) (xy -1.27 2.54)
+					)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 -2.54) (xy 1.27 2.54)
+					)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.905 2.54) (xy 1.905 0)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.905 0) (xy 1.905 -2.54)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.905 0) (xy 2.54 0)
+					)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin passive line
+					(at -5.08 0 0)
+					(length 2.54)
+					(name "~"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 5.08 0 180)
+					(length 2.54)
+					(name "~"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "RP2040_minimal_r2-cache:MCU_RaspberryPi_RP2040_RP2040"
 			(pin_names
 				(offset 1.016)
@@ -7467,6 +7811,211 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "Transistor_BJT:BC847"
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "Q"
+				(at 5.08 1.905 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "BC847"
+				(at 5.08 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
+				(at 5.08 -1.905 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+						(italic yes)
+					)
+					(justify left)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "http://www.infineon.com/dgdl/Infineon-BC847SERIES_BC848SERIES_BC849SERIES_BC850SERIES-DS-v01_01-en.pdf?fileId=db3a304314dca389011541d4630a1657"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+					(hide yes)
+				)
+			)
+			(property "Description" "0.1A Ic, 45V Vce, NPN Transistor, SOT-23"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "NPN Small Signal Transistor"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "SOT?23*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "BC847_0_1"
+				(polyline
+					(pts
+						(xy -2.54 0) (xy 0.635 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.635 1.905) (xy 0.635 -1.905)
+					)
+					(stroke
+						(width 0.508)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 1.27 0)
+					(radius 2.8194)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "BC847_1_1"
+				(polyline
+					(pts
+						(xy 0.635 0.635) (xy 2.54 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.635 -0.635) (xy 2.54 -2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 -1.778) (xy 1.778 -1.27) (xy 2.286 -2.286) (xy 1.27 -1.778)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(pin input line
+					(at -5.08 0 0)
+					(length 2.54)
+					(name "B"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 2.54 5.08 270)
+					(length 2.54)
+					(name "C"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 2.54 -5.08 90)
+					(length 2.54)
+					(name "E"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "power:+1V1"
 			(power)
 			(pin_names
@@ -8372,6 +8921,16 @@
 		)
 		(uuid "cb432322-d8e5-4128-9eac-b2aa2789f49f")
 	)
+	(text "R1 elegido para que Ic sea aprox 20mA"
+		(exclude_from_sim no)
+		(at 514.096 286.766 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "cc13a4c8-5b47-4970-8921-b9ca108c2fb5")
+	)
 	(text "XTAL"
 		(exclude_from_sim no)
 		(at 354.076 30.226 0)
@@ -8859,6 +9418,12 @@
 		(uuid "be15c4da-f714-4ba0-b013-6dfe99c42805")
 	)
 	(junction
+		(at 538.48 261.62)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "bfa35606-f9e9-4ffc-b26d-bd68a60912de")
+	)
+	(junction
 		(at 513.08 118.11)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -8881,6 +9446,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "c6a63130-e733-4aa6-a33b-ad690a59040b")
+	)
+	(junction
+		(at 538.48 275.59)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "c931dcdc-8442-45c8-ac98-ed7e73d0a575")
 	)
 	(junction
 		(at 52.07 232.41)
@@ -9153,6 +9724,16 @@
 			(type default)
 		)
 		(uuid "032d6e0b-3819-49cb-8f78-888700eaac4b")
+	)
+	(wire
+		(pts
+			(xy 538.48 261.62) (xy 538.48 265.43)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0366f069-f55c-4199-b28b-b0a54b955c16")
 	)
 	(wire
 		(pts
@@ -9513,6 +10094,16 @@
 			(type default)
 		)
 		(uuid "1d4e7dea-fc3a-4aae-921a-4a7d85e4561c")
+	)
+	(wire
+		(pts
+			(xy 548.64 264.16) (xy 548.64 261.62)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1e7f18b4-db73-462b-b7d0-08b34b82a701")
 	)
 	(wire
 		(pts
@@ -10286,6 +10877,16 @@
 	)
 	(wire
 		(pts
+			(xy 548.64 275.59) (xy 538.48 275.59)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "53e69fb6-af0d-470b-b305-585d41245828")
+	)
+	(wire
+		(pts
 			(xy 219.71 107.95) (xy 219.71 109.22)
 		)
 		(stroke
@@ -10293,6 +10894,16 @@
 			(type default)
 		)
 		(uuid "5503bef5-fc6e-4214-8c9a-6c751519f8d4")
+	)
+	(wire
+		(pts
+			(xy 548.64 261.62) (xy 538.48 261.62)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "563af700-1319-45e2-b489-6376fc8d3724")
 	)
 	(wire
 		(pts
@@ -10556,6 +11167,16 @@
 	)
 	(wire
 		(pts
+			(xy 511.81 281.94) (xy 521.97 281.94)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "62cde8c2-7ae5-4d00-8585-551af1d8eae9")
+	)
+	(wire
+		(pts
 			(xy 52.07 260.35) (xy 52.07 262.89)
 		)
 		(stroke
@@ -10683,6 +11304,26 @@
 			(type default)
 		)
 		(uuid "6d5be7a5-3b51-461e-9243-b645c746fd15")
+	)
+	(wire
+		(pts
+			(xy 538.48 287.02) (xy 538.48 289.56)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6dc505cd-da80-46bd-80f4-b699792c4ea8")
+	)
+	(wire
+		(pts
+			(xy 485.14 168.91) (xy 490.22 168.91)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6eacda86-7621-4850-a7ae-eb7703c61569")
 	)
 	(wire
 		(pts
@@ -11316,6 +11957,16 @@
 	)
 	(wire
 		(pts
+			(xy 529.59 281.94) (xy 530.86 281.94)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9b660666-e378-4978-afa7-318286bd2c99")
+	)
+	(wire
+		(pts
 			(xy 74.93 40.64) (xy 81.28 40.64)
 		)
 		(stroke
@@ -11533,6 +12184,16 @@
 			(type default)
 		)
 		(uuid "ab10a4b8-16c6-473f-a928-f8f178d0c89b")
+	)
+	(wire
+		(pts
+			(xy 538.48 259.08) (xy 538.48 261.62)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ab9ff370-3bd9-4844-adcd-ed85a0436def")
 	)
 	(wire
 		(pts
@@ -11773,6 +12434,16 @@
 			(type default)
 		)
 		(uuid "c07c606f-5908-4c64-b137-5de45e44dc0e")
+	)
+	(wire
+		(pts
+			(xy 538.48 273.05) (xy 538.48 275.59)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c1129dfb-fd29-4a96-81ea-0611cb2a2db7")
 	)
 	(wire
 		(pts
@@ -12326,6 +12997,16 @@
 	)
 	(wire
 		(pts
+			(xy 548.64 275.59) (xy 548.64 274.32)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e55e4397-b790-46cd-b5dd-44e0a1250f7d")
+	)
+	(wire
+		(pts
 			(xy 274.32 229.87) (xy 274.32 237.49)
 		)
 		(stroke
@@ -12666,6 +13347,16 @@
 	)
 	(wire
 		(pts
+			(xy 538.48 275.59) (xy 538.48 276.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fdfa18aa-b978-4ca6-a610-d396117bf55b")
+	)
+	(wire
+		(pts
 			(xy 412.75 128.27) (xy 412.75 129.54)
 		)
 		(stroke
@@ -12893,6 +13584,16 @@
 			(justify left bottom)
 		)
 		(uuid "3513f439-61f5-4d42-a579-57a95f288839")
+	)
+	(label "BUZZER"
+		(at 511.81 281.94 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "3b6059f0-89eb-458f-a61c-426490844413")
 	)
 	(label "USB_R-"
 		(at 486.41 161.29 0)
@@ -13403,6 +14104,16 @@
 			(justify right bottom)
 		)
 		(uuid "f443e003-8bc5-4a14-b9a2-cdbe37501b09")
+	)
+	(label "BUZZER"
+		(at 490.22 168.91 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "f6f0a90e-cdb7-428a-b10c-dd1b1277cfe1")
 	)
 	(label "IIM_CS1"
 		(at 36.83 336.55 0)
@@ -15534,6 +16245,74 @@
 			(project ""
 				(path "/142d7a80-3dfb-4605-bdd8-7dd9e7ca17c7"
 					(reference "CADXL_2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 525.78 281.94 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "09d88d45-35b2-43c0-af6e-ec3b366f348e")
+		(property "Reference" "R1"
+			(at 525.78 275.59 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "22k"
+			(at 525.78 278.13 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
+			(at 525.78 283.718 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 525.78 281.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 525.78 281.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "969bc467-1655-4d58-a6e2-22ed15f624c7")
+		)
+		(pin "1"
+			(uuid "2e441feb-98b8-4407-82b8-0ee934915f89")
+		)
+		(instances
+			(project "flight_comp_srad-2026"
+				(path "/142d7a80-3dfb-4605-bdd8-7dd9e7ca17c7"
+					(reference "R1")
 					(unit 1)
 				)
 			)
@@ -17701,6 +18480,71 @@
 		)
 	)
 	(symbol
+		(lib_name "GND_2")
+		(lib_id "power:GND")
+		(at 538.48 289.56 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "3a43ec79-3ef8-4fde-81f1-6aac5fe88f04")
+		(property "Reference" "#PWR034"
+			(at 538.48 295.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 538.607 293.9542 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 538.48 289.56 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 538.48 289.56 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 538.48 289.56 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "afbc6c1f-1b06-4940-883a-1df105d7d49f")
+		)
+		(instances
+			(project "flight_comp_srad-2026"
+				(path "/142d7a80-3dfb-4605-bdd8-7dd9e7ca17c7"
+					(reference "#PWR034")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Mechanical:MountingHole")
 		(at 537.21 185.42 0)
 		(unit 1)
@@ -19058,6 +19902,76 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R")
+		(at 538.48 269.24 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "6761ac20-a990-4970-87db-74d2c9d159a5")
+		(property "Reference" "R2"
+			(at 541.02 267.9699 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "1k"
+			(at 541.02 270.5099 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
+			(at 540.258 269.24 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 538.48 269.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 538.48 269.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "4f25c1e4-ae1e-4a06-9ebd-0ee0b986170d")
+		)
+		(pin "1"
+			(uuid "693da7dd-e42e-48ae-a607-c14b816cb9a1")
+		)
+		(instances
+			(project "flight_comp_srad-2026"
+				(path "/142d7a80-3dfb-4605-bdd8-7dd9e7ca17c7"
+					(reference "R2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "TPS73733DCQ:TPS73733DCQ")
 		(at 99.06 45.72 0)
 		(unit 1)
@@ -20089,6 +21003,214 @@
 			(project ""
 				(path "/142d7a80-3dfb-4605-bdd8-7dd9e7ca17c7"
 					(reference "H5")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "PS1240P02BT:PS1240P02BT")
+		(at 548.64 269.24 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "85cb5cdc-ca06-4daf-aa5f-048fe0713d5a")
+		(property "Reference" "LS1"
+			(at 559.562 267.716 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "PS1240P02BT"
+			(at 559.562 270.256 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Buzzer_Beeper:Buzzer_TDK_PS1240P02BT_D12.2mm_H6.5mm"
+			(at 548.64 269.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 548.64 269.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 548.64 269.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MF" "TDK Corporation"
+			(at 548.64 269.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "MAXIMUM_PACKAGE_HEIGHT" "7.0mm"
+			(at 548.64 269.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "PACKAGE" "SIP-5 TDK"
+			(at 548.64 269.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "PRICE" "None"
+			(at 548.64 269.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Package" "Custom Package TDK"
+			(at 548.64 269.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Check_prices" "https://www.snapeda.com/parts/PS1240P02BT/TDK/view-part/?ref=eda"
+			(at 548.64 269.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Price" "None"
+			(at 548.64 269.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "SnapEDA_Link" "https://www.snapeda.com/parts/PS1240P02BT/TDK/view-part/?ref=snap"
+			(at 548.64 269.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "MP" "PS1240P02BT"
+			(at 548.64 269.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Purchase-URL" "https://www.snapeda.com/api/url_track_click_mouser/?unipart_id=5799192&manufacturer=TDK Corporation&part_name=PS1240P02BT&search_term=None"
+			(at 548.64 269.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Description_1" "Buzzers Transducer, Externally Driven Piezo 3 V - 4kHz 60dB @ 3V, 10cm Through Hole PC Pins"
+			(at 548.64 269.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Availability" "In Stock"
+			(at 548.64 269.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "AVAILABILITY" "Unavailable"
+			(at 548.64 269.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "DESCRIPTION" "Buzzers Transducer, Externally Driven Piezo 3V 4kHz 60dB @ 3V, 10cm Through Hole PC Pins"
+			(at 548.64 269.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "3770a4df-6569-458c-96c7-8d770ed93725")
+		)
+		(pin "1"
+			(uuid "405227b6-4c79-4dcc-9ca7-c8796afa4690")
+		)
+		(instances
+			(project "flight_comp_srad-2026"
+				(path "/142d7a80-3dfb-4605-bdd8-7dd9e7ca17c7"
+					(reference "LS1")
 					(unit 1)
 				)
 			)
@@ -22435,6 +23557,82 @@
 		)
 	)
 	(symbol
+		(lib_id "Transistor_BJT:BC847")
+		(at 535.94 281.94 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "e27b0bfd-1d39-4f35-9eb0-4e02044c8307")
+		(property "Reference" "Q1"
+			(at 541.02 280.6699 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "BC847"
+			(at 541.02 283.2099 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
+			(at 541.02 283.845 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "http://www.infineon.com/dgdl/Infineon-BC847SERIES_BC848SERIES_BC849SERIES_BC850SERIES-DS-v01_01-en.pdf?fileId=db3a304314dca389011541d4630a1657"
+			(at 535.94 281.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Description" "0.1A Ic, 45V Vce, NPN Transistor, SOT-23"
+			(at 535.94 281.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "0632ca5d-c96c-4f76-9291-9db90c7bd64c")
+		)
+		(pin "2"
+			(uuid "e982cdda-736d-46c2-bc88-5791a5e243fd")
+		)
+		(pin "3"
+			(uuid "91398982-8bca-45d7-af7c-c0635af39128")
+		)
+		(instances
+			(project "flight_comp_srad-2026"
+				(path "/142d7a80-3dfb-4605-bdd8-7dd9e7ca17c7"
+					(reference "Q1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "SRAD:ABM8-272-T3")
 		(at 354.33 46.99 270)
 		(unit 1)
@@ -22566,6 +23764,72 @@
 			(project ""
 				(path "/142d7a80-3dfb-4605-bdd8-7dd9e7ca17c7"
 					(reference "Y1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3V3")
+		(at 538.48 259.08 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "e2f7ae96-9ca7-45d2-857f-3e55befedb9d")
+		(property "Reference" "#PWR034"
+			(at 538.48 262.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 538.48 254 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 538.48 259.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 538.48 259.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 538.48 259.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "337f1c14-c746-41ac-bf13-b2dd89e817cc")
+		)
+		(instances
+			(project "flight_comp_srad-2026"
+				(path "/142d7a80-3dfb-4605-bdd8-7dd9e7ca17c7"
+					(reference "#PWR034")
 					(unit 1)
 				)
 			)
