@@ -14600,7 +14600,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 500.38 151.892 90)
 			(effects
 				(font
@@ -14666,7 +14666,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 500.38 159.512 90)
 			(effects
 				(font
@@ -23779,7 +23779,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "e2f7ae96-9ca7-45d2-857f-3e55befedb9d")
-		(property "Reference" "#PWR034"
+		(property "Reference" "#PWR0101"
 			(at 538.48 262.89 0)
 			(effects
 				(font
@@ -23829,7 +23829,7 @@
 		(instances
 			(project "flight_comp_srad-2026"
 				(path "/142d7a80-3dfb-4605-bdd8-7dd9e7ca17c7"
-					(reference "#PWR034")
+					(reference "#PWR0101")
 					(unit 1)
 				)
 			)
