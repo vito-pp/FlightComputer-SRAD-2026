@@ -8,3 +8,45 @@ fp-info-cache
 *.kicad_pcb.lck
 *.kicad_sch.lck
 '#auto_saved_files#'
+
+# ---- VSCode ----
+.vscode/
+*.code-workspace
+
+# ---- Build files (CMake / Pico SDK) ----
+build/
+code/build/
+cmake-build-*/
+code/cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+compile_commands.json
+_deps/
+generated/
+
+# ---- Compiled binaries ----
+*.elf
+*.bin
+*.uf2
+*.hex
+*.map
+*.dis
+
+# ---- Python (MicroPython tools) ----
+__pycache__/
+*.pyc
+
+# ---- OS junk ----
+.DS_Store
+Thumbs.db
+
+# ---- Serial monitor logs ----
+*.log
+
+# ---- Temporary files ----
+*.swp
+*.swo
+*.bak
+*.tmp
