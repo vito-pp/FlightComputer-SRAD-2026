@@ -22230,8 +22230,8 @@
 			(justify bottom)
 		)
 	)
-	(gr_text "SRAD Flight Computer 2026"
-		(at 158.6 63.25 0)
+	(gr_text "SRAD Flight Computer 2026\nAvionics & Recovery"
+		(at 169.64 65.27 0)
 		(layer "F.SilkS")
 		(uuid "e323c5cb-3d4e-4a12-963a-aa1122dbb91a")
 		(effects
@@ -22240,18 +22240,17 @@
 				(thickness 0.2)
 				(bold yes)
 			)
-			(justify left bottom)
+			(justify bottom)
 		)
 	)
-	(gr_text ":v"
-		(at 217.9 91.6 270)
+	(gr_text "xd"
+		(at 216.93 93.97 0)
 		(layer "F.SilkS")
 		(uuid "f122c403-7782-47bd-a58d-4b21b9dc3bc3")
 		(effects
 			(font
-				(size 2 2)
-				(thickness 0.4)
-				(bold yes)
+				(size 1.8 1.8)
+				(thickness 0.3)
 			)
 			(justify left bottom)
 		)
@@ -26593,6 +26592,14 @@
 		(uuid "151ddfdd-da03-404a-b7f1-146b568bdc6c")
 	)
 	(segment
+		(start 209.95 90.1)
+		(end 211 90.1)
+		(width 0.5)
+		(layer "F.Cu")
+		(net 38)
+		(uuid "1947af11-b079-4199-af3b-c59ff9ab795c")
+	)
+	(segment
 		(start 190.385 78.175)
 		(end 190.38 78.18)
 		(width 0.2)
@@ -26641,6 +26648,14 @@
 		(uuid "34a90217-1886-443d-81fb-74182e1d7b8f")
 	)
 	(segment
+		(start 210.69 90.84)
+		(end 210.69 89.65)
+		(width 0.5)
+		(layer "F.Cu")
+		(net 38)
+		(uuid "3ab9d34f-4fd6-49ea-b733-e38143cfa3cb")
+	)
+	(segment
 		(start 196.075 86.4)
 		(end 196.125 86.4)
 		(width 0.2)
@@ -26649,12 +26664,12 @@
 		(uuid "3bed5acd-4a0f-410b-b493-7cde7a4ac193")
 	)
 	(segment
-		(start 209.95 90.1)
+		(start 211.27 91.42)
 		(end 211.27 90.1)
-		(width 0.4)
+		(width 0.8)
 		(layer "F.Cu")
 		(net 38)
-		(uuid "415dace2-72d3-414d-a92e-577de48c1583")
+		(uuid "3f32be92-2c9d-4519-ac18-dd212efced2b")
 	)
 	(segment
 		(start 195.665 79.72)
@@ -26671,6 +26686,22 @@
 		(layer "F.Cu")
 		(net 38)
 		(uuid "4900a0c8-f265-44c0-9b7b-887698ae821a")
+	)
+	(segment
+		(start 209.95 90.1)
+		(end 210.69 90.84)
+		(width 0.5)
+		(layer "F.Cu")
+		(net 38)
+		(uuid "51d31bc3-e09b-4674-a18c-7c326265d7e3")
+	)
+	(segment
+		(start 211 90.1)
+		(end 211.3 90.4)
+		(width 0.5)
+		(layer "F.Cu")
+		(net 38)
+		(uuid "51eab2d4-4aee-4ca5-aac5-1f660ade0723")
 	)
 	(segment
 		(start 201.43 77.91)
@@ -26737,6 +26768,22 @@
 		(uuid "6c15e9e0-9b94-4e7d-a1e5-346e2887552a")
 	)
 	(segment
+		(start 211.25 88.8)
+		(end 210.545 89.505)
+		(width 0.5)
+		(layer "F.Cu")
+		(net 38)
+		(uuid "6d5fb44b-710c-4dad-8a6a-b4a007958408")
+	)
+	(segment
+		(start 210.545 89.505)
+		(end 209.95 90.1)
+		(width 0.5)
+		(layer "F.Cu")
+		(net 38)
+		(uuid "73358a2a-26fd-4b61-8b37-459ed5161549")
+	)
+	(segment
 		(start 202.66 79.04)
 		(end 203.2 78.5)
 		(width 0.2)
@@ -26751,6 +26798,14 @@
 		(layer "F.Cu")
 		(net 38)
 		(uuid "8108480d-cc31-4ee9-b7d2-2d848edccdb4")
+	)
+	(segment
+		(start 211.3 88.8)
+		(end 211.25 88.8)
+		(width 0.5)
+		(layer "F.Cu")
+		(net 38)
+		(uuid "84ca2013-5fb1-489e-8051-1c6ba3b3aacb")
 	)
 	(segment
 		(start 202.67 81.7)
@@ -26849,6 +26904,14 @@
 		(uuid "a70bda46-6f17-427b-9b28-e3d37ac352d3")
 	)
 	(segment
+		(start 210.69 89.65)
+		(end 210.545 89.505)
+		(width 0.5)
+		(layer "F.Cu")
+		(net 38)
+		(uuid "a80f336f-7614-425d-922b-7b92fe9adbca")
+	)
+	(segment
 		(start 193.49 79.05)
 		(end 193.66 79.22)
 		(width 0.2)
@@ -26945,6 +27008,14 @@
 		(uuid "c6b2186d-59cb-4aa6-8bec-ee42c0d09dab")
 	)
 	(segment
+		(start 210.69 90.84)
+		(end 211.27 91.42)
+		(width 0.5)
+		(layer "F.Cu")
+		(net 38)
+		(uuid "ca2963fb-0454-4ef1-a3bf-25daa991f380")
+	)
+	(segment
 		(start 204.04 88.78)
 		(end 203.5075 88.78)
 		(width 0.2)
@@ -26962,7 +27033,7 @@
 	)
 	(segment
 		(start 211.27 92.7)
-		(end 211.27 90.1)
+		(end 211.27 91.42)
 		(width 0.8)
 		(layer "F.Cu")
 		(net 38)
@@ -27900,7 +27971,7 @@
 	(segment
 		(start 213.05 89.7)
 		(end 211.4 89.7)
-		(width 0.5)
+		(width 0.9)
 		(layer "B.Cu")
 		(net 38)
 		(uuid "a729ee8f-8520-42ac-91f0-26654187f4a2")

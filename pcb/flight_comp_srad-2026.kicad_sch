@@ -8804,7 +8804,7 @@
 		)
 		(uuid "2510ae19-d7c8-45e4-86f4-ce126e61b74d")
 	)
-	(text "I2C / UART"
+	(text "I2C"
 		(exclude_from_sim no)
 		(at 38.1 96.266 0)
 		(effects
@@ -8926,7 +8926,7 @@
 		)
 		(uuid "93c146fd-5b97-4336-9725-e48fbd6c1aaa")
 	)
-	(text "I2C / SPI"
+	(text "I2C"
 		(exclude_from_sim no)
 		(at 265.684 98.298 0)
 		(effects
