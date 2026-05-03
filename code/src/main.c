@@ -1,6 +1,6 @@
 #include "pico/stdlib.h"
 
-#define LED_1 24
+#define LED_1 26 // blue led
 
 int main() {
     const uint LED_PIN = LED_1;
