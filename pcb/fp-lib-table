@@ -13,4 +13,5 @@
   (lib (name "W3011")(type "KiCad")(uri "C:/Users/jbplo/OneDrive/Desktop/rocketry/FlightComputer-SRAD-2026/components/W3011")(options "")(descr ""))
   (lib (name "footprints")(type "KiCad")(uri "${KIPRJMOD}/components/footprints.pretty")(options "")(descr ""))
   (lib (name "Library")(type "KiCad")(uri "${KIPRJMOD}/Library.pretty")(options "")(descr ""))
+  (lib (name "SRAD")(type "KiCad")(uri "${KIPRJMOD}/SRAD.pretty")(options "")(descr ""))
 )
