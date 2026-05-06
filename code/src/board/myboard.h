@@ -1,5 +1,3 @@
-// vibe codeado, chequear
-
 #ifndef _BOARDS_MYBOARD_H
 #define _BOARDS_MYBOARD_H
 
@@ -17,7 +15,8 @@
 #define PICO_DEFAULT_UART_TX_PIN 0
 #define PICO_DEFAULT_UART_RX_PIN 1
 
-// If you have an LED
-#define PICO_DEFAULT_LED_PIN 25
+// LEDs
+#define BLUE_LED_GPIO 26  
+#define BLUE_RED_GPIO 27 
 
 #endif

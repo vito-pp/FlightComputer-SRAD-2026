@@ -18,6 +18,7 @@ add_executable(flight_computer
     src/main.c
     src/hw_config.c
     src/sd_logger.c
+    src/sensors/adxl375.c
 )
 
 target_include_directories(flight_computer PRIVATE
@@ -27,6 +28,7 @@ target_include_directories(flight_computer PRIVATE
 
 target_link_libraries(flight_computer
     pico_stdlib
+    hardware_i2c
     no-OS-FatFS-SD-SDIO-SPI-RPi-Pico
 )
 
