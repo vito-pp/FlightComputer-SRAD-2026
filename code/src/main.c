@@ -1,8 +1,8 @@
 #include <stdio.h>
 
 #include "pico/stdlib.h"
-#include "adxl375.h"
 #include "board/myboard.h"
+#include "adxl375.h"
 
 int main(void) {
     stdio_init_all();

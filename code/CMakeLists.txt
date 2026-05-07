@@ -16,14 +16,13 @@ add_subdirectory(no-OS-FatFS-SD-SDIO-SPI-RPi-Pico/src build_sd)
 
 add_executable(flight_computer
     src/main.c
-    src/hw_config.c
-    src/sd_logger.c
-    src/sensors/adxl375.c
+    src/board/hw_config.c
+    src/drvs/sd_logger.c
+    src/drvs/adxl375.c
 )
 
 target_include_directories(flight_computer PRIVATE
     ${CMAKE_CURRENT_LIST_DIR}/include
-    ${CMAKE_CURRENT_LIST_DIR}/src/board
 )
 
 target_link_libraries(flight_computer
