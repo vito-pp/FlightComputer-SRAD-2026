@@ -19,6 +19,7 @@ add_executable(flight_computer
     src/board/hw_config.c
     src/drvs/sd_logger.c
     src/drvs/adxl375.c
+    src/drvs/iim20670.c
 )
 
 target_include_directories(flight_computer PRIVATE
@@ -28,6 +29,7 @@ target_include_directories(flight_computer PRIVATE
 target_link_libraries(flight_computer
     pico_stdlib
     hardware_i2c
+    hardware_spi
     no-OS-FatFS-SD-SDIO-SPI-RPi-Pico
 )
 

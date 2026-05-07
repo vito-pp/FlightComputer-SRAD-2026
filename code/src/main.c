@@ -1,40 +1,60 @@
 #include <stdio.h>
-
 #include "pico/stdlib.h"
-#include "board/myboard.h"
-#include "adxl375.h"
+#include "iim20670.h"
 
-int main(void) {
-    stdio_init_all();
+// GPIOs
+#define BLUE_LED 26  
+#define RED_LED 27 
+
+void error_handler(void);
+
+int main(void)
+{
+    gpio_init(BLUE_LED);
+    gpio_set_dir(BLUE_LED, GPIO_OUT);
+
+    gpio_init(RED_LED);
+    gpio_set_dir(RED_LED, GPIO_OUT);
+
+    gpio_put(BLUE_LED, 0);
+    gpio_put(RED_LED, 0);
+
+    stdio_init_all(); // USB as stdout
     sleep_ms(2000);
 
-    printf("ADXL375 test start\n");
+    printf("IIM-20670 test start\n");
 
-    if (!adxl375_init()) {
-        printf("ADXL375 init failed\n");
-        while (true) {
-            sleep_ms(1000);
-        }
+    if (!iim_init()) {
+        printf("IIM init failed\n");
+	error_handler();
     }
 
-    printf("ADXL375 init OK\n");
+    printf("IIM init OK\n");
 
     while (true) {
-	adxl375_sample_t sample;
+        iim_sample_t s;
 
-	adxl375_poll_result_t result = adxl375_poll_sample(&sample);
+        iim_poll_status_t st = iim_poll_sample(&s);
 
-	if (result == ADXL375_POLL_OK) {
-		printf("ADXL x=%.2f y=%.2f z=%.2f g\n",
-           	sample.x_g,
-	        sample.y_g,
-	        sample.z_g);
-	} else if (result == ADXL375_POLL_NO_DATA) {
-    	// Nothing new. Continue doing other work.
-	} else {
-    		printf("ADXL read error\n");
-	}
-	
-        sleep_ms(100);
+        if (st == IIM_POLL_OK) {
+            printf(
+                "t=%llu ax=%d ay=%d az=%d gx=%d gy=%d gz=%d temp=%.2f\n",
+                s.timestamp_us,
+                s.accel_x,
+                s.accel_y,
+                s.accel_z,
+                s.gyro_x,
+                s.gyro_y,
+                s.gyro_z,
+                iim_temp_raw_to_c(s.temp1)
+            );
+        } else if (st == IIM_POLL_ERROR) {
+            printf("IIM poll error\n");
+        }
     }
+}
+
+void error_handler(void) {
+	gpio_put(BLUE_LED, 0);
+	gpio_put(RED_LED, 1);
 }

@@ -15,8 +15,4 @@
 #define PICO_DEFAULT_UART_TX_PIN 0
 #define PICO_DEFAULT_UART_RX_PIN 1
 
-// LEDs
-#define BLUE_LED_GPIO 26  
-#define BLUE_RED_GPIO 27 
-
 #endif
