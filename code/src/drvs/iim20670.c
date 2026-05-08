@@ -1,6 +1,7 @@
 #include "iim20670.h"
 
 #include <stddef.h>
+#include <stdio.h>
 #include "pico/stdlib.h"
 #include "hardware/gpio.h"
 
@@ -24,6 +25,32 @@
 #define IIM_WHOAMI_VALUE     0x00F3
 
 #define IIM_STATUS_OK        0x01
+
+typedef struct {
+    float accel_x_bias;
+    float accel_y_bias;
+    float accel_z_bias;
+
+    float gyro_x_bias;
+    float gyro_y_bias;
+    float gyro_z_bias;
+
+    float accel_lsb_per_g;
+    float gyro_lsb_per_dps;
+} iim_cal_t;
+
+static iim_cal_t g_cal = {
+    .accel_x_bias = 0.0f,
+    .accel_y_bias = 0.0f,
+    .accel_z_bias = 0.0f,
+
+    .gyro_x_bias = IIM_DEFAULT_GYRO_X_BIAS,
+    .gyro_y_bias = IIM_DEFAULT_GYRO_Y_BIAS,
+    .gyro_z_bias = IIM_DEFAULT_GYRO_Z_BIAS,
+
+    .accel_lsb_per_g = IIM_DEFAULT_ACCEL_LSB_PER_G,
+    .gyro_lsb_per_dps = IIM_DEFAULT_GYRO_LSB_PER_DPS,
+};
 
 static uint64_t g_next_sample_us = 0;
 static uint32_t g_error_count = 0;
@@ -133,7 +160,9 @@ static bool iim_read_reg(uint8_t addr, uint16_t *value)
         return false;
     }
 
-    if (iim_response_status(rx) != IIM_STATUS_OK) {
+    uint8_t st = iim_response_status(rx);
+
+    if (st == 0) {
         g_error_count++;
         return false;
     }
@@ -185,61 +214,52 @@ static bool iim_read_sample_block(iim_sample_t *s)
 {
     if (!s) return false;
 
-    uint32_t rx;
-    uint16_t vals[11];
+    uint16_t v;
 
-    const uint8_t regs[11] = {
-        IIM_REG_GYRO_X,
-        IIM_REG_GYRO_Y,
-        IIM_REG_GYRO_Z,
-        IIM_REG_TEMP1,
-        IIM_REG_ACCEL_X,
-        IIM_REG_ACCEL_Y,
-        IIM_REG_ACCEL_Z,
-        IIM_REG_TEMP2,
-        IIM_REG_ACCEL_X_LR,
-        IIM_REG_ACCEL_Y_LR,
-        IIM_REG_ACCEL_Z_LR,
-    };
+    if (!iim_read_reg(IIM_REG_ACCEL_X, &v)) return false;
+    s->accel_x_raw = (int16_t)v;
 
-    for (int i = 0; i < 11; i++) {
-        uint32_t cmd = iim_make_cmd(false, regs[i], 0x0000);
-        if (!iim_transfer32(cmd, &rx)) {
-            return false;
-        }
+    if (!iim_read_reg(IIM_REG_ACCEL_Y, &v)) return false;
+    s->accel_y_raw = (int16_t)v;
 
-        if (i > 0) {
-            if (iim_response_status(rx) != IIM_STATUS_OK) {
-                g_error_count++;
-                return false;
-            }
-            vals[i - 1] = iim_response_data(rx);
-        }
-    }
+    if (!iim_read_reg(IIM_REG_ACCEL_Z, &v)) return false;
+    s->accel_z_raw = (int16_t)v;
 
-    uint32_t dummy = iim_make_cmd(false, IIM_REG_FIXED_VALUE, 0x0000);
-    if (!iim_transfer32(dummy, &rx)) {
-        return false;
-    }
+    if (!iim_read_reg(IIM_REG_GYRO_X, &v)) return false;
+    s->gyro_x_raw = (int16_t)v;
 
-    if (iim_response_status(rx) != IIM_STATUS_OK) {
-        g_error_count++;
-        return false;
-    }
+    if (!iim_read_reg(IIM_REG_GYRO_Y, &v)) return false;
+    s->gyro_y_raw = (int16_t)v;
 
-    vals[10] = iim_response_data(rx);
+    if (!iim_read_reg(IIM_REG_GYRO_Z, &v)) return false;
+    s->gyro_z_raw = (int16_t)v;
 
-    s->gyro_x     = (int16_t)vals[0];
-    s->gyro_y     = (int16_t)vals[1];
-    s->gyro_z     = (int16_t)vals[2];
-    s->temp1      = (int16_t)vals[3];
-    s->accel_x    = (int16_t)vals[4];
-    s->accel_y    = (int16_t)vals[5];
-    s->accel_z    = (int16_t)vals[6];
-    s->temp2      = (int16_t)vals[7];
-    s->accel_x_lr = (int16_t)vals[8];
-    s->accel_y_lr = (int16_t)vals[9];
-    s->accel_z_lr = (int16_t)vals[10];
+    if (!iim_read_reg(IIM_REG_TEMP1, &v)) return false;
+    s->temp1_raw = (int16_t)v;
+
+    if (!iim_read_reg(IIM_REG_TEMP2, &v)) return false;
+    s->temp2_raw = (int16_t)v;
+
+    s->accel_x_g = ((float)s->accel_x_raw - g_cal.accel_x_bias) /
+                   g_cal.accel_lsb_per_g;
+
+    s->accel_y_g = ((float)s->accel_y_raw - g_cal.accel_y_bias) /
+                   g_cal.accel_lsb_per_g;
+
+    s->accel_z_g = ((float)s->accel_z_raw - g_cal.accel_z_bias) /
+                   g_cal.accel_lsb_per_g;
+
+    s->gyro_x_dps = ((float)s->gyro_x_raw - g_cal.gyro_x_bias) /
+                    g_cal.gyro_lsb_per_dps;
+
+    s->gyro_y_dps = ((float)s->gyro_y_raw - g_cal.gyro_y_bias) /
+                    g_cal.gyro_lsb_per_dps;
+
+    s->gyro_z_dps = ((float)s->gyro_z_raw - g_cal.gyro_z_bias) /
+                    g_cal.gyro_lsb_per_dps;
+
+    s->temp1_c = 25.0f + ((float)s->temp1_raw / 20.0f);
+    s->temp2_c = 25.0f + ((float)s->temp2_raw / 20.0f);
 
     s->error_count = g_error_count;
 
@@ -279,40 +299,81 @@ bool iim_init(void)
     sleep_ms(200);
 
     uint16_t fixed = 0;
-    if (!iim_select_bank(0)) {
-        return false;
-    }
 
     if (!iim_read_reg(IIM_REG_FIXED_VALUE, &fixed)) {
+        printf("IIM init failed: fixed register read failed\n");
         return false;
     }
+
+    printf("IIM fixed = 0x%04X\n", fixed);
 
     if (fixed != IIM_FIXED_VALUE) {
+        printf("IIM init failed: expected 0x%04X, got 0x%04X\n",
+               IIM_FIXED_VALUE,
+               fixed);
         return false;
     }
 
-    if (!iim_unlock_bank_select()) {
-        return false;
-    }
-
-    if (!iim_select_bank(1)) {
-        return false;
-    }
-
-    uint16_t whoami = 0;
-    if (!iim_read_reg(IIM_REG_WHOAMI, &whoami)) {
-        return false;
-    }
-
-    if ((whoami & 0x00FFu) != IIM_WHOAMI_VALUE) {
-        return false;
-    }
-
-    if (!iim_select_bank(0)) {
-        return false;
-    }
+    printf("IIM init OK: fixed register matched\n");
 
     g_next_sample_us = time_us_64();
+
+    return true;
+}
+
+bool iim_calibrate(void)
+{
+    const uint16_t samples = 200;
+    const uint32_t delay_ms = 5;
+
+    int64_t ax_sum = 0;
+    int64_t ay_sum = 0;
+    int64_t az_sum = 0;
+
+    int64_t gx_sum = 0;
+    int64_t gy_sum = 0;
+    int64_t gz_sum = 0;
+
+    for (uint16_t i = 0; i < samples; i++) {
+        uint16_t v;
+
+        if (!iim_read_reg(IIM_REG_ACCEL_X, &v)) return false;
+        ax_sum += (int16_t)v;
+
+        if (!iim_read_reg(IIM_REG_ACCEL_Y, &v)) return false;
+        ay_sum += (int16_t)v;
+
+        if (!iim_read_reg(IIM_REG_ACCEL_Z, &v)) return false;
+        az_sum += (int16_t)v;
+
+        if (!iim_read_reg(IIM_REG_GYRO_X, &v)) return false;
+        gx_sum += (int16_t)v;
+
+        if (!iim_read_reg(IIM_REG_GYRO_Y, &v)) return false;
+        gy_sum += (int16_t)v;
+
+        if (!iim_read_reg(IIM_REG_GYRO_Z, &v)) return false;
+        gz_sum += (int16_t)v;
+
+        sleep_ms(delay_ms);
+    }
+
+    float ax_avg = (float)ax_sum / samples;
+    float ay_avg = (float)ay_sum / samples;
+    float az_avg = (float)az_sum / samples;
+
+    g_cal.accel_x_bias = ax_avg;
+    g_cal.accel_y_bias = ay_avg;
+    g_cal.accel_z_bias = 0.0f;
+
+    /*
+     * Assumes board is flat and Z axis sees +1g during calibration.
+     */
+    g_cal.accel_lsb_per_g = az_avg;
+
+    g_cal.gyro_x_bias = (float)gx_sum / samples;
+    g_cal.gyro_y_bias = (float)gy_sum / samples;
+    g_cal.gyro_z_bias = (float)gz_sum / samples;
 
     return true;
 }
@@ -321,6 +382,7 @@ iim_poll_status_t iim_poll_sample(iim_sample_t *sample)
 {
     if (!sample) {
         g_error_count++;
+	printf("no sample\n");
         return IIM_POLL_ERROR;
     }
 
@@ -335,28 +397,9 @@ iim_poll_status_t iim_poll_sample(iim_sample_t *sample)
     sample->timestamp_us = now;
 
     if (!iim_read_sample_block(sample)) {
+	printf("no read\n");
         return IIM_POLL_ERROR;
     }
 
     return IIM_POLL_OK;
-}
-
-float iim_accel_raw_to_g(int16_t raw)
-{
-    return (float)raw / 2000.0f;
-}
-
-float iim_accel_lr_raw_to_g(int16_t raw)
-{
-    return (float)raw / 500.0f;
-}
-
-float iim_gyro_raw_to_dps(int16_t raw)
-{
-    return (float)raw / 50.0f;
-}
-
-float iim_temp_raw_to_c(int16_t raw)
-{
-    return 25.0f + ((float)raw / 20.0f);
 }
