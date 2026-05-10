@@ -382,7 +382,6 @@ iim_poll_status_t iim_poll_sample(iim_sample_t *sample)
 {
     if (!sample) {
         g_error_count++;
-	printf("no sample\n");
         return IIM_POLL_ERROR;
     }
 
@@ -397,7 +396,6 @@ iim_poll_status_t iim_poll_sample(iim_sample_t *sample)
     sample->timestamp_us = now;
 
     if (!iim_read_sample_block(sample)) {
-	printf("no read\n");
         return IIM_POLL_ERROR;
     }
 

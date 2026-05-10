@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "pico/stdlib.h"
 #include "iim20670.h"
+#include "buzzer.h"
 
 // GPIOs
 #define BLUE_LED 26  
@@ -12,6 +13,8 @@ void error_handler(void);
 
 int main(void)
 {
+    buzz_init();
+
     stdio_init_all();
     sleep_ms(2000);
 
@@ -81,8 +84,12 @@ int main(void)
         } else if (st == IIM_POLL_ERROR) {
             printf("IIM poll error\n");
         }
-
-        sleep_ms(1);
+	
+	sleep_ms(1);
+	// buzz_alarm(true);
+	// sleep_ms(1000);
+	// buzz_alarm(false);
+	// sleep_ms(1000);
     }
 }
 
