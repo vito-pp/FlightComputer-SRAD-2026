@@ -85,7 +85,7 @@ int main(void)
             printf("IIM poll error\n");
         }
 	
-	sleep_ms(1);
+	sleep_us(500);
 	// buzz_alarm(true);
 	// sleep_ms(1000);
 	// buzz_alarm(false);

@@ -6,7 +6,7 @@
 #include "hardware/spi.h"
 
 #define IIM_SPI_PORT spi1
-#define IIM_SPI_BAUDRATE 50000u
+#define IIM_SPI_BAUDRATE 1000000u
 
 #define IIM_PIN_MISO 8
 #define IIM_PIN_CS   9
