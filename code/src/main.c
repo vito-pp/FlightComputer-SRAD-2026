@@ -5,11 +5,16 @@
 #include "ms5611.h"
 
 // GPIOs
-#define BLUE_LED 26  
-#define RED_LED 27 
-#define I2C_PORT i2c1
-#define I2C_SDA_PIN 2
-#define I2C_SCL_PIN 3
+#define BLUE_LED 26
+#define RED_LED 27
+
+#define I2C0_SDA_PIN 12
+#define I2C0_SCL_PIN 13
+#define I2C0_BAUD 400000 // 400 kHz
+
+#define I2C1_SDA_PIN 2
+#define I2C1_SCL_PIN 3
+#define I2C1_BAUD 400000 // 400 kHz
 
 #define USE_IIM_CALIBRATION 1
 
@@ -20,16 +25,17 @@ int main(void)
     stdio_init_all();
     sleep_ms(2000);
 
-    i2c_init(I2C_PORT, 400 * 1000);
+    i2c_init(i2c0, I2C1_BAUD);
+    i2c_init(i2c1, I2C1_BAUD);
 
-    gpio_set_function(I2C_SDA_PIN, GPIO_FUNC_I2C);
-    gpio_set_function(I2C_SCL_PIN, GPIO_FUNC_I2C);
-    gpio_pull_up(I2C_SDA_PIN);
-    gpio_pull_up(I2C_SCL_PIN);
+    gpio_set_function(I2C1_SDA_PIN, GPIO_FUNC_I2C);
+    gpio_set_function(I2C1_SCL_PIN, GPIO_FUNC_I2C);
+    gpio_pull_up(I2C1_SDA_PIN);
+    gpio_pull_up(I2C1_SCL_PIN);
 
     ms5611_t baro;
 
-    ms5611_status_t st = ms5611_init(&baro, I2C_PORT, 0x76, MS5611_OSR_4096);
+    ms5611_status_t st = ms5611_init(&baro, i2c1, MS5611_ADDR, MS5611_OSR_4096);
     if (st != MS5611_OK) {
         printf("MS5611 init failed: %d\n", st);
         while (true) {

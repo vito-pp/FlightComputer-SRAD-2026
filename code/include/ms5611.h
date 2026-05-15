@@ -5,6 +5,8 @@
 #include <stdint.h>
 #include "hardware/i2c.h"
 
+#define MS5611_ADDR 0x76
+
 typedef enum {
     MS5611_OK = 0,
     MS5611_ERR_I2C = -1,
