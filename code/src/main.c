@@ -2,10 +2,14 @@
 #include "pico/stdlib.h"
 #include "iim20670.h"
 #include "buzzer.h"
+#include "ms5611.h"
 
 // GPIOs
 #define BLUE_LED 26  
 #define RED_LED 27 
+#define I2C_PORT i2c1
+#define I2C_SDA_PIN 2
+#define I2C_SCL_PIN 3
 
 #define USE_IIM_CALIBRATION 1
 
@@ -13,80 +17,43 @@ void error_handler(void);
 
 int main(void)
 {
-	buzz_init();
+    stdio_init_all();
+    sleep_ms(2000);
 
-	stdio_init_all();
-	sleep_ms(2000);
+    i2c_init(I2C_PORT, 400 * 1000);
 
-	printf("IIM test start\n");
+    gpio_set_function(I2C_SDA_PIN, GPIO_FUNC_I2C);
+    gpio_set_function(I2C_SCL_PIN, GPIO_FUNC_I2C);
+    gpio_pull_up(I2C_SDA_PIN);
+    gpio_pull_up(I2C_SCL_PIN);
 
-	if (!iim_init()) {
-		printf("IIM init failed\n");
-		error_handler();
-	}
+    ms5611_t baro;
 
-	printf("IIM init OK\n");
+    ms5611_status_t st = ms5611_init(&baro, I2C_PORT, 0x76, MS5611_OSR_4096);
+    if (st != MS5611_OK) {
+        printf("MS5611 init failed: %d\n", st);
+        while (true) {
+            sleep_ms(1000);
+        }
+    }
 
-#if USE_IIM_CALIBRATION
-	printf("Keep board still and flat. Calibrating...\n");
+    printf("MS5611 init OK\n");
 
-	if (!iim_calibrate()) {
-		printf("IIM calibration failed\n");
-		error_handler();	
-	}
+    while (true) {
+        st = ms5611_poll(&baro);
 
-	printf("IIM calibration OK\n");
-#else
-	printf("Using default calibration values\n");
-#endif
+        if (st == MS5611_OK && ms5611_sample_ready(&baro)) {
+            float p = ms5611_get_pressure_mbar(&baro);
+            float t = ms5611_get_temperature_c(&baro);
+            float alt = ms5611_get_altitude_m(&baro, 1013.25f);
 
-	while (true) {
-		iim_sample_t s;
-		iim_poll_status_t st = iim_poll_sample(&s);
+            printf("P: %.2f mbar | T: %.2f C | Alt: %.2f m\n", p, t, alt);
 
-		if (st == IIM_POLL_OK) {
-			static uint32_t div = 0;
+            ms5611_clear_sample_ready(&baro);
+        }
 
-			if (++div >= 100) {
-				div = 0;
-
-				printf(
-					"accel: %.3f %.3f %.3f g | "
-					"gyro: %.3f %.3f %.3f dps | "
-					"raw acc: %d %d %d | "
-					"raw gyro: %d %d %d | "
-					"temp: %.2f %.2f C\n",
-
-					s.accel_x_g,
-					s.accel_y_g,
-					s.accel_z_g,
-
-					s.gyro_x_dps,
-					s.gyro_y_dps,
-					s.gyro_z_dps,
-
-					s.accel_x_raw,
-					s.accel_y_raw,
-					s.accel_z_raw,
-
-					s.gyro_x_raw,
-					s.gyro_y_raw,
-					s.gyro_z_raw,
-
-					s.temp1_c,
-					s.temp2_c
-				);
-			}
-		} else if (st == IIM_POLL_ERROR) {
-			printf("IIM poll error\n");
-		}
-
-		sleep_us(500);
-		// buzz_alarm(true);
-		// sleep_ms(1000);
-		// buzz_alarm(false);
-		// sleep_ms(1000);
-	}
+        tight_loop_contents();
+    }
 }
 
 void error_handler(void) {

@@ -21,6 +21,7 @@ add_executable(flight_computer
     src/drvs/adxl375.c
     src/drvs/iim20670.c
     src/drvs/buzzer.c
+    src/drvs/ms5611.c
 )
 
 target_include_directories(flight_computer PRIVATE
