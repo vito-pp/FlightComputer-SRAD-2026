@@ -39,13 +39,17 @@ int main(void)
 
     printf("MS5611 init OK\n");
 
+    printf("Calibrating barometer...\n");
+    ms5611_calibrate(&baro, 200);
+    printf("Calibration done\n");
+
     while (true) {
         st = ms5611_poll(&baro);
 
         if (st == MS5611_OK && ms5611_sample_ready(&baro)) {
             float p = ms5611_get_pressure_mbar(&baro);
             float t = ms5611_get_temperature_c(&baro);
-            float alt = ms5611_get_altitude_m(&baro, 1013.25f);
+            float alt = ms5611_get_altitude_m(&baro);
 
             printf("P: %.2f mbar | T: %.2f C | Alt: %.2f m\n", p, t, alt);
 

@@ -164,7 +164,8 @@ static void compensate(ms5611_t *dev)
     dev->pressure_centi_mbar = (int32_t)P;
 }
 
-ms5611_status_t ms5611_init(ms5611_t *dev, i2c_inst_t *i2c, uint8_t addr, ms5611_osr_t osr)
+ms5611_status_t ms5611_init(ms5611_t *dev, i2c_inst_t *i2c, uint8_t addr,
+			    ms5611_osr_t osr)
 {
     if (!dev || !i2c || osr > MS5611_OSR_4096) {
         return MS5611_ERR_BAD_PARAM;
@@ -298,17 +299,38 @@ float ms5611_get_temperature_c(const ms5611_t *dev)
     return dev ? dev->temperature_centi_c / 100.0f : 0.0f;
 }
 
-float ms5611_get_altitude_m(const ms5611_t *dev, float sea_level_mbar)
+float ms5611_get_altitude_m(const ms5611_t *dev)
 {
-    if (!dev || sea_level_mbar <= 0.0f) {
+    if (!dev || !dev->calibrated || dev->ground_pressure_mbar <= 0.0f) {
         return 0.0f;
     }
 
     float pressure = ms5611_get_pressure_mbar(dev);
 
-    /*
-     * International Standard Atmosphere approximation.
-     * altitude = 44330 * (1 - (P/P0)^0.1903)
-     */
-    return 44330.0f * (1.0f - powf(pressure / sea_level_mbar, 0.19029495f));
+    return 44330.0f *
+           (1.0f - powf(pressure / dev->ground_pressure_mbar,
+            0.19029495f));
+}
+
+void ms5611_calibrate(ms5611_t *dev, uint32_t samples)
+{
+    double sum = 0.0;
+    uint32_t count = 0;
+
+    while (count < samples) {
+
+        ms5611_poll(dev);
+
+        if (ms5611_sample_ready(dev)) {
+
+            sum += ms5611_get_pressure_mbar(dev);
+
+            ms5611_clear_sample_ready(dev);
+
+            count++;
+        }
+    }
+
+    dev->ground_pressure_mbar = sum / (float)samples;
+    dev->calibrated = true;
 }

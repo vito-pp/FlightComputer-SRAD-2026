@@ -39,6 +39,9 @@ typedef struct {
 
     uint8_t state;
     absolute_time_t conversion_deadline;
+	
+    bool calibrated;
+    float ground_pressure_mbar;
 } ms5611_t;
 
 /**
@@ -51,7 +54,8 @@ typedef struct {
  * @param addr I2C address, usually 0x76 or 0x77.
  * @param osr Oversampling ratio.
  */
-ms5611_status_t ms5611_init(ms5611_t *dev, i2c_inst_t *i2c, uint8_t addr, ms5611_osr_t osr);
+ms5611_status_t ms5611_init(ms5611_t *dev, i2c_inst_t *i2c, uint8_t addr,
+			    ms5611_osr_t osr);
 
 /**
  * @brief Non-blocking polling state machine.
@@ -84,10 +88,9 @@ float ms5611_get_temperature_c(const ms5611_t *dev);
 
 /**
  * @brief Get altitude in meters using the barometric formula.
- *
- * @param sea_level_mbar Reference pressure. Use 1013.25 for standard atmosphere,
- * or a local QNH value for better absolute altitude.
  */
-float ms5611_get_altitude_m(const ms5611_t *dev, float sea_level_mbar);
+float ms5611_get_altitude_m(const ms5611_t *dev);
+
+void ms5611_calibrate(ms5611_t *dev, uint32_t samples);
 
 #endif
