@@ -5,59 +5,115 @@
 #include <stdbool.h>
 #include "hardware/spi.h"
 
+/**
+ * @brief IIM-20670 SPI hardware settings.
+ *
+ * Edit these macros when the IMU is moved to another SPI peripheral, pinout,
+ * baudrate, or reset wiring. Set IIM_PIN_RESET to -1 when reset is not wired.
+ */
 #define IIM_SPI_PORT spi1
 #define IIM_SPI_BAUDRATE 1000000u
 
-#define IIM_PIN_MISO 8
-#define IIM_PIN_CS   9
-#define IIM_PIN_SCK  10
-#define IIM_PIN_MOSI 11
+#define IIM_PIN_MISO  8
+#define IIM_PIN_CS    9
+#define IIM_PIN_SCK   10
+#define IIM_PIN_MOSI  11
 #define IIM_PIN_RESET -1
 
+/**
+ * @brief Requested IMU sample period for iim_poll_sample().
+ *
+ * The polling function returns IIM_POLL_NO_DATA until this period has elapsed.
+ * It does not configure an internal sensor ODR; it paces reads in software.
+ */
 #define IIM_SAMPLE_PERIOD_US 1000u
 
-#define IIM_DEFAULT_ACCEL_LSB_PER_G 4700.0f // empirical calibration at lab
+/**
+ * @brief Number of raw samples averaged by iim_calibrate().
+ */
+#define IIM_CAL_SAMPLES 200u
+
+/**
+ * @brief Delay between calibration samples.
+ */
+#define IIM_CAL_SAMPLE_DELAY_MS 5u
+
+/**
+ * @brief Default conversion and bias values used before calibration.
+ *
+ * These are fallback/bench values. iim_calibrate() replaces the accel and gyro
+ * biases at startup. For accel, it assumes the board is still and flat, then
+ * treats the measured Z axis as +1 g.
+ */
+#define IIM_DEFAULT_ACCEL_LSB_PER_G 4700.0f
 #define IIM_DEFAULT_GYRO_LSB_PER_DPS 50.0f
 #define IIM_DEFAULT_GYRO_X_BIAS 500.0f
 #define IIM_DEFAULT_GYRO_Y_BIAS 900.0f
 #define IIM_DEFAULT_GYRO_Z_BIAS 60.0f
 
+/**
+ * @brief Result codes returned by iim_poll_sample().
+ */
 typedef enum {
-    IIM_POLL_OK = 0,
-    IIM_POLL_NO_DATA,
-    IIM_POLL_ERROR
+    IIM_POLL_OK = 0,    /**< New sample was read. */
+    IIM_POLL_NO_DATA,   /**< Software sample period has not elapsed yet. */
+    IIM_POLL_ERROR      /**< Invalid parameter or SPI/register read failure. */
 } iim_poll_status_t;
 
+/**
+ * @brief One converted IIM-20670 IMU sample.
+ */
 typedef struct {
-    uint64_t timestamp_us;
+    uint64_t timestamp_us; /**< time_us_64() timestamp of the read. */
 
-    int16_t accel_x_raw;
-    int16_t accel_y_raw;
-    int16_t accel_z_raw;
+    int16_t accel_x_raw; /**< Raw X acceleration register. */
+    int16_t accel_y_raw; /**< Raw Y acceleration register. */
+    int16_t accel_z_raw; /**< Raw Z acceleration register. */
 
-    int16_t gyro_x_raw;
-    int16_t gyro_y_raw;
-    int16_t gyro_z_raw;
+    int16_t gyro_x_raw;  /**< Raw X gyro register. */
+    int16_t gyro_y_raw;  /**< Raw Y gyro register. */
+    int16_t gyro_z_raw;  /**< Raw Z gyro register. */
 
-    int16_t temp1_raw;
-    int16_t temp2_raw;
+    int16_t temp1_raw;   /**< Raw first temperature register. */
+    int16_t temp2_raw;   /**< Raw second temperature register. */
 
-    float accel_x_g;
-    float accel_y_g;
-    float accel_z_g;
+    float accel_x_g;     /**< Calibrated X acceleration in g. */
+    float accel_y_g;     /**< Calibrated Y acceleration in g. */
+    float accel_z_g;     /**< Calibrated Z acceleration in g. */
 
-    float gyro_x_dps;
-    float gyro_y_dps;
-    float gyro_z_dps;
+    float gyro_x_dps;    /**< Calibrated X angular rate in deg/s. */
+    float gyro_y_dps;    /**< Calibrated Y angular rate in deg/s. */
+    float gyro_z_dps;    /**< Calibrated Z angular rate in deg/s. */
 
-    float temp1_c;
-    float temp2_c;
+    float temp1_c;       /**< First temperature estimate in degrees Celsius. */
+    float temp2_c;       /**< Second temperature estimate in degrees Celsius. */
 
-    uint32_t error_count;
+    uint32_t error_count; /**< Driver error counter copied into the sample. */
 } iim_sample_t;
 
+/**
+ * @brief Initialize the IIM-20670 driver using the header macros.
+ *
+ * Configures SPI, optional reset, and checks the fixed-value register. This
+ * driver owns one IIM-20670 instance.
+ */
 bool iim_init(void);
+
+/**
+ * @brief Calibrate IMU biases from a still, flat startup position.
+ *
+ * This averages IIM_CAL_SAMPLES raw reads. The gyro average becomes the zero
+ * rate bias. X/Y accel averages become zero-g biases, and Z is treated as +1 g,
+ * so movement or tilt during calibration will bias later readings.
+ */
 bool iim_calibrate(void);
+
+/**
+ * @brief Poll for a new IMU sample.
+ *
+ * Returns IIM_POLL_NO_DATA until IIM_SAMPLE_PERIOD_US has elapsed, then reads
+ * and converts one sample using the current calibration values.
+ */
 iim_poll_status_t iim_poll_sample(iim_sample_t *sample);
 
 #endif

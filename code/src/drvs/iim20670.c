@@ -323,9 +323,6 @@ bool iim_init(void)
 
 bool iim_calibrate(void)
 {
-    const uint16_t samples = 200;
-    const uint32_t delay_ms = 5;
-
     int64_t ax_sum = 0;
     int64_t ay_sum = 0;
     int64_t az_sum = 0;
@@ -334,7 +331,7 @@ bool iim_calibrate(void)
     int64_t gy_sum = 0;
     int64_t gz_sum = 0;
 
-    for (uint16_t i = 0; i < samples; i++) {
+    for (uint16_t i = 0; i < IIM_CAL_SAMPLES; i++) {
         uint16_t v;
 
         if (!iim_read_reg(IIM_REG_ACCEL_X, &v)) return false;
@@ -355,12 +352,12 @@ bool iim_calibrate(void)
         if (!iim_read_reg(IIM_REG_GYRO_Z, &v)) return false;
         gz_sum += (int16_t)v;
 
-        sleep_ms(delay_ms);
+        sleep_ms(IIM_CAL_SAMPLE_DELAY_MS);
     }
 
-    float ax_avg = (float)ax_sum / samples;
-    float ay_avg = (float)ay_sum / samples;
-    float az_avg = (float)az_sum / samples;
+    float ax_avg = (float)ax_sum / IIM_CAL_SAMPLES;
+    float ay_avg = (float)ay_sum / IIM_CAL_SAMPLES;
+    float az_avg = (float)az_sum / IIM_CAL_SAMPLES;
 
     g_cal.accel_x_bias = ax_avg;
     g_cal.accel_y_bias = ay_avg;
@@ -371,9 +368,9 @@ bool iim_calibrate(void)
      */
     g_cal.accel_lsb_per_g = az_avg;
 
-    g_cal.gyro_x_bias = (float)gx_sum / samples;
-    g_cal.gyro_y_bias = (float)gy_sum / samples;
-    g_cal.gyro_z_bias = (float)gz_sum / samples;
+    g_cal.gyro_x_bias = (float)gx_sum / IIM_CAL_SAMPLES;
+    g_cal.gyro_y_bias = (float)gy_sum / IIM_CAL_SAMPLES;
+    g_cal.gyro_z_bias = (float)gz_sum / IIM_CAL_SAMPLES;
 
     return true;
 }

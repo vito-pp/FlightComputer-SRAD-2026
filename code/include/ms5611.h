@@ -5,16 +5,27 @@
 #include <stdint.h>
 #include "hardware/i2c.h"
 
+/**
+ * @brief MS5611 hardware settings.
+ */
+#define MS5611_I2C      i2c1
+#define MS5611_SDA_PIN  2
+#define MS5611_SCL_PIN  3
+#define MS5611_I2C_BAUD 400000u
+
+/**
+ * @brief MS5611 I2C address.
+ */
 #define MS5611_ADDR 0x76
 
-typedef enum {
-    MS5611_OK = 0,
-    MS5611_ERR_I2C = -1,
-    MS5611_ERR_PROM_CRC = -2,
-    MS5611_ERR_BAD_PARAM = -3,
-    MS5611_ERR_NOT_READY = -4
-} ms5611_status_t;
-
+/**
+ * @brief MS5611 oversampling ratio.
+ *
+ * Higher OSR improves pressure resolution but increases conversion time. The
+ * polling API stays non-blocking; higher OSR values simply require more calls
+ * returning MS5611_POLL_NO_DATA before a full pressure/temperature sample is
+ * ready.
+ */
 typedef enum {
     MS5611_OSR_256  = 0,
     MS5611_OSR_512  = 1,
@@ -23,76 +34,89 @@ typedef enum {
     MS5611_OSR_4096 = 4
 } ms5611_osr_t;
 
+/**
+ * @brief Oversampling ratio used by ms5611_init().
+ *
+ * The MS5611 has no fixed sample-rate setting in this driver. The effective
+ * rate is set by OSR conversion time and how often ms5611_poll_sample() is
+ * called.
+ */
+#define MS5611_OSR MS5611_OSR_4096
+
+/**
+ * @brief Number of pressure samples averaged during ms5611_calibrate().
+ *
+ * More samples make the launch-site pressure reference less noisy, but keep
+ * the program inside calibration longer.
+ */
+#define MS5611_CAL_SAMPLES 200u
+
+/**
+ * @brief Result codes returned by ms5611_poll_sample().
+ */
+typedef enum {
+    MS5611_POLL_NO_DATA = 0, /**< Conversion is still in progress or no full sample is ready. */
+    MS5611_POLL_OK,          /**< A compensated pressure/temperature/altitude sample was read. */
+    MS5611_POLL_ERROR        /**< Invalid parameter, I2C failure, or invalid driver state. */
+} ms5611_poll_result_t;
+
+/**
+ * @brief Compensated MS5611 barometer sample.
+ *
+ * pressure_mbar and temperature_c are compensated using the PROM coefficients
+ * read during ms5611_init(). altitude_m is relative to the pressure baseline
+ * captured by ms5611_calibrate(); before calibration it is reported as 0.
+ */
 typedef struct {
-    i2c_inst_t *i2c;
-    uint8_t addr;
-
-    uint16_t prom[8];
-
-    uint32_t d1_raw;
-    uint32_t d2_raw;
-
-    int32_t temperature_centi_c;   // °C * 100
-    int32_t pressure_centi_mbar;   // mbar * 100
-
-    ms5611_osr_t osr;
-
-    bool sample_ready;
-
-    uint8_t state;
-    absolute_time_t conversion_deadline;
-	
-    bool calibrated;
-    float ground_pressure_mbar;
-} ms5611_t;
+    float pressure_mbar; /**< Compensated pressure in mbar. */
+    float temperature_c; /**< Compensated temperature in degrees Celsius. */
+    float altitude_m;    /**< Altitude in meters relative to the calibration baseline. */
+} ms5611_sample_t;
 
 /**
- * @brief Initialize MS5611 on a given I2C bus.
+ * @brief Initialize the MS5611 driver using the header macros.
  *
- * Reads PROM coefficients and checks CRC.
+ * Configures the driver's I2C bus/pins, resets the sensor, reads the PROM
+ * coefficients, and validates the PROM CRC. This driver owns a single MS5611
+ * instance internally, matching the simple init/calibrate/poll_sample pattern
+ * used by the other sensors.
  *
- * @param dev Driver instance.
- * @param i2c I2C instance, e.g. i2c1.
- * @param addr I2C address, usually 0x76 or 0x77.
- * @param osr Oversampling ratio.
+ * @return true if the sensor initialized and PROM CRC validation passed.
+ * @return false on invalid configuration, I2C failure, or PROM CRC failure.
  */
-ms5611_status_t ms5611_init(ms5611_t *dev, i2c_inst_t *i2c, uint8_t addr,
-			    ms5611_osr_t osr);
+bool ms5611_init(void);
 
 /**
- * @brief Non-blocking polling state machine.
+ * @brief Capture the launch-site pressure baseline for relative altitude.
  *
- * Call this frequently from the main loop. It alternates D1 pressure and D2
- * temperature conversions, computes compensated pressure/temperature, and marks
- * a new sample ready.
+ * Averages a fixed number of pressure samples and stores that average as the
+ * 0 m altitude reference. This intentionally forces altitude_m to 0 m at
+ * startup/reference time. Pressure changes after that are reported relative to
+ * this baseline. In normal flight use, call this at the pad.
+ *
+ * @return true if the pressure baseline was captured successfully.
+ * @return false if polling the sensor failed during calibration.
  */
-ms5611_status_t ms5611_poll(ms5611_t *dev);
+bool ms5611_calibrate(void);
 
 /**
- * @brief Returns true when a new compensated sample is available.
+ * @brief Poll the MS5611 conversion state machine for a new sample.
+ *
+ * This function is non-blocking at the application level. Call it frequently
+ * from the main loop; it starts pressure/temperature conversions, waits for
+ * their deadlines across later calls, computes compensation, and writes one
+ * complete sample when ready.
+ *
+ * IMPORTANT: pressure has a little drift (~microbars per second) but
+ * altitude is very suceptible to this change, so it has a larger drift (meters per 
+ * minute). TODO: add filtering to overcome the drift
+ *
+ * @param sample Pointer to the output sample structure.
+ *
+ * @return MS5611_POLL_OK when sample contains new data.
+ * @return MS5611_POLL_NO_DATA when conversions are still in progress.
+ * @return MS5611_POLL_ERROR on NULL sample, I2C failure, or invalid state.
  */
-bool ms5611_sample_ready(const ms5611_t *dev);
-
-/**
- * @brief Clear sample-ready flag after consuming the sample.
- */
-void ms5611_clear_sample_ready(ms5611_t *dev);
-
-/**
- * @brief Get compensated pressure in mbar.
- */
-float ms5611_get_pressure_mbar(const ms5611_t *dev);
-
-/**
- * @brief Get compensated temperature in Celsius.
- */
-float ms5611_get_temperature_c(const ms5611_t *dev);
-
-/**
- * @brief Get altitude in meters using the barometric formula.
- */
-float ms5611_get_altitude_m(const ms5611_t *dev);
-
-void ms5611_calibrate(ms5611_t *dev, uint32_t samples);
+ms5611_poll_result_t ms5611_poll_sample(ms5611_sample_t *sample);
 
 #endif

@@ -8,14 +8,6 @@
 #define BLUE_LED 26
 #define RED_LED 27
 
-#define I2C0_SDA_PIN 12
-#define I2C0_SCL_PIN 13
-#define I2C0_BAUD 400000 // 400 kHz
-
-#define I2C1_SDA_PIN 2
-#define I2C1_SCL_PIN 3
-#define I2C1_BAUD 400000 // 400 kHz
-
 #define USE_IIM_CALIBRATION 1
 
 void error_handler(void);
@@ -25,19 +17,8 @@ int main(void)
     stdio_init_all();
     sleep_ms(2000);
 
-    i2c_init(i2c0, I2C1_BAUD);
-    i2c_init(i2c1, I2C1_BAUD);
-
-    gpio_set_function(I2C1_SDA_PIN, GPIO_FUNC_I2C);
-    gpio_set_function(I2C1_SCL_PIN, GPIO_FUNC_I2C);
-    gpio_pull_up(I2C1_SDA_PIN);
-    gpio_pull_up(I2C1_SCL_PIN);
-
-    ms5611_t baro;
-
-    ms5611_status_t st = ms5611_init(&baro, i2c1, MS5611_ADDR, MS5611_OSR_4096);
-    if (st != MS5611_OK) {
-        printf("MS5611 init failed: %d\n", st);
+    if (!ms5611_init()) {
+        printf("MS5611 init failed\n");
         while (true) {
             sleep_ms(1000);
         }
@@ -46,20 +27,23 @@ int main(void)
     printf("MS5611 init OK\n");
 
     printf("Calibrating barometer...\n");
-    ms5611_calibrate(&baro, 200);
+    if (!ms5611_calibrate()) {
+        printf("MS5611 calibration failed\n");
+        while (true) {
+            sleep_ms(1000);
+        }
+    }
     printf("Calibration done\n");
 
     while (true) {
-        st = ms5611_poll(&baro);
+        ms5611_sample_t baro;
+        ms5611_poll_result_t result = ms5611_poll_sample(&baro);
 
-        if (st == MS5611_OK && ms5611_sample_ready(&baro)) {
-            float p = ms5611_get_pressure_mbar(&baro);
-            float t = ms5611_get_temperature_c(&baro);
-            float alt = ms5611_get_altitude_m(&baro);
-
-            printf("P: %.2f mbar | T: %.2f C | Alt: %.2f m\n", p, t, alt);
-
-            ms5611_clear_sample_ready(&baro);
+        if (result == MS5611_POLL_OK) {
+            printf("P: %.2f mbar | T: %.2f C | Alt: %.2f m\n",
+                   baro.pressure_mbar,
+                   baro.temperature_c,
+                   baro.altitude_m);
         }
 
         tight_loop_contents();

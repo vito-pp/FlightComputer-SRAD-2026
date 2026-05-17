@@ -3,6 +3,58 @@
 
 #include <stdbool.h>
 #include <stdint.h>
+#include "hardware/i2c.h"
+
+/**
+ * @brief ADXL375 hardware and conversion settings.
+ */
+#define ADXL375_I2C        i2c1
+#define ADXL375_SDA_PIN    2
+#define ADXL375_SCL_PIN    3
+#define ADXL375_I2C_BAUD   400000u
+
+/**
+ * @brief ADXL375 I2C address.
+ *
+ * Use 0x53 when ALT ADDRESS is low, or change this to 0x1D when ALT ADDRESS
+ * is tied high.
+ */
+#define ADXL375_ADDR       0x53
+
+/**
+ * @brief ADXL375 output sample rate in Hz.
+ *
+ * Supported values here are 100, 200, 400, and 800 Hz. Higher rates increase
+ * bus traffic because every ready sample is read over I2C.
+ */
+#define ADXL375_SAMPLE_RATE_HZ 100u
+
+#if ADXL375_SAMPLE_RATE_HZ == 100u
+#define ADXL375_BW_RATE_REG 0x0A
+#elif ADXL375_SAMPLE_RATE_HZ == 200u
+#define ADXL375_BW_RATE_REG 0x0B
+#elif ADXL375_SAMPLE_RATE_HZ == 400u
+#define ADXL375_BW_RATE_REG 0x0C
+#elif ADXL375_SAMPLE_RATE_HZ == 800u
+#define ADXL375_BW_RATE_REG 0x0D
+#else
+#error "Unsupported ADXL375_SAMPLE_RATE_HZ. Use 100, 200, 400, or 800."
+#endif
+
+/**
+ * @brief Conversion factor from raw LSB to g.
+ *
+ * The nominal value is close to 20.5 mg/LSB, but this project keeps the
+ * empirical divisor here so it can be adjusted after bench calibration.
+ */
+#define ADXL375_LSB_PER_G 46.0f
+
+/**
+ * @brief Per-transfer I2C timeout.
+ *
+ * Keep this short so a bad I2C bus does not freeze the flight loop.
+ */
+#define ADXL375_I2C_TIMEOUT_US 1000u
 
 /**
  * @brief Single ADXL375 acceleration sample.
@@ -27,9 +79,10 @@ typedef enum {
 } adxl375_poll_result_t;
 
 /**
- * @brief Initialize the ADXL375 accelerometer.
+ * @brief Initialize the ADXL375 accelerometer using the header macros.
  *
- * Configures I2C, verifies device ID, and enables measurement mode.
+ * Configures I2C, verifies the device ID, sets the sample rate, and enables
+ * measurement mode. This driver owns one ADXL375 instance.
  *
  * @return true if initialization succeeded.
  * @return false if initialization failed.
@@ -39,9 +92,8 @@ bool adxl375_init(void);
 /**
  * @brief Poll the ADXL375 for a new acceleration sample.
  *
- * Non-blocking at the application level:
- * - returns immediately if no new data is available
- * - reads sensor registers only when data is ready
+ * This checks the DATA_READY bit and returns immediately if no new sample is
+ * available. The output g values use ADXL375_LSB_PER_G.
  *
  * @param sample Pointer to output sample structure.
  *

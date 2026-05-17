@@ -12,12 +12,43 @@
 #define MS5611_CMD_CONVERT_D2    0x50
 #define MS5611_CMD_PROM_READ     0xA0
 
+typedef enum {
+    MS5611_OK = 0,
+    MS5611_ERR_I2C = -1,
+    MS5611_ERR_PROM_CRC = -2,
+    MS5611_ERR_BAD_PARAM = -3,
+    MS5611_ERR_NOT_READY = -4
+} ms5611_status_t;
+
 enum {
     MS5611_STATE_START_D1 = 0,
     MS5611_STATE_WAIT_D1,
     MS5611_STATE_START_D2,
     MS5611_STATE_WAIT_D2
 };
+
+typedef struct {
+    i2c_inst_t *i2c;
+    uint8_t addr;
+
+    uint16_t prom[8];
+
+    uint32_t d1_raw;
+    uint32_t d2_raw;
+
+    int32_t temperature_centi_c;
+    int32_t pressure_centi_mbar;
+
+    ms5611_osr_t osr;
+
+    bool sample_ready;
+
+    uint8_t state;
+    absolute_time_t conversion_deadline;
+
+    bool calibrated;
+    float ground_pressure_mbar;
+} ms5611_dev_t;
 
 static const uint32_t osr_delay_us[] = {
     600,    // OSR 256, datasheet max about 0.60 ms
@@ -27,18 +58,20 @@ static const uint32_t osr_delay_us[] = {
     9040    // OSR 4096
 };
 
+static ms5611_dev_t g_ms5611;
+
 static uint8_t osr_to_cmd_bits(ms5611_osr_t osr)
 {
     return ((uint8_t)osr) * 2;
 }
 
-static ms5611_status_t write_cmd(ms5611_t *dev, uint8_t cmd)
+static ms5611_status_t write_cmd(ms5611_dev_t *dev, uint8_t cmd)
 {
     int ret = i2c_write_blocking(dev->i2c, dev->addr, &cmd, 1, false);
     return ret == 1 ? MS5611_OK : MS5611_ERR_I2C;
 }
 
-static ms5611_status_t read_prom_word(ms5611_t *dev, uint8_t index, uint16_t *out)
+static ms5611_status_t read_prom_word(ms5611_dev_t *dev, uint8_t index, uint16_t *out)
 {
     uint8_t cmd = MS5611_CMD_PROM_READ + (index * 2);
     uint8_t buf[2];
@@ -57,7 +90,7 @@ static ms5611_status_t read_prom_word(ms5611_t *dev, uint8_t index, uint16_t *ou
     return MS5611_OK;
 }
 
-static ms5611_status_t read_adc(ms5611_t *dev, uint32_t *out)
+static ms5611_status_t read_adc(ms5611_dev_t *dev, uint32_t *out)
 {
     uint8_t cmd = MS5611_CMD_ADC_READ;
     uint8_t buf[3];
@@ -110,7 +143,7 @@ static uint8_t crc4(uint16_t prom[8])
     return (n_rem >> 12) & 0x000F;
 }
 
-static void compensate(ms5611_t *dev)
+static void compensate(ms5611_dev_t *dev)
 {
     const int64_t C1 = dev->prom[1];
     const int64_t C2 = dev->prom[2];
@@ -164,8 +197,8 @@ static void compensate(ms5611_t *dev)
     dev->pressure_centi_mbar = (int32_t)P;
 }
 
-ms5611_status_t ms5611_init(ms5611_t *dev, i2c_inst_t *i2c, uint8_t addr,
-			    ms5611_osr_t osr)
+static ms5611_status_t init_device(ms5611_dev_t *dev, i2c_inst_t *i2c, uint8_t addr,
+                                   ms5611_osr_t osr)
 {
     if (!dev || !i2c || osr > MS5611_OSR_4096) {
         return MS5611_ERR_BAD_PARAM;
@@ -209,7 +242,7 @@ ms5611_status_t ms5611_init(ms5611_t *dev, i2c_inst_t *i2c, uint8_t addr,
     return MS5611_OK;
 }
 
-ms5611_status_t ms5611_poll(ms5611_t *dev)
+static ms5611_status_t poll_device(ms5611_dev_t *dev)
 {
     if (!dev) {
         return MS5611_ERR_BAD_PARAM;
@@ -277,60 +310,105 @@ ms5611_status_t ms5611_poll(ms5611_t *dev)
     }
 }
 
-bool ms5611_sample_ready(const ms5611_t *dev)
+static bool sample_ready(const ms5611_dev_t *dev)
 {
     return dev && dev->sample_ready;
 }
 
-void ms5611_clear_sample_ready(ms5611_t *dev)
+static void clear_sample_ready(ms5611_dev_t *dev)
 {
     if (dev) {
         dev->sample_ready = false;
     }
 }
 
-float ms5611_get_pressure_mbar(const ms5611_t *dev)
+static float get_pressure_mbar(const ms5611_dev_t *dev)
 {
     return dev ? dev->pressure_centi_mbar / 100.0f : 0.0f;
 }
 
-float ms5611_get_temperature_c(const ms5611_t *dev)
+static float get_temperature_c(const ms5611_dev_t *dev)
 {
     return dev ? dev->temperature_centi_c / 100.0f : 0.0f;
 }
 
-float ms5611_get_altitude_m(const ms5611_t *dev)
+static float get_altitude_m(const ms5611_dev_t *dev)
 {
     if (!dev || !dev->calibrated || dev->ground_pressure_mbar <= 0.0f) {
         return 0.0f;
     }
 
-    float pressure = ms5611_get_pressure_mbar(dev);
+    float pressure = get_pressure_mbar(dev);
 
     return 44330.0f *
            (1.0f - powf(pressure / dev->ground_pressure_mbar,
             0.19029495f));
 }
 
-void ms5611_calibrate(ms5611_t *dev, uint32_t samples)
+bool ms5611_init(void)
+{
+    i2c_init(MS5611_I2C, MS5611_I2C_BAUD);
+
+    gpio_set_function(MS5611_SDA_PIN, GPIO_FUNC_I2C);
+    gpio_set_function(MS5611_SCL_PIN, GPIO_FUNC_I2C);
+    gpio_pull_up(MS5611_SDA_PIN);
+    gpio_pull_up(MS5611_SCL_PIN);
+
+    return init_device(&g_ms5611, MS5611_I2C, MS5611_ADDR, MS5611_OSR) == MS5611_OK;
+}
+
+bool ms5611_calibrate(void)
 {
     double sum = 0.0;
     uint32_t count = 0;
 
-    while (count < samples) {
+    while (count < MS5611_CAL_SAMPLES) {
 
-        ms5611_poll(dev);
+        ms5611_status_t st = poll_device(&g_ms5611);
+        if (st != MS5611_OK && st != MS5611_ERR_NOT_READY) {
+            return false;
+        }
 
-        if (ms5611_sample_ready(dev)) {
+        if (sample_ready(&g_ms5611)) {
 
-            sum += ms5611_get_pressure_mbar(dev);
+            sum += get_pressure_mbar(&g_ms5611);
 
-            ms5611_clear_sample_ready(dev);
+            clear_sample_ready(&g_ms5611);
 
             count++;
         }
     }
 
-    dev->ground_pressure_mbar = sum / (float)samples;
-    dev->calibrated = true;
+    g_ms5611.ground_pressure_mbar = sum / (float)MS5611_CAL_SAMPLES;
+    g_ms5611.calibrated = true;
+
+    return true;
+}
+
+ms5611_poll_result_t ms5611_poll_sample(ms5611_sample_t *sample)
+{
+    if (!sample) {
+        return MS5611_POLL_ERROR;
+    }
+
+    ms5611_status_t st = poll_device(&g_ms5611);
+    if (st == MS5611_ERR_NOT_READY) {
+        return MS5611_POLL_NO_DATA;
+    }
+
+    if (st != MS5611_OK) {
+        return MS5611_POLL_ERROR;
+    }
+
+    if (!sample_ready(&g_ms5611)) {
+        return MS5611_POLL_NO_DATA;
+    }
+
+    sample->pressure_mbar = get_pressure_mbar(&g_ms5611);
+    sample->temperature_c = get_temperature_c(&g_ms5611);
+    sample->altitude_m = get_altitude_m(&g_ms5611);
+
+    clear_sample_ready(&g_ms5611);
+
+    return MS5611_POLL_OK;
 }

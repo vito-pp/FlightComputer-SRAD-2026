@@ -3,14 +3,6 @@
 #include "hardware/i2c.h"
 #include "pico/stdlib.h"
 
-#define ADXL375_I2C        i2c1
-#define ADXL375_SDA_PIN    2
-#define ADXL375_SCL_PIN    3
-#define ADXL375_I2C_BAUD   400000
-
-// Use 0x1D if ALT ADDRESS is tied high.
-#define ADXL375_ADDR       0x53
-
 #define REG_DEVID          0x00
 #define REG_BW_RATE        0x2C
 #define REG_POWER_CTL      0x2D
@@ -20,12 +12,8 @@
 #define REG_DATAX0         0x32
 
 #define ADXL375_DEVID      0xE5
-#define ADXL375_LSB_PER_G  46.0f
 
 #define INT_DATA_READY     0x80
-
-// Keep timeouts short so a bad I2C bus does not freeze the flight loop.
-#define I2C_TIMEOUT_US     1000
 
 static bool write_reg(uint8_t reg, uint8_t value) {
     uint8_t buf[2] = { reg, value };
@@ -36,7 +24,7 @@ static bool write_reg(uint8_t reg, uint8_t value) {
         buf,
         2,
         false,
-        I2C_TIMEOUT_US
+        ADXL375_I2C_TIMEOUT_US
     );
 
     return ret == 2;
@@ -49,7 +37,7 @@ static bool read_reg(uint8_t reg, uint8_t *value) {
         &reg,
         1,
         true,
-        I2C_TIMEOUT_US
+        ADXL375_I2C_TIMEOUT_US
     );
 
     if (ret != 1) {
@@ -62,7 +50,7 @@ static bool read_reg(uint8_t reg, uint8_t *value) {
         value,
         1,
         false,
-        I2C_TIMEOUT_US
+        ADXL375_I2C_TIMEOUT_US
     );
 
     return ret == 1;
@@ -75,7 +63,7 @@ static bool read_regs(uint8_t reg, uint8_t *buf, size_t len) {
         &reg,
         1,
         true,
-        I2C_TIMEOUT_US
+        ADXL375_I2C_TIMEOUT_US
     );
 
     if (ret != 1) {
@@ -88,7 +76,7 @@ static bool read_regs(uint8_t reg, uint8_t *buf, size_t len) {
         buf,
         len,
         false,
-        I2C_TIMEOUT_US
+        ADXL375_I2C_TIMEOUT_US
     );
 
     return ret == (int)len;
@@ -118,11 +106,7 @@ bool adxl375_init(void) {
         return false;
     }
 
-    // 0x0A = 100 Hz
-    // 0x0B = 200 Hz
-    // 0x0C = 400 Hz
-    // 0x0D = 800 Hz
-    if (!write_reg(REG_BW_RATE, 0x0A)) {
+    if (!write_reg(REG_BW_RATE, ADXL375_BW_RATE_REG)) {
         return false;
     }
 
