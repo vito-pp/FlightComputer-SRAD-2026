@@ -14,6 +14,13 @@
 #define MS5611_I2C_BAUD 400000u
 
 /**
+ * @brief Per-transfer I2C timeout.
+ *
+ * Keep this short so a bad I2C bus does not freeze the flight loop.
+ */
+#define MS5611_I2C_TIMEOUT_US 1000u
+
+/**
  * @brief MS5611 I2C address.
  */
 #define MS5611_ADDR 0x76

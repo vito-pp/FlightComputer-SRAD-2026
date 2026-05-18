@@ -355,18 +355,11 @@ bool iim_calibrate(void)
         sleep_ms(IIM_CAL_SAMPLE_DELAY_MS);
     }
 
-    float ax_avg = (float)ax_sum / IIM_CAL_SAMPLES;
-    float ay_avg = (float)ay_sum / IIM_CAL_SAMPLES;
-    float az_avg = (float)az_sum / IIM_CAL_SAMPLES;
+    g_cal.accel_x_bias = (float)ax_sum / IIM_CAL_SAMPLES;
+    g_cal.accel_y_bias = (float)ay_sum / IIM_CAL_SAMPLES;
+    g_cal.accel_z_bias = (float)az_sum / IIM_CAL_SAMPLES;
 
-    g_cal.accel_x_bias = ax_avg;
-    g_cal.accel_y_bias = ay_avg;
-    g_cal.accel_z_bias = 0.0f;
-
-    /*
-     * Assumes board is flat and Z axis sees +1g during calibration.
-     */
-    g_cal.accel_lsb_per_g = az_avg;
+    g_cal.accel_lsb_per_g = IIM_DEFAULT_ACCEL_LSB_PER_G;
 
     g_cal.gyro_x_bias = (float)gx_sum / IIM_CAL_SAMPLES;
     g_cal.gyro_y_bias = (float)gy_sum / IIM_CAL_SAMPLES;

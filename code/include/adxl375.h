@@ -19,7 +19,7 @@
  * Use 0x53 when ALT ADDRESS is low, or change this to 0x1D when ALT ADDRESS
  * is tied high.
  */
-#define ADXL375_ADDR       0x53
+#define ADXL375_ADDR 0x53
 
 /**
  * @brief ADXL375 output sample rate in Hz.
@@ -47,13 +47,13 @@
  * The nominal value is close to 20.5 mg/LSB, but this project keeps the
  * empirical divisor here so it can be adjusted after bench calibration.
  */
-#define ADXL375_LSB_PER_G 46.0f
+#define ADXL375_LSB_PER_G 20.5f
 
 /**
- * @brief Per-transfer I2C timeout.
+ * @brief Per-transfer I2C timeout, cause I2C writing is blocking on the pico-sdk.
  *
- * Keep this short so a bad I2C bus does not freeze the flight loop.
- */
+ * Keep this short and sweet. A write should take more than a couple tens of us.
+ * */
 #define ADXL375_I2C_TIMEOUT_US 1000u
 
 /**

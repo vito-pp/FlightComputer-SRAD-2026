@@ -67,7 +67,15 @@ static uint8_t osr_to_cmd_bits(ms5611_osr_t osr)
 
 static ms5611_status_t write_cmd(ms5611_dev_t *dev, uint8_t cmd)
 {
-    int ret = i2c_write_blocking(dev->i2c, dev->addr, &cmd, 1, false);
+    int ret = i2c_write_timeout_us(
+        dev->i2c,
+        dev->addr,
+        &cmd,
+        1,
+        false,
+        MS5611_I2C_TIMEOUT_US
+    );
+
     return ret == 1 ? MS5611_OK : MS5611_ERR_I2C;
 }
 
@@ -76,12 +84,26 @@ static ms5611_status_t read_prom_word(ms5611_dev_t *dev, uint8_t index, uint16_t
     uint8_t cmd = MS5611_CMD_PROM_READ + (index * 2);
     uint8_t buf[2];
 
-    int ret = i2c_write_blocking(dev->i2c, dev->addr, &cmd, 1, true);
+    int ret = i2c_write_timeout_us(
+        dev->i2c,
+        dev->addr,
+        &cmd,
+        1,
+        true,
+        MS5611_I2C_TIMEOUT_US
+    );
     if (ret != 1) {
         return MS5611_ERR_I2C;
     }
 
-    ret = i2c_read_blocking(dev->i2c, dev->addr, buf, 2, false);
+    ret = i2c_read_timeout_us(
+        dev->i2c,
+        dev->addr,
+        buf,
+        2,
+        false,
+        MS5611_I2C_TIMEOUT_US
+    );
     if (ret != 2) {
         return MS5611_ERR_I2C;
     }
@@ -95,12 +117,26 @@ static ms5611_status_t read_adc(ms5611_dev_t *dev, uint32_t *out)
     uint8_t cmd = MS5611_CMD_ADC_READ;
     uint8_t buf[3];
 
-    int ret = i2c_write_blocking(dev->i2c, dev->addr, &cmd, 1, true);
+    int ret = i2c_write_timeout_us(
+        dev->i2c,
+        dev->addr,
+        &cmd,
+        1,
+        true,
+        MS5611_I2C_TIMEOUT_US
+    );
     if (ret != 1) {
         return MS5611_ERR_I2C;
     }
 
-    ret = i2c_read_blocking(dev->i2c, dev->addr, buf, 3, false);
+    ret = i2c_read_timeout_us(
+        dev->i2c,
+        dev->addr,
+        buf,
+        3,
+        false,
+        MS5611_I2C_TIMEOUT_US
+    );
     if (ret != 3) {
         return MS5611_ERR_I2C;
     }
