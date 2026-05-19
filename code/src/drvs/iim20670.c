@@ -57,13 +57,13 @@ static uint32_t g_error_count = 0;
 
 static inline void cs_select(void) {
     asm volatile("nop \n nop \n nop");
-    gpio_put(IIM_PIN_CS, 0);
+    gpio_put(IIM_GPIO_CS, 0);
     asm volatile("nop \n nop \n nop");
 }
 
 static inline void cs_deselect(void) {
     asm volatile("nop \n nop \n nop");
-    gpio_put(IIM_PIN_CS, 1);
+    gpio_put(IIM_GPIO_CS, 1);
     asm volatile("nop \n nop \n nop");
 }
 
@@ -272,13 +272,13 @@ bool iim_init(void)
 
     spi_init(IIM_SPI_PORT, IIM_SPI_BAUDRATE);
 
-    gpio_set_function(IIM_PIN_MISO, GPIO_FUNC_SPI);
-    gpio_set_function(IIM_PIN_SCK,  GPIO_FUNC_SPI);
-    gpio_set_function(IIM_PIN_MOSI, GPIO_FUNC_SPI);
+    gpio_set_function(IIM_GPIO_MISO, GPIO_FUNC_SPI);
+    gpio_set_function(IIM_GPIO_SCK,  GPIO_FUNC_SPI);
+    gpio_set_function(IIM_GPIO_MOSI, GPIO_FUNC_SPI);
 
-    gpio_init(IIM_PIN_CS);
-    gpio_set_dir(IIM_PIN_CS, GPIO_OUT);
-    gpio_put(IIM_PIN_CS, 1);
+    gpio_init(IIM_GPIO_CS);
+    gpio_set_dir(IIM_GPIO_CS, GPIO_OUT);
+    gpio_put(IIM_GPIO_CS, 1);
 
     spi_set_format(
         IIM_SPI_PORT,
@@ -288,12 +288,12 @@ bool iim_init(void)
         SPI_MSB_FIRST
     );
 
-#if IIM_PIN_RESET >= 0
-    gpio_init(IIM_PIN_RESET);
-    gpio_set_dir(IIM_PIN_RESET, GPIO_OUT);
-    gpio_put(IIM_PIN_RESET, 0);
+#if IIM_GPIO_RESET >= 0
+    gpio_init(IIM_GPIO_RESET);
+    gpio_set_dir(IIM_GPIO_RESET, GPIO_OUT);
+    gpio_put(IIM_GPIO_RESET, 0);
     sleep_ms(30);
-    gpio_put(IIM_PIN_RESET, 1);
+    gpio_put(IIM_GPIO_RESET, 1);
 #endif
 
     sleep_ms(200);

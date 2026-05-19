@@ -9,16 +9,16 @@
  * @brief IIM-20670 SPI hardware settings.
  *
  * Edit these macros when the IMU is moved to another SPI peripheral, pinout,
- * baudrate, or reset wiring. Set IIM_PIN_RESET to -1 when reset is not wired.
+ * baudrate, or reset wiring. Set IIM_GPIO_RESET to -1 when reset is not wired.
  */
 #define IIM_SPI_PORT spi1
-#define IIM_SPI_BAUDRATE 1000000u
+#define IIM_SPI_BAUDRATE 1000000u // 1MHz
 
-#define IIM_PIN_MISO  8
-#define IIM_PIN_CS    9
-#define IIM_PIN_SCK   10
-#define IIM_PIN_MOSI  11
-#define IIM_PIN_RESET -1
+#define IIM_GPIO_MISO  8
+#define IIM_GPIO_CS    9
+#define IIM_GPIO_SCK   10
+#define IIM_GPIO_MOSI  11
+#define IIM_GPIO_RESET -1
 
 /**
  * @brief Requested IMU sample period for iim_poll_sample().
@@ -26,7 +26,7 @@
  * The polling function returns IIM_POLL_NO_DATA until this period has elapsed.
  * It does not configure an internal sensor ODR; it paces reads in software.
  */
-#define IIM_SAMPLE_PERIOD_US 1000u
+#define IIM_SAMPLE_PERIOD_US 1000u  // 1kHz
 
 /**
  * @brief Number of raw samples averaged by iim_calibrate().

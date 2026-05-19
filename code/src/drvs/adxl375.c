@@ -85,11 +85,11 @@ static bool read_regs(uint8_t reg, uint8_t *buf, size_t len) {
 bool adxl375_init(void) {
     i2c_init(ADXL375_I2C, ADXL375_I2C_BAUD);
 
-    gpio_set_function(ADXL375_SDA_PIN, GPIO_FUNC_I2C);
-    gpio_set_function(ADXL375_SCL_PIN, GPIO_FUNC_I2C);
+    gpio_set_function(ADXL375_SDA_GPIO, GPIO_FUNC_I2C);
+    gpio_set_function(ADXL375_SCL_GPIO, GPIO_FUNC_I2C);
 
-    gpio_pull_up(ADXL375_SDA_PIN);
-    gpio_pull_up(ADXL375_SCL_PIN);
+    gpio_pull_up(ADXL375_SDA_GPIO);
+    gpio_pull_up(ADXL375_SCL_GPIO);
 
     uint8_t devid = 0;
 

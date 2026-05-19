@@ -9,9 +9,9 @@
  * @brief MS5611 hardware settings.
  */
 #define MS5611_I2C      i2c1
-#define MS5611_SDA_PIN  2
-#define MS5611_SCL_PIN  3
-#define MS5611_I2C_BAUD 400000u
+#define MS5611_SDA_GPIO  2
+#define MS5611_SCL_GPIO  3
+#define MS5611_I2C_BAUD 400000u // 400kHz
 
 /**
  * @brief Per-transfer I2C timeout.
@@ -48,7 +48,7 @@ typedef enum {
  * rate is set by OSR conversion time and how often ms5611_poll_sample() is
  * called.
  */
-#define MS5611_OSR MS5611_OSR_4096
+#define MS5611_OSR MS5611_OSR_2048
 
 /**
  * @brief Number of pressure samples averaged during ms5611_calibrate().

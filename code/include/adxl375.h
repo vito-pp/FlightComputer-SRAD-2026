@@ -9,9 +9,9 @@
  * @brief ADXL375 hardware and conversion settings.
  */
 #define ADXL375_I2C        i2c1
-#define ADXL375_SDA_PIN    2
-#define ADXL375_SCL_PIN    3
-#define ADXL375_I2C_BAUD   400000u
+#define ADXL375_SDA_GPIO    2
+#define ADXL375_SCL_GPIO    3
+#define ADXL375_I2C_BAUD   400000u // 400kHz
 
 /**
  * @brief ADXL375 I2C address.

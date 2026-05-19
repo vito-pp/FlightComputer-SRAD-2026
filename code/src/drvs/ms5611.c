@@ -385,10 +385,10 @@ bool ms5611_init(void)
 {
     i2c_init(MS5611_I2C, MS5611_I2C_BAUD);
 
-    gpio_set_function(MS5611_SDA_PIN, GPIO_FUNC_I2C);
-    gpio_set_function(MS5611_SCL_PIN, GPIO_FUNC_I2C);
-    gpio_pull_up(MS5611_SDA_PIN);
-    gpio_pull_up(MS5611_SCL_PIN);
+    gpio_set_function(MS5611_SDA_GPIO, GPIO_FUNC_I2C);
+    gpio_set_function(MS5611_SCL_GPIO, GPIO_FUNC_I2C);
+    gpio_pull_up(MS5611_SDA_GPIO);
+    gpio_pull_up(MS5611_SCL_GPIO);
 
     return init_device(&g_ms5611, MS5611_I2C, MS5611_ADDR, MS5611_OSR) == MS5611_OK;
 }
