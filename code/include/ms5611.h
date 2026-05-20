@@ -34,11 +34,11 @@
  * ready.
  */
 typedef enum {
-    MS5611_OSR_256  = 0,
-    MS5611_OSR_512  = 1,
-    MS5611_OSR_1024 = 2,
-    MS5611_OSR_2048 = 3,
-    MS5611_OSR_4096 = 4
+	MS5611_OSR_256  = 0,
+	MS5611_OSR_512  = 1,
+	MS5611_OSR_1024 = 2,
+	MS5611_OSR_2048 = 3,
+	MS5611_OSR_4096 = 4
 } ms5611_osr_t;
 
 /**
@@ -62,9 +62,9 @@ typedef enum {
  * @brief Result codes returned by ms5611_poll_sample().
  */
 typedef enum {
-    MS5611_POLL_NO_DATA = 0, /**< Conversion is still in progress or no full sample is ready. */
-    MS5611_POLL_OK,          /**< A compensated pressure/temperature/altitude sample was read. */
-    MS5611_POLL_ERROR        /**< Invalid parameter, I2C failure, or invalid driver state. */
+	MS5611_POLL_NO_DATA = 0, /**< Conversion is still in progress or no full sample is ready. */
+	MS5611_POLL_OK,          /**< A compensated pressure/temperature/altitude sample was read. */
+	MS5611_POLL_ERROR        /**< Invalid parameter, I2C failure, or invalid driver state. */
 } ms5611_poll_result_t;
 
 /**
@@ -75,9 +75,9 @@ typedef enum {
  * captured by ms5611_calibrate(); before calibration it is reported as 0.
  */
 typedef struct {
-    float pressure_mbar; /**< Compensated pressure in mbar. */
-    float temperature_c; /**< Compensated temperature in degrees Celsius. */
-    float altitude_m;    /**< Altitude in meters relative to the calibration baseline. */
+	float pressure_mbar; /**< Compensated pressure in mbar. */
+	float temperature_c; /**< Compensated temperature in degrees Celsius. */
+	float altitude_m;    /**< Altitude in meters relative to the calibration baseline. */
 } ms5611_sample_t;
 
 /**

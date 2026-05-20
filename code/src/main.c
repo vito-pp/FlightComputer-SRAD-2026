@@ -1,5 +1,3 @@
-// TODO: add calibration to the adxl and align adxl and iim axes 
-
 #include <stdio.h>
 #include <stdint.h>
 #include <stdbool.h>

@@ -1,7 +1,7 @@
 #include "iim20670.h"
 
 #include <stddef.h>
-#include <stdio.h>
+// #include <stdio.h>
 #include <math.h>
 #include "pico/stdlib.h"
 #include "hardware/gpio.h"
@@ -291,20 +291,20 @@ bool iim_init(void)
 	uint16_t fixed = 0;
 
 	if (!iim_read_reg(IIM_REG_FIXED_VALUE, &fixed)) {
-		printf("IIM init failed: fixed register read failed\n");
+		// printf("IIM init failed: fixed register read failed\n");
 		return false;
 	}
 
-	printf("IIM fixed = 0x%04X\n", fixed);
+	// printf("IIM fixed = 0x%04X\n", fixed);
 
 	if (fixed != IIM_FIXED_VALUE) {
-		printf("IIM init failed: expected 0x%04X, got 0x%04X\n",
-	 IIM_FIXED_VALUE,
-	 fixed);
+		// printf("IIM init failed: expected 0x%04X, got 0x%04X\n",
+		// IIM_FIXED_VALUE,
+		// fixed);
 		return false;
 	}
 
-	printf("IIM init OK: fixed register matched\n");
+	// printf("IIM init OK: fixed register matched\n");
 
 	g_next_sample_us = time_us_64();
 
