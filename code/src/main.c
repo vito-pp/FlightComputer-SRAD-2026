@@ -12,8 +12,9 @@
 #include "ms5611.h"
 #include "adxl375.h"
 #include "frame_ring_buffer.h"
+#include "sd_logger.h"
 
-#define EVER (;;) // forever, ever, baby...
+#define EVER (;;) // forever ever, baby...
 
 // GPIOs
 #define BLUE_LED 26
@@ -26,9 +27,10 @@
 
 #define FRAME_PERIOD_US 500000 // 2 Hz
 
+void core1_entry(void);
 void error_handler(void);
 void serial_debug_print(sensor_frame_t *frame);
-void core1_entry(void);
+void log_frame_to_sd(sensor_frame_t *frame);
 
 typedef struct {
 	bool fresh;
@@ -52,6 +54,12 @@ int main(void)
 {
 	stdio_init_all();
 	sleep_ms(2000);
+
+	if (!sd_logger_init()) {
+		printf("SD logger init failed\n");
+		error_handler();
+	}
+	printf("SD logger init OK\n");
 
 	if (!(ms5611_init() && iim_init() && adxl375_init())) {
 		printf("Sensors init failed\n");
@@ -125,8 +133,6 @@ int main(void)
 			latest_baro.fresh = false;
 
 			frame_ring_push(&frame_rb, &frame);
-
-			serial_debug_print(&frame);
 		}
 
 		tight_loop_contents();
@@ -140,6 +146,10 @@ void core1_entry(void)
 	for EVER {
 		if (frame_ring_pop(&frame_rb, &frame)) {
 			serial_debug_print(&frame);
+			log_frame_to_sd(&frame);
+		}
+		else {
+			tight_loop_contents();
 		}
 	}
 }
@@ -148,7 +158,7 @@ void error_handler(void)
 {
 	// gpio_put(BLUE_LED, 0);
 	// gpio_put(RED_LED, 1);
-	while (true) { sleep_ms(1000); }
+	for EVER { sleep_ms(1000); }
 }
 
 void serial_debug_print(sensor_frame_t *frame) 
@@ -191,3 +201,10 @@ void serial_debug_print(sensor_frame_t *frame)
 	fflush(stdout);
 }
 
+void log_frame_to_sd(sensor_frame_t *frame)
+{
+	if (!sd_logger_append_frame_csv(frame)) {
+		printf("\nSD frame log failed\n");
+		fflush(stdout);
+	}
+}
