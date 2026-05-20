@@ -8,7 +8,7 @@
 #include "iim20670.h"
 #include "ms5611.h"
 
-#define FRAME_RING_SIZE 1024
+#define FRAME_RING_SIZE 2048 // rp2040 has 256 KB of RAM
 
 typedef struct {
 	uint64_t timestamp_us;
@@ -18,7 +18,7 @@ typedef struct {
 	ms5611_sample_t baro;
 
 	uint8_t freshness;
-} sensor_frame_t;
+} sensor_frame_t; // a sensor frame instance has 88 bytes
 
 typedef struct {
 	volatile uint32_t head;

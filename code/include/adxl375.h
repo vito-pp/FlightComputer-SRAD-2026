@@ -60,10 +60,6 @@
  * @brief Single ADXL375 acceleration sample.
  */
 typedef struct {
-	int16_t x_raw; /**< Raw X-axis reading */
-	int16_t y_raw; /**< Raw Y-axis reading */
-	int16_t z_raw; /**< Raw Z-axis reading */
-
 	float x_g;     /**< X-axis acceleration in g */
 	float y_g;     /**< Y-axis acceleration in g */
 	float z_g;     /**< Z-axis acceleration in g */

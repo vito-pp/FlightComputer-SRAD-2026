@@ -25,7 +25,7 @@
 #define FRAME_ADXL_FRESH  (1u << 1)
 #define FRAME_BARO_FRESH  (1u << 2)
 
-#define FRAME_PERIOD_US 500000 // 2 Hz
+#define FRAME_PERIOD_US 20000 // 50 Hz
 
 void core1_entry(void);
 void error_handler(void);

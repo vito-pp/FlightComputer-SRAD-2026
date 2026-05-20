@@ -66,17 +66,6 @@ typedef enum {
 typedef struct {
     uint64_t timestamp_us; /**< time_us_64() timestamp of the read. */
 
-    int16_t accel_x_raw; /**< Raw X acceleration register. */
-    int16_t accel_y_raw; /**< Raw Y acceleration register. */
-    int16_t accel_z_raw; /**< Raw Z acceleration register. */
-
-    int16_t gyro_x_raw;  /**< Raw X gyro register. */
-    int16_t gyro_y_raw;  /**< Raw Y gyro register. */
-    int16_t gyro_z_raw;  /**< Raw Z gyro register. */
-
-    int16_t temp1_raw;   /**< Raw first temperature register. */
-    int16_t temp2_raw;   /**< Raw second temperature register. */
-
     float accel_x_g;     /**< Calibrated X acceleration in g. */
     float accel_y_g;     /**< Calibrated Y acceleration in g. */
     float accel_z_g;     /**< Calibrated Z acceleration in g. */

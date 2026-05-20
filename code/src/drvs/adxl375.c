@@ -157,10 +157,6 @@ adxl375_poll_result_t adxl375_poll_sample(adxl375_sample_t *sample) {
 	int16_t z = (int16_t)((uint16_t)data[5] << 8 | data[4]);
 
 	// this are ad hoc corrections to make the adxl axis match the iim's
-	sample->x_raw = y;
-	sample->y_raw = -x;
-	sample->z_raw = z;
-
 	sample->x_g = y / ADXL375_LSB_PER_G;
 	sample->y_g = -x / ADXL375_LSB_PER_G;
 	sample->z_g = z / ADXL375_LSB_PER_G;

@@ -210,46 +210,46 @@ static bool iim_read_sample_block(iim_sample_t *s)
 	uint16_t v;
 
 	if (!iim_read_reg(IIM_REG_ACCEL_X, &v)) return false;
-	s->accel_x_raw = (int16_t)v;
+	int16_t accel_x_raw = (int16_t)v;
 
 	if (!iim_read_reg(IIM_REG_ACCEL_Y, &v)) return false;
-	s->accel_y_raw = (int16_t)v;
+	int16_t accel_y_raw = (int16_t)v;
 
 	if (!iim_read_reg(IIM_REG_ACCEL_Z, &v)) return false;
-	s->accel_z_raw = (int16_t)v;
+	int16_t accel_z_raw = (int16_t)v;
 
 	if (!iim_read_reg(IIM_REG_GYRO_X, &v)) return false;
-	s->gyro_x_raw = (int16_t)v;
+	int16_t gyro_x_raw = (int16_t)v;
 
 	if (!iim_read_reg(IIM_REG_GYRO_Y, &v)) return false;
-	s->gyro_y_raw = (int16_t)v;
+	int16_t gyro_y_raw = (int16_t)v;
 
 	if (!iim_read_reg(IIM_REG_GYRO_Z, &v)) return false;
-	s->gyro_z_raw = (int16_t)v;
+	int16_t gyro_z_raw = (int16_t)v;
 
 	if (!iim_read_reg(IIM_REG_TEMP1, &v)) return false;
-	s->temp1_raw = (int16_t)v;
+	int16_t temp1_raw = (int16_t)v;
 
 	if (!iim_read_reg(IIM_REG_TEMP2, &v)) return false;
-	s->temp2_raw = (int16_t)v;
+	int16_t temp2_raw = (int16_t)v;
 
-	s->accel_x_g = (float)s->accel_x_raw / g_cal.accel_lsb_per_g;
+	s->accel_x_g = (float)accel_x_raw / g_cal.accel_lsb_per_g;
 
-	s->accel_y_g = (float)s->accel_y_raw / g_cal.accel_lsb_per_g;
+	s->accel_y_g = (float)accel_y_raw / g_cal.accel_lsb_per_g;
 
-	s->accel_z_g = (float)s->accel_z_raw / g_cal.accel_lsb_per_g;
+	s->accel_z_g = (float)accel_z_raw / g_cal.accel_lsb_per_g;
 
-	s->gyro_x_dps = ((float)s->gyro_x_raw - g_cal.gyro_x_bias) /
+	s->gyro_x_dps = ((float)gyro_x_raw - g_cal.gyro_x_bias) /
 		g_cal.gyro_lsb_per_dps;
 
-	s->gyro_y_dps = ((float)s->gyro_y_raw - g_cal.gyro_y_bias) /
+	s->gyro_y_dps = ((float)gyro_y_raw - g_cal.gyro_y_bias) /
 		g_cal.gyro_lsb_per_dps;
 
-	s->gyro_z_dps = ((float)s->gyro_z_raw - g_cal.gyro_z_bias) /
+	s->gyro_z_dps = ((float)gyro_z_raw - g_cal.gyro_z_bias) /
 		g_cal.gyro_lsb_per_dps;
 
-	s->temp1_c = 25.0f + ((float)s->temp1_raw / 20.0f);
-	s->temp2_c = 25.0f + ((float)s->temp2_raw / 20.0f);
+	s->temp1_c = 25.0f + ((float)temp1_raw / 20.0f);
+	s->temp2_c = 25.0f + ((float)temp2_raw / 20.0f);
 
 	s->error_count = g_error_count;
 
