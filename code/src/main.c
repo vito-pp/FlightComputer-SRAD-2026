@@ -50,21 +50,16 @@ int main(void)
 
 	if (!(ms5611_init() && iim_init() && adxl375_init())) {
 		printf("Sensors init failed\n");
-		while (true) {
-			sleep_ms(1000);
-		}
+		error_handler();
 	}
 	printf("Sensors init OK\n");
 
 	printf("Calibrating barometer and IMU...\n");
 	if (!(ms5611_calibrate() && iim_calibrate())) {
 		printf("Calibration failed\n");
-		while (true) {
-			sleep_ms(1000);
-		}
+		error_handler();
 	}
 	printf("Calibration done\n");
-
 
 	latest_imu_t latest_imu = {0};
 	latest_adxl_t latest_adxl = {0};
@@ -132,8 +127,8 @@ int main(void)
 
 void error_handler(void) 
 {
-	gpio_put(BLUE_LED, 0);
-	gpio_put(RED_LED, 1);
+	// gpio_put(BLUE_LED, 0);
+	// gpio_put(RED_LED, 1);
 	while (true) { sleep_ms(1000); }
 }
 
