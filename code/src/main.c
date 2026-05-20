@@ -25,7 +25,7 @@
 #define FRAME_ADXL_FRESH  (1u << 1)
 #define FRAME_BARO_FRESH  (1u << 2)
 
-#define FRAME_PERIOD_US 20000 // 50 Hz
+#define FRAME_PERIOD_US 500000 // 2 Hz
 
 void core1_entry(void);
 void error_handler(void);
@@ -67,8 +67,8 @@ int main(void)
 	}
 	printf("Sensors init OK\n");
 
-	printf("Calibrating barometer and IMU...\n");
-	if (!(ms5611_calibrate() && iim_calibrate())) {
+	printf("Calibrating barometer, IMU, and ADXL...\n");
+	if (!(ms5611_calibrate() && iim_calibrate() && adxl375_calibrate())) {
 		printf("Calibration failed\n");
 		error_handler();
 	}

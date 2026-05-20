@@ -15,6 +15,15 @@
 
 #define INT_DATA_READY     0x80
 
+// From bench readings: +Z ~= 1.95 g and -Z ~= 0.00 g before correction.
+#define ADXL375_Z_OFFSET_G 0.975f
+#define ADXL375_Z_SPAN_G   0.975f
+
+static float g_x_offset_g = 0.0f;
+static float g_y_offset_g = 0.0f;
+static float g_z_offset_g = ADXL375_Z_OFFSET_G;
+static float g_z_span_g = ADXL375_Z_SPAN_G;
+
 static bool write_reg(uint8_t reg, uint8_t value) {
 	uint8_t buf[2] = { reg, value };
 
@@ -82,6 +91,20 @@ static bool read_regs(uint8_t reg, uint8_t *buf, size_t len) {
 	return ret == (int)len;
 }
 
+static bool read_raw_axes(int16_t *x, int16_t *y, int16_t *z) {
+	uint8_t data[6];
+
+	if (!read_regs(REG_DATAX0, data, sizeof(data))) {
+		return false;
+	}
+
+	*x = (int16_t)((uint16_t)data[1] << 8 | data[0]);
+	*y = (int16_t)((uint16_t)data[3] << 8 | data[2]);
+	*z = (int16_t)((uint16_t)data[5] << 8 | data[4]);
+
+	return true;
+}
+
 bool adxl375_init(void) {
 	i2c_init(ADXL375_I2C, ADXL375_I2C_BAUD);
 
@@ -131,6 +154,47 @@ bool adxl375_init(void) {
 	return true;
 }
 
+bool adxl375_calibrate(void) {
+	float x_sum = 0.0f;
+	float y_sum = 0.0f;
+	float z_sum = 0.0f;
+
+	for (uint16_t i = 0; i < ADXL375_CAL_SAMPLES; i++) {
+		int16_t x;
+		int16_t y;
+		int16_t z;
+
+		if (!read_raw_axes(&x, &y, &z)) {
+			return false;
+		}
+
+		// These are the same board-axis corrections used for normal samples.
+		x_sum += (float)y / ADXL375_LSB_PER_G;
+		y_sum += (float)-x / ADXL375_LSB_PER_G;
+		z_sum += (float)z / ADXL375_LSB_PER_G;
+
+		sleep_ms(ADXL375_CAL_SAMPLE_DELAY_MS);
+	}
+
+	float x_avg = (float)x_sum / ADXL375_CAL_SAMPLES;
+	float y_avg = (float)y_sum / ADXL375_CAL_SAMPLES;
+	float z_avg = (float)z_sum / ADXL375_CAL_SAMPLES;
+
+	if (g_z_span_g <= 0.0f) {
+		return false;
+	}
+
+	g_x_offset_g = x_avg;
+	g_y_offset_g = y_avg;
+
+	float expected_z_g = (z_avg >= ADXL375_Z_OFFSET_G) ?
+		ADXL375_Z_SPAN_G :
+		-ADXL375_Z_SPAN_G;
+	g_z_offset_g = z_avg - expected_z_g;
+
+	return true;
+}
+
 adxl375_poll_result_t adxl375_poll_sample(adxl375_sample_t *sample) {
 	if (sample == NULL) {
 		return ADXL375_POLL_ERROR;
@@ -146,20 +210,16 @@ adxl375_poll_result_t adxl375_poll_sample(adxl375_sample_t *sample) {
 		return ADXL375_POLL_NO_DATA;
 	}
 
-	uint8_t data[6];
+	int16_t x;
+	int16_t y;
+	int16_t z;
 
-	if (!read_regs(REG_DATAX0, data, sizeof(data))) {
-		return ADXL375_POLL_ERROR;
-	}
-
-	int16_t x = (int16_t)((uint16_t)data[1] << 8 | data[0]);
-	int16_t y = (int16_t)((uint16_t)data[3] << 8 | data[2]);
-	int16_t z = (int16_t)((uint16_t)data[5] << 8 | data[4]);
+	if (!read_raw_axes(&x, &y, &z)) return ADXL375_POLL_ERROR;
 
 	// this are ad hoc corrections to make the adxl axis match the iim's
-	sample->x_g = y / ADXL375_LSB_PER_G;
-	sample->y_g = -x / ADXL375_LSB_PER_G;
-	sample->z_g = z / ADXL375_LSB_PER_G;
+	sample->x_g = ((float)y / ADXL375_LSB_PER_G) - g_x_offset_g;
+	sample->y_g = ((float)-x / ADXL375_LSB_PER_G) - g_y_offset_g;
+	sample->z_g = (((float)z / ADXL375_LSB_PER_G) - g_z_offset_g) / g_z_span_g;
 
 	return ADXL375_POLL_OK;
 }

@@ -50,6 +50,16 @@
 #define ADXL375_LSB_PER_G 20.5f
 
 /**
+ * @brief Number of raw samples averaged by adxl375_calibrate().
+ */
+#define ADXL375_CAL_SAMPLES 100u
+
+/**
+ * @brief Delay between ADXL375 calibration samples.
+ */
+#define ADXL375_CAL_SAMPLE_DELAY_MS (1000u / ADXL375_SAMPLE_RATE_HZ)
+
+/**
  * @brief Per-transfer I2C timeout, cause I2C writing is blocking on the pico-sdk.
  *
  * Keep this short and sweet. A write should take more than a couple tens of us.
@@ -86,10 +96,22 @@ typedef enum {
 bool adxl375_init(void);
 
 /**
+ * @brief Calibrate ADXL375 board-frame acceleration offsets at startup.
+ *
+ * This averages raw XYZ samples with the same board-axis mapping used by
+ * adxl375_poll_sample(). X and Y are zeroed from the still reading, while Z
+ * uses the measured +Z/-Z midpoint and span so both signs report near +/-1 g.
+ *
+ * @return true if calibration succeeded.
+ * @return false if a sensor read failed or the measured vector was invalid.
+ */
+bool adxl375_calibrate(void);
+
+/**
  * @brief Poll the ADXL375 for a new acceleration sample.
  *
  * This checks the DATA_READY bit and returns immediately if no new sample is
- * available. The output g values use ADXL375_LSB_PER_G.
+ * available. The output g values use the calibrated board-frame correction.
  *
  * @param sample Pointer to output sample structure.
  *
@@ -98,7 +120,7 @@ bool adxl375_init(void);
  * @return ADXL375_POLL_ERROR on communication or device failure.
  *
  * NOTE: x and y axis are changed to adapt it to this projects board. See the
- * adxl375.c, line 159.
+ * adxl375.c, line 219
  */
 adxl375_poll_result_t adxl375_poll_sample(adxl375_sample_t *sample);
 
