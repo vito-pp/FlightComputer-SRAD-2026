@@ -60,22 +60,22 @@
  * @brief Single ADXL375 acceleration sample.
  */
 typedef struct {
-    int16_t x_raw; /**< Raw X-axis reading */
-    int16_t y_raw; /**< Raw Y-axis reading */
-    int16_t z_raw; /**< Raw Z-axis reading */
+	int16_t x_raw; /**< Raw X-axis reading */
+	int16_t y_raw; /**< Raw Y-axis reading */
+	int16_t z_raw; /**< Raw Z-axis reading */
 
-    float x_g;     /**< X-axis acceleration in g */
-    float y_g;     /**< Y-axis acceleration in g */
-    float z_g;     /**< Z-axis acceleration in g */
+	float x_g;     /**< X-axis acceleration in g */
+	float y_g;     /**< Y-axis acceleration in g */
+	float z_g;     /**< Z-axis acceleration in g */
 } adxl375_sample_t;
 
 /**
  * @brief Result codes for polling reads.
  */
 typedef enum {
-    ADXL375_POLL_NO_DATA = 0, /**< No new sample available */
-    ADXL375_POLL_OK,          /**< New sample successfully read */
-    ADXL375_POLL_ERROR        /**< I2C or device error */
+	ADXL375_POLL_NO_DATA = 0, /**< No new sample available */
+	ADXL375_POLL_OK,          /**< New sample successfully read */
+	ADXL375_POLL_ERROR        /**< I2C or device error */
 } adxl375_poll_result_t;
 
 /**
@@ -100,6 +100,9 @@ bool adxl375_init(void);
  * @return ADXL375_POLL_OK if a new sample was read.
  * @return ADXL375_POLL_NO_DATA if no new sample is available.
  * @return ADXL375_POLL_ERROR on communication or device failure.
+ *
+ * NOTE: x and y axis are changed to adapt it to this projects board. See the
+ * adxl375.c, line 159.
  */
 adxl375_poll_result_t adxl375_poll_sample(adxl375_sample_t *sample);
 
