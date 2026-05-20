@@ -103,8 +103,9 @@ bool iim_init(void);
  * @brief Calibrate IMU biases from a still, flat startup position.
  *
  * This averages IIM_CAL_SAMPLES raw reads. The gyro average becomes the zero
- * rate bias. X/Y accel averages become zero-g biases, and Z is treated as +1 g,
- * so movement or tilt during calibration will bias later readings.
+ * rate bias (it assumes the board is still when calibrating). On the other 
+ * hand, accel coordinates are just normalized, not bias corrected (because, if
+ * so, calibration would be position dependent).
  */
 bool iim_calibrate(void);
 

@@ -114,10 +114,6 @@ bool ms5611_calibrate(void);
  * their deadlines across later calls, computes compensation, and writes one
  * complete sample when ready.
  *
- * IMPORTANT: pressure has a little drift (~microbars per second) but
- * altitude is very suceptible to this change, so it has a larger drift (meters per 
- * minute). TODO: add filtering to overcome the drift
- *
  * @param sample Pointer to the output sample structure.
  *
  * @return MS5611_POLL_OK when sample contains new data.
