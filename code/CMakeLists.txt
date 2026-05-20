@@ -31,6 +31,7 @@ target_include_directories(flight_computer PRIVATE
 
 target_link_libraries(flight_computer
     pico_stdlib
+    pico_multicore
     hardware_i2c
     hardware_spi
     hardware_pwm

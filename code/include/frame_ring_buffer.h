@@ -8,7 +8,7 @@
 #include "iim20670.h"
 #include "ms5611.h"
 
-#define FRAME_RING_SIZE 512
+#define FRAME_RING_SIZE 1024
 
 typedef struct {
 	uint64_t timestamp_us;

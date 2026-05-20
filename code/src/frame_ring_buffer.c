@@ -1,4 +1,5 @@
 #include "frame_ring_buffer.h"
+#include "hardware/sync.h"
 
 bool frame_ring_push(frame_ring_t *ring, const sensor_frame_t *frame)
 {
@@ -11,6 +12,7 @@ bool frame_ring_push(frame_ring_t *ring, const sensor_frame_t *frame)
 	}
 
 	ring->buffer[head] = *frame;
+	__dmb(); // ensure frame is written before publishing head
 	ring->head = next_head;
 	return true;
 }
@@ -24,6 +26,7 @@ bool frame_ring_pop(frame_ring_t *ring, sensor_frame_t *frame)
 	}
 
 	*frame = ring->buffer[tail];
+	__dmb(); // ensure frame is read before publishing tail
 	ring->tail = (tail + 1u) % FRAME_RING_SIZE;
 	return true;
 }

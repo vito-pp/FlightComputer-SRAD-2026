@@ -3,7 +3,10 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <stdbool.h>
+
 #include "pico/stdlib.h"
+#include "pico/multicore.h"
+
 #include "iim20670.h"
 #include "buzzer.h"
 #include "ms5611.h"
@@ -23,6 +26,10 @@
 
 #define FRAME_PERIOD_US 500000 // 2 Hz
 
+void error_handler(void);
+void serial_debug_print(sensor_frame_t *frame);
+void core1_entry(void);
+
 typedef struct {
 	bool fresh;
 	iim_sample_t sample;
@@ -38,10 +45,8 @@ typedef struct {
 	ms5611_sample_t sample;
 } latest_baro_t;
 
-frame_ring_t frame_rb = {0};
-
-void error_handler(void);
-void serial_debug_print(sensor_frame_t *frame);
+// frame ring buffer for all readings
+static frame_ring_t frame_rb = {0};
 
 int main(void)
 {
@@ -67,6 +72,8 @@ int main(void)
 
 	uint64_t next_frame_us = time_us_64();
 
+	multicore_launch_core1(core1_entry);
+
 	for EVER {
 		uint64_t now = time_us_64();
 
@@ -88,6 +95,7 @@ int main(void)
 			latest_baro.fresh = true;
 		}
 
+		// if time elapsed, create and push the frame
 		if ((int64_t)(now - next_frame_us) >= 0) {
 			next_frame_us += FRAME_PERIOD_US;
 
@@ -122,6 +130,17 @@ int main(void)
 		}
 
 		tight_loop_contents();
+	}
+}
+
+void core1_entry(void) 
+{
+	sensor_frame_t frame;
+
+	for EVER {
+		if (frame_ring_pop(&frame_rb, &frame)) {
+			serial_debug_print(&frame);
+		}
 	}
 }
 
