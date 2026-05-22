@@ -11,6 +11,7 @@
 #include "adxl375.h"
 #include "frame_ring_buffer.h"
 #include "sd_logger.h"
+#include "xbee.h"
 
 #define EVER (;;) // forever ever, baby...
 
@@ -58,6 +59,9 @@ int main(void)
 		error_handler();
 	}
 	printf("SD logger init OK\n");
+
+	xbee_init();
+	printf("XBee init OK\n");
 
 	if (!(ms5611_init() && iim_init() && adxl375_init())) {
 		printf("Sensors init failed\n");
@@ -126,8 +130,7 @@ int main(void)
 				frame.freshness |= FRAME_BARO_FRESH;
 			}
 
-			latest_imu.fresh = false;
-			latest_adxl.fresh = false;
+			latest_imu.fresh = false; latest_adxl.fresh = false;
 			latest_baro.fresh = false;
 
 			frame_ring_push(&frame_rb, &frame);
@@ -145,6 +148,7 @@ void core1_entry(void)
 		if (frame_ring_pop(&frame_rb, &frame)) {
 			serial_debug_print(&frame);
 			log_frame_to_sd(&frame);
+			xbee_transmit(&frame, sizeof(frame));	
 		}
 		else {
 			tight_loop_contents();
