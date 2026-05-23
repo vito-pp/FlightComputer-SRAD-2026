@@ -148,7 +148,7 @@ void core1_entry(void)
 		if (frame_ring_pop(&frame_rb, &frame)) {
 			serial_debug_print(&frame);
 			log_frame_to_sd(&frame);
-			xbee_transmit(&frame, sizeof(frame));	
+			xbee_transmit(&frame, sizeof(frame));
 		}
 		else {
 			tight_loop_contents();
