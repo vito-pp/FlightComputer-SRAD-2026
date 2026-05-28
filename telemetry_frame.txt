@@ -1,0 +1,69 @@
+TELEMETRY FRAME SPECIFICATION
+
+Transport:
+- XBee transparent UART
+- UART config: 115200 baud, 8N1
+- Byte stream, raw binary
+- Multi-byte values: little-endian
+- float values: IEEE-754 32-bit float
+- Structs are packed, no padding
+- Total frame size: 137 bytes
+
+FRAME LAYOUT
+
+Offset  Size  Type      Field
+------------------------------------------------------------
+0       8     uint64    timestamp_us
+8       4     uint32    frame_number
+
+IMU SAMPLE
+12      8     uint64    imu.timestamp_us
+20      4     float32   imu.accel_x_g
+24      4     float32   imu.accel_y_g
+28      4     float32   imu.accel_z_g
+32      4     float32   imu.gyro_x_dps
+36      4     float32   imu.gyro_y_dps
+40      4     float32   imu.gyro_z_dps
+44      4     float32   imu.temp1_c
+48      4     float32   imu.temp2_c
+52      4     uint32    imu.error_count
+
+ADXL375 SAMPLE
+56      4     float32   adxl.x_g
+60      4     float32   adxl.y_g
+64      4     float32   adxl.z_g
+
+BAROMETER SAMPLE
+68      4     float32   baro.pressure_mbar
+72      4     float32   baro.temperature_c
+76      4     float32   baro.altitude_m
+
+BATTERY
+80      2     uint16    battery_mv
+
+GNSS SAMPLE
+82      4     uint32    gnss.iTOW_ms
+86      4     int32     gnss.lon_deg_e7
+90      4     int32     gnss.lat_deg_e7
+94      4     int32     gnss.height_mm
+98      4     int32     gnss.hMSL_mm
+102     4     int32     gnss.velN_mm_s
+106     4     int32     gnss.velE_mm_s
+110     4     int32     gnss.velD_mm_s
+114     4     int32     gnss.gSpeed_mm_s
+118     4     uint32    gnss.hAcc_mm
+122     4     uint32    gnss.vAcc_mm
+126     4     uint32    gnss.sAcc_mm_s
+130     1     uint8     gnss.fixType
+131     1     uint8     gnss.numSV
+132     1     uint8     gnss.flags
+133     1     uint8     gnss.reserved
+
+FRAME STATUS
+134     1     uint8     freshness
+
+CRC
+135     2     uint16    crc16
+------------------------------------------------------------
+
+Total: 137 bytes
