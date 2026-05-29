@@ -13,7 +13,7 @@
 #include "sd_logger.h"
 #include "xbee.h"
 #include "crc.h"
-#include "max_m10s.h"
+// #include "max_m10s.h" // it doesnt work :(
 
 #define EVER (;;) // forever ever, baby...
 
@@ -49,12 +49,12 @@ typedef struct {
 	ms5611_sample_t sample;
 } latest_baro_t;
 
-typedef struct {
-	bool fresh;
-	gnss_sample_t sample;
-} latest_gnss_t;
+// typedef struct {
+// 	bool fresh;
+// 	gnss_sample_t sample;
+// } latest_gnss_t;
 
-// frame ring buffer for all readings
+// frame ring buffer for all readings and frame counter
 static frame_ring_t frame_rb = {0};
 static uint32_t frame_number = 0;
 
@@ -85,11 +85,11 @@ int main(void)
 	}
 	printf("Calibration done\n");
 
-	if (!max_m10s_init()) {
-		printf("GNSS init failed\n");
-		error_handler();
-	}
-	printf("GNSS init OK\n");
+	// if (!max_m10s_init()) {
+	// 	printf("GNSS init failed\n");
+	// 	error_handler();
+	// }
+	// printf("GNSS init OK\n");
 
 	latest_imu_t latest_imu = {0};
 	latest_adxl_t latest_adxl = {0};
@@ -121,12 +121,11 @@ int main(void)
 			latest_baro.fresh = true;
 		}
 
-		gnss_sample_t gnss_tmp;
-		if (max_m10s_poll_sample(&gnss_tmp) == MAX_M10S_POLL_OK) {
-			latest_gnss.sample = gnss_tmp;
-			latest_gnss.fresh = true;
-		}
-		
+		// gnss_sample_t gnss_tmp;
+		// if (max_m10s_poll_sample(&gnss_tmp) == MAX_M10S_POLL_OK) {
+		// 	latest_gnss.sample = gnss_tmp;
+		// 	latest_gnss.fresh = true;
+		// }
 
 		// if time elapsed, create and push the frame
 		if ((int64_t)(now - next_frame_us) >= 0) {
@@ -144,10 +143,7 @@ int main(void)
 
 			frame.baro = latest_baro.sample;
 
-			frame.gnss = latest_gnss.sample;
-
-			/* Dummy battery value */
-			frame.battery_mv = 4700; // 4.700 V
+			// frame.gnss = latest_gnss.sample;
 
 			// /* Dummy GNSS values */
 			// frame.gnss.iTOW_ms = 0;
@@ -178,9 +174,14 @@ int main(void)
 				frame.freshness |= FRAME_BARO_FRESH;
 			}
 
+			// if (latest_gnss.fresh) {
+			// 	frame.freshness |= FRAME_GNSS_FRESH;
+			// }
+
 			latest_imu.fresh = false; 
 			latest_adxl.fresh = false;
 			latest_baro.fresh = false;
+			// latest_gnss.fresh = false;
 
 			frame_ring_push(&frame_rb, &frame);
 		}
