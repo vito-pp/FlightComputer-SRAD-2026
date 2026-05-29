@@ -60,6 +60,9 @@ static uint32_t frame_number = 0;
 
 int main(void)
 {
+	buzz_init();
+	// buzz_alarm(true);
+
 	stdio_init_all();
 	sleep_ms(2000);
 
@@ -94,11 +97,14 @@ int main(void)
 	latest_imu_t latest_imu = {0};
 	latest_adxl_t latest_adxl = {0};
 	latest_baro_t latest_baro = {0};
-	latest_gnss_t latest_gnss = {0};
+	// latest_gnss_t latest_gnss = {0};
 
 	uint64_t next_frame_us = time_us_64();
 
 	multicore_launch_core1(core1_entry);
+
+	// sleep_ms(1000);
+	// buzz_alarm(false);
 
 	for EVER {
 		uint64_t now = time_us_64();
