@@ -74,7 +74,7 @@ typedef enum {
  * read during ms5611_init(). altitude_m is relative to the pressure baseline
  * captured by ms5611_calibrate(); before calibration it is reported as 0.
  */
-typedef struct {
+typedef struct __attribute__((packed)) {
 	float pressure_mbar; /**< Compensated pressure in mbar. */
 	float temperature_c; /**< Compensated temperature in degrees Celsius. */
 	float altitude_m;    /**< Altitude in meters relative to the calibration baseline. */

@@ -63,7 +63,7 @@ typedef enum {
 /**
  * @brief One converted IIM-20670 IMU sample.
  */
-typedef struct {
+typedef struct __attribute__((packed)) {
     uint64_t timestamp_us; /**< time_us_64() timestamp of the read. */
 
     float accel_x_g;     /**< Calibrated X acceleration in g. */

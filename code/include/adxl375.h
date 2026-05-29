@@ -69,7 +69,7 @@
 /**
  * @brief Single ADXL375 acceleration sample.
  */
-typedef struct {
+typedef struct __attribute__((packed)) {
 	float x_g;     /**< X-axis acceleration in g */
 	float y_g;     /**< Y-axis acceleration in g */
 	float z_g;     /**< Z-axis acceleration in g */

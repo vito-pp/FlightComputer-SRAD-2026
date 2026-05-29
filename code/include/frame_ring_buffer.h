@@ -7,18 +7,26 @@
 #include "adxl375.h"
 #include "iim20670.h"
 #include "ms5611.h"
+#include "max_m10s.h"
 
 #define FRAME_RING_SIZE 2048 // rp2040 has 256 KB of RAM
 
-typedef struct {
+typedef struct __attribute__((packed)) {
+	uint16_t sync_word;
+
 	uint64_t timestamp_us;
+	uint32_t frame_number;
 
 	iim_sample_t imu;
 	adxl375_sample_t adxl;
 	ms5611_sample_t baro;
+	uint16_t battery_mv;
+	gnss_sample_t gnss;
 
 	uint8_t freshness;
-} sensor_frame_t; // a sensor frame instance has 88 bytes
+
+	uint16_t crc16;
+} sensor_frame_t; // a sensor frame instance has 139 bytes
 
 typedef struct {
 	volatile uint32_t head;
