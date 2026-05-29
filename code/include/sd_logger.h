@@ -48,9 +48,8 @@ bool sd_logger_append_csv(const char *line);
  *
  * The first call writes a header row if `0:/log.csv` is empty or does not
  * exist. Columns are written in this order:
- * timestamp_us, imu_ax_g, imu_ay_g, imu_az_g, imu_gx_dps, imu_gy_dps,
- * imu_gz_dps, adxl_ax_g, adxl_ay_g, adxl_az_g, pressure_mbar,
- * temperature_c, altitude_m.
+ * sync_word, frame_number, timestamp_us, IMU, ADXL, barometer, battery, GNSS,
+ * freshness, and crc16 fields.
  *
  * @param frame Sensor frame to serialize.
  *

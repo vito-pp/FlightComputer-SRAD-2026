@@ -68,6 +68,8 @@ typedef struct __attribute__((packed)) {
 	// bit6-7: carrier solution status
 	uint8_t flags;
 
+	uint8_t reserved;
+
 } gnss_sample_t;
 
 #endif // MAX_M10S_H

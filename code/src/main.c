@@ -12,6 +12,7 @@
 #include "frame_ring_buffer.h"
 #include "sd_logger.h"
 #include "xbee.h"
+#include "crc.h"
 
 #define EVER (;;) // forever ever, baby...
 
@@ -24,7 +25,7 @@
 #define FRAME_ADXL_FRESH  (1u << 1)
 #define FRAME_BARO_FRESH  (1u << 2)
 
-#define FRAME_PERIOD_US 500000 // 2 Hz
+#define FRAME_PERIOD_US 10000 // 100 Hz
 
 void core1_entry(void);
 void error_handler(void);
@@ -48,6 +49,7 @@ typedef struct {
 
 // frame ring buffer for all readings
 static frame_ring_t frame_rb = {0};
+static uint32_t frame_number = 0;
 
 int main(void)
 {
@@ -110,6 +112,9 @@ int main(void)
 			next_frame_us += FRAME_PERIOD_US;
 
 			sensor_frame_t frame = {0};
+
+			frame.sync_word = 0xA55A;
+			frame.frame_number = frame_number++;
 			frame.timestamp_us = now;
 
 			frame.imu = latest_imu.sample;
@@ -117,6 +122,27 @@ int main(void)
 			frame.adxl = latest_adxl.sample;
 
 			frame.baro = latest_baro.sample;
+
+			/* Dummy battery value */
+			frame.battery_mv = 7400; // 7.400 V
+
+			/* Dummy GNSS values */
+			frame.gnss.iTOW_ms = 0;
+			frame.gnss.lon_deg_e7 = -583815923;  // -58.3815923 deg
+			frame.gnss.lat_deg_e7 = -346037220;  // -34.6037220 deg
+			frame.gnss.height_mm = 25000;        // 25 m
+			frame.gnss.hMSL_mm = 25000;
+			frame.gnss.velN_mm_s = 0;
+			frame.gnss.velE_mm_s = 0;
+			frame.gnss.velD_mm_s = 0;
+			frame.gnss.gSpeed_mm_s = 0;
+			frame.gnss.hAcc_mm = 999999;
+			frame.gnss.vAcc_mm = 999999;
+			frame.gnss.sAcc_mm_s = 999999;
+			frame.gnss.fixType = 0;              // no fix
+			frame.gnss.numSV = 0;
+			frame.gnss.flags = 0;
+			frame.gnss.reserved = 0;
 
 			if (latest_imu.fresh) {
 				frame.freshness |= FRAME_IMU_FRESH;
@@ -130,7 +156,8 @@ int main(void)
 				frame.freshness |= FRAME_BARO_FRESH;
 			}
 
-			latest_imu.fresh = false; latest_adxl.fresh = false;
+			latest_imu.fresh = false; 
+			latest_adxl.fresh = false;
 			latest_baro.fresh = false;
 
 			frame_ring_push(&frame_rb, &frame);
@@ -146,6 +173,8 @@ void core1_entry(void)
 
 	for EVER {
 		if (frame_ring_pop(&frame_rb, &frame)) {
+			frame.crc16 = crc16_ccitt_false(&frame);
+
 			serial_debug_print(&frame);
 			log_frame_to_sd(&frame);
 			xbee_transmit(&frame, sizeof(frame));

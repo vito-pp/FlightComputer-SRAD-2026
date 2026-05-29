@@ -9,11 +9,10 @@
 #include "ms5611.h"
 #include "max_m10s.h"
 
-#define FRAME_RING_SIZE 2048 // rp2040 has 256 KB of RAM
+#define FRAME_RING_SIZE 1024 // rp2040 has 256 KB of RAM
 
 typedef struct __attribute__((packed)) {
-	uint16_t sync_word;
-
+	uint16_t sync_word; // always 0xA55A
 	uint64_t timestamp_us;
 	uint32_t frame_number;
 
@@ -27,6 +26,8 @@ typedef struct __attribute__((packed)) {
 
 	uint16_t crc16;
 } sensor_frame_t; // a sensor frame instance has 139 bytes
+
+_Static_assert(sizeof(sensor_frame_t) == 139, "Unexpected sensor_frame_t size");
 
 typedef struct {
 	volatile uint32_t head;

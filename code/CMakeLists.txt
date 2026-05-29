@@ -16,6 +16,7 @@ add_subdirectory(no-OS-FatFS-SD-SDIO-SPI-RPi-Pico/src build_sd)
 
 add_executable(flight_computer
     src/main.c
+    src/crc.c
     src/frame_ring_buffer.c
     src/board/hw_config.c
     src/drvs/sd_logger.c

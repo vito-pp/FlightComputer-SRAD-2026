@@ -48,10 +48,20 @@ static bool sd_logger_ensure_csv_header(void) {
 
 	if (fr == FR_NO_FILE || (fr == FR_OK && info.fsize == 0)) {
 		if (!sd_logger_write_csv_line(
-			"timestamp_us,imu_ax_g,imu_ay_g,imu_az_g,"
+			"sync_word,frame_number,timestamp_us,"
+			"imu_ax_g,imu_ay_g,imu_az_g,"
 			"imu_gx_dps,imu_gy_dps,imu_gz_dps,"
+			"imu_temp1_c,imu_temp2_c,imu_error_count,"
 			"adxl_ax_g,adxl_ay_g,adxl_az_g,"
-			"pressure_mbar,temperature_c,altitude_m\n")) {
+			"pressure_mbar,temperature_c,altitude_m,"
+			"battery_mv,"
+			"gnss_itow_ms,gnss_lon_deg_e7,gnss_lat_deg_e7,"
+			"gnss_height_mm,gnss_hmsl_mm,"
+			"gnss_veln_mm_s,gnss_vele_mm_s,gnss_veld_mm_s,"
+			"gnss_gspeed_mm_s,"
+			"gnss_hacc_mm,gnss_vacc_mm,gnss_sacc_mm_s,"
+			"gnss_fixtype,gnss_numsv,gnss_flags,gnss_reserved,"
+			"freshness,crc16\n")) {
 			return false;
 		}
 	}
@@ -88,11 +98,26 @@ bool sd_logger_append_frame_csv(const sensor_frame_t *frame) {
 	if (!mounted) return false;
 	if (!sd_logger_ensure_csv_header()) return false;
 
-	char line[256];
+	char line[512];
 	int len = snprintf(
 		line,
 		sizeof(line),
-		"%llu,%.6f,%.6f,%.6f,%.6f,%.6f,%.6f,%.6f,%.6f,%.6f,%.6f,%.6f,%.6f\n",
+		"0x%04X,%lu,%llu,"
+		"%.6f,%.6f,%.6f,"
+		"%.6f,%.6f,%.6f,"
+		"%.6f,%.6f,%lu,"
+		"%.6f,%.6f,%.6f,"
+		"%.6f,%.6f,%.6f,"
+		"%u,"
+		"%lu,%ld,%ld,"
+		"%ld,%ld,"
+		"%ld,%ld,%ld,"
+		"%ld,"
+		"%lu,%lu,%lu,"
+		"%u,%u,0x%02X,%u,"
+		"0x%02X,0x%04X\n",
+		frame->sync_word,
+		(unsigned long)frame->frame_number,
 		(unsigned long long)frame->timestamp_us,
 		frame->imu.accel_x_g,
 		frame->imu.accel_y_g,
@@ -100,12 +125,34 @@ bool sd_logger_append_frame_csv(const sensor_frame_t *frame) {
 		frame->imu.gyro_x_dps,
 		frame->imu.gyro_y_dps,
 		frame->imu.gyro_z_dps,
+		frame->imu.temp1_c,
+		frame->imu.temp2_c,
+		(unsigned long)frame->imu.error_count,
 		frame->adxl.x_g,
 		frame->adxl.y_g,
 		frame->adxl.z_g,
 		frame->baro.pressure_mbar,
 		frame->baro.temperature_c,
-		frame->baro.altitude_m
+		frame->baro.altitude_m,
+		frame->battery_mv,
+		(unsigned long)frame->gnss.iTOW_ms,
+		(long)frame->gnss.lon_deg_e7,
+		(long)frame->gnss.lat_deg_e7,
+		(long)frame->gnss.height_mm,
+		(long)frame->gnss.hMSL_mm,
+		(long)frame->gnss.velN_mm_s,
+		(long)frame->gnss.velE_mm_s,
+		(long)frame->gnss.velD_mm_s,
+		(long)frame->gnss.gSpeed_mm_s,
+		(unsigned long)frame->gnss.hAcc_mm,
+		(unsigned long)frame->gnss.vAcc_mm,
+		(unsigned long)frame->gnss.sAcc_mm_s,
+		frame->gnss.fixType,
+		frame->gnss.numSV,
+		frame->gnss.flags,
+		frame->gnss.reserved,
+		frame->freshness,
+		frame->crc16
 	);
 
 	if (len < 0 || (size_t)len >= sizeof(line)) {
