@@ -9,6 +9,7 @@
 #include "drvs/buzzer.h"
 #include "drvs/ms5611.h"
 #include "drvs/adxl375.h"
+#include "drvs/adc_bat_lvl.h"
 #include "frame_ring_buffer.h"
 #include "drvs/sd_logger.h"
 #include "drvs/xbee.h"
@@ -49,6 +50,11 @@ typedef struct {
 	ms5611_sample_t sample;
 } latest_baro_t;
 
+typedef struct {
+	bool fresh;
+	uint16_t sample_mv;
+} latest_battery_t;
+
 // typedef struct {
 // 	bool fresh;
 // 	gnss_sample_t sample;
@@ -61,6 +67,7 @@ static uint32_t frame_number = 0;
 int main(void)
 {
 	buzz_init();
+	adc_bat_lvl_init();
 	// buzz_alarm(true);
 
 	stdio_init_all();
@@ -97,6 +104,7 @@ int main(void)
 	latest_imu_t latest_imu = {0};
 	latest_adxl_t latest_adxl = {0};
 	latest_baro_t latest_baro = {0};
+	latest_battery_t latest_battery = {0};
 	// latest_gnss_t latest_gnss = {0};
 
 	uint64_t next_frame_us = time_us_64();
@@ -127,6 +135,12 @@ int main(void)
 			latest_baro.fresh = true;
 		}
 
+		uint16_t bat_tmp;
+		if (adc_bat_lvl_poll(&bat_tmp) == BAT_LVL_POLL_OK) {
+			latest_battery.sample_mv = bat_tmp;
+			latest_battery.fresh = true;
+		}
+
 		// gnss_sample_t gnss_tmp;
 		// if (max_m10s_poll_sample(&gnss_tmp) == MAX_M10S_POLL_OK) {
 		// 	latest_gnss.sample = gnss_tmp;
@@ -150,6 +164,7 @@ int main(void)
 			frame.baro = latest_baro.sample;
 
 			// frame.gnss = latest_gnss.sample;
+			frame.battery_mv = latest_battery.sample_mv;
 
 			// /* Dummy GNSS values */
 			// frame.gnss.iTOW_ms = 0;
@@ -187,6 +202,7 @@ int main(void)
 			latest_imu.fresh = false; 
 			latest_adxl.fresh = false;
 			latest_baro.fresh = false;
+			latest_battery.fresh = false;
 			// latest_gnss.fresh = false;
 
 			frame_ring_push(&frame_rb, &frame);

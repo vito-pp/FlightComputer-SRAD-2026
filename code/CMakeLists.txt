@@ -26,6 +26,7 @@ add_executable(flight_computer
     src/drvs/ms5611.c
     src/drvs/xbee.c
     src/drvs/max_m10s.c
+    src/drvs/adc_bat_lvl.c
 )
 
 target_include_directories(flight_computer PRIVATE
@@ -39,6 +40,7 @@ target_link_libraries(flight_computer
     hardware_i2c
     hardware_spi
     hardware_pwm
+    hardware_adc
     no-OS-FatFS-SD-SDIO-SPI-RPi-Pico
 )
 
