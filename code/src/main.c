@@ -13,6 +13,7 @@
 #include "sd_logger.h"
 #include "xbee.h"
 #include "crc.h"
+#include "max_m10s.h"
 
 #define EVER (;;) // forever ever, baby...
 
@@ -24,8 +25,9 @@
 #define FRAME_IMU_FRESH   (1u << 0)
 #define FRAME_ADXL_FRESH  (1u << 1)
 #define FRAME_BARO_FRESH  (1u << 2)
+#define FRAME_GNSS_FRESH  (1u << 3)
 
-#define FRAME_PERIOD_US 10000 // 100 Hz
+#define FRAME_PERIOD_US 500000 // 2 Hz
 
 void core1_entry(void);
 void error_handler(void);
@@ -46,6 +48,11 @@ typedef struct {
 	bool fresh;
 	ms5611_sample_t sample;
 } latest_baro_t;
+
+typedef struct {
+	bool fresh;
+	gnss_sample_t sample;
+} latest_gnss_t;
 
 // frame ring buffer for all readings
 static frame_ring_t frame_rb = {0};
@@ -78,9 +85,16 @@ int main(void)
 	}
 	printf("Calibration done\n");
 
+	if (!max_m10s_init()) {
+		printf("GNSS init failed\n");
+		error_handler();
+	}
+	printf("GNSS init OK\n");
+
 	latest_imu_t latest_imu = {0};
 	latest_adxl_t latest_adxl = {0};
 	latest_baro_t latest_baro = {0};
+	latest_gnss_t latest_gnss = {0};
 
 	uint64_t next_frame_us = time_us_64();
 
@@ -107,6 +121,13 @@ int main(void)
 			latest_baro.fresh = true;
 		}
 
+		gnss_sample_t gnss_tmp;
+		if (max_m10s_poll_sample(&gnss_tmp) == MAX_M10S_POLL_OK) {
+			latest_gnss.sample = gnss_tmp;
+			latest_gnss.fresh = true;
+		}
+		
+
 		// if time elapsed, create and push the frame
 		if ((int64_t)(now - next_frame_us) >= 0) {
 			next_frame_us += FRAME_PERIOD_US;
@@ -123,26 +144,27 @@ int main(void)
 
 			frame.baro = latest_baro.sample;
 
-			/* Dummy battery value */
-			frame.battery_mv = 7400; // 7.400 V
+			frame.gnss = latest_gnss.sample;
 
-			/* Dummy GNSS values */
-			frame.gnss.iTOW_ms = 0;
-			frame.gnss.lon_deg_e7 = -583815923;  // -58.3815923 deg
-			frame.gnss.lat_deg_e7 = -346037220;  // -34.6037220 deg
-			frame.gnss.height_mm = 25000;        // 25 m
-			frame.gnss.hMSL_mm = 25000;
-			frame.gnss.velN_mm_s = 0;
-			frame.gnss.velE_mm_s = 0;
-			frame.gnss.velD_mm_s = 0;
-			frame.gnss.gSpeed_mm_s = 0;
-			frame.gnss.hAcc_mm = 999999;
-			frame.gnss.vAcc_mm = 999999;
-			frame.gnss.sAcc_mm_s = 999999;
-			frame.gnss.fixType = 0;              // no fix
-			frame.gnss.numSV = 0;
-			frame.gnss.flags = 0;
-			frame.gnss.reserved = 0;
+			/* Dummy battery value */
+			frame.battery_mv = 4700; // 4.700 V
+
+			// /* Dummy GNSS values */
+			// frame.gnss.iTOW_ms = 0;
+			// frame.gnss.lon_deg_e7 = -583815923;  // -58.3815923 deg
+			// frame.gnss.lat_deg_e7 = -346037220;  // -34.6037220 deg
+			// frame.gnss.height_mm = 25000;        // 25 m
+			// frame.gnss.hMSL_mm = 25000;
+			// frame.gnss.velN_mm_s = 0;
+			// frame.gnss.velE_mm_s = 0;
+			// frame.gnss.velD_mm_s = 0;
+			// frame.gnss.gSpeed_mm_s = 0;
+			// frame.gnss.hAcc_mm = 999999;
+			// frame.gnss.vAcc_mm = 999999;
+			// frame.gnss.sAcc_mm_s = 999999;
+			// frame.gnss.fixType = 0;              // no fix
+			// frame.gnss.numSV = 0;
+			// frame.gnss.flags = 0;
 
 			if (latest_imu.fresh) {
 				frame.freshness |= FRAME_IMU_FRESH;
@@ -189,7 +211,10 @@ void error_handler(void)
 {
 	// gpio_put(BLUE_LED, 0);
 	// gpio_put(RED_LED, 1);
-	for EVER { sleep_ms(1000); }
+	for EVER {
+		sleep_ms(1000);
+		printf("Error loop");
+	}
 }
 
 void serial_debug_print(sensor_frame_t *frame) 

@@ -60,7 +60,7 @@ static bool sd_logger_ensure_csv_header(void) {
 			"gnss_veln_mm_s,gnss_vele_mm_s,gnss_veld_mm_s,"
 			"gnss_gspeed_mm_s,"
 			"gnss_hacc_mm,gnss_vacc_mm,gnss_sacc_mm_s,"
-			"gnss_fixtype,gnss_numsv,gnss_flags,gnss_reserved,"
+			"gnss_fixtype,gnss_numsv,gnss_flags,"
 			"freshness,crc16\n")) {
 			return false;
 		}
@@ -114,7 +114,7 @@ bool sd_logger_append_frame_csv(const sensor_frame_t *frame) {
 		"%ld,%ld,%ld,"
 		"%ld,"
 		"%lu,%lu,%lu,"
-		"%u,%u,0x%02X,%u,"
+		"%u,%u,0x%02X,"
 		"0x%02X,0x%04X\n",
 		frame->sync_word,
 		(unsigned long)frame->frame_number,
@@ -150,7 +150,6 @@ bool sd_logger_append_frame_csv(const sensor_frame_t *frame) {
 		frame->gnss.fixType,
 		frame->gnss.numSV,
 		frame->gnss.flags,
-		frame->gnss.reserved,
 		frame->freshness,
 		frame->crc16
 	);

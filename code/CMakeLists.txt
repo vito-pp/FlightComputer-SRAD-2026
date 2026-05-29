@@ -25,6 +25,7 @@ add_executable(flight_computer
     src/drvs/buzzer.c
     src/drvs/ms5611.c
     src/drvs/xbee.c
+    src/drvs/max_m10s.c
 )
 
 target_include_directories(flight_computer PRIVATE

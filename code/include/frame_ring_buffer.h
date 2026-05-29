@@ -25,9 +25,9 @@ typedef struct __attribute__((packed)) {
 	uint8_t freshness;
 
 	uint16_t crc16;
-} sensor_frame_t; // a sensor frame instance has 139 bytes
+} sensor_frame_t; // a sensor frame instance has 138 bytes
 
-_Static_assert(sizeof(sensor_frame_t) == 139, "Unexpected sensor_frame_t size");
+_Static_assert(sizeof(sensor_frame_t) == 138, "Unexpected sensor_frame_t size");
 
 typedef struct {
 	volatile uint32_t head;
