@@ -1,4 +1,4 @@
-#include "adxl375.h"
+#include "drvs/adxl375.h"
 
 #include "hardware/i2c.h"
 #include "pico/stdlib.h"

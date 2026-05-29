@@ -5,15 +5,15 @@
 #include "pico/stdlib.h"
 #include "pico/multicore.h"
 
-#include "iim20670.h"
-#include "buzzer.h"
-#include "ms5611.h"
-#include "adxl375.h"
+#include "drvs/iim20670.h"
+#include "drvs/buzzer.h"
+#include "drvs/ms5611.h"
+#include "drvs/adxl375.h"
 #include "frame_ring_buffer.h"
-#include "sd_logger.h"
-#include "xbee.h"
-#include "crc.h"
-// #include "max_m10s.h" // it doesnt work :(
+#include "drvs/sd_logger.h"
+#include "drvs/xbee.h"
+#include "app_crc.h"
+// #include "drvs/max_m10s.h" // it doesnt work :(
 
 #define EVER (;;) // forever ever, baby...
 

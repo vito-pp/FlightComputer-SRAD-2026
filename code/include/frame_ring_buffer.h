@@ -4,10 +4,10 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-#include "adxl375.h"
-#include "iim20670.h"
-#include "ms5611.h"
-#include "max_m10s.h"
+#include "drvs/adxl375.h"
+#include "drvs/iim20670.h"
+#include "drvs/ms5611.h"
+#include "drvs/max_m10s.h"
 
 #define FRAME_RING_SIZE 1024 // rp2040 has 256 KB of RAM
 

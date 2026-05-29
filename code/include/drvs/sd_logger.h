@@ -3,7 +3,7 @@
 
 #include <stdbool.h>
 
-#include "frame_ring_buffer.h"
+#include "../frame_ring_buffer.h"
 
 /**
  * @file sd_logger.h

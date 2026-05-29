@@ -27598,7 +27598,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(in_pos_files yes)
-		(dnp yes)
+		(dnp no)
 		(uuid "e9669ac8-e3ce-4828-b4c2-4f1c96b29198")
 		(property "Reference" "Div_res_bat2"
 			(at 76.2 72.39 0)
@@ -27611,7 +27611,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "470k"
+		(property "Value" "30k"
 			(at 76.2 74.93 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -28617,7 +28617,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(in_pos_files yes)
-		(dnp yes)
+		(dnp no)
 		(uuid "fd27ffc6-6bec-46e2-8975-17759dcbf820")
 		(property "Reference" "Div_res_bat1"
 			(at 67.31 63.754 90)
@@ -28629,7 +28629,7 @@
 				)
 			)
 		)
-		(property "Value" "100k"
+		(property "Value" "10k"
 			(at 67.31 66.294 90)
 			(show_name no)
 			(do_not_autoplace no)

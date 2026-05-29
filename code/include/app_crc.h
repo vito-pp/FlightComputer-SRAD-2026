@@ -1,5 +1,5 @@
-#ifndef CRC_H
-#define CRC_H
+#ifndef APP_CRC_H
+#define APP_CRC_H
 
 #include <stdint.h>
 

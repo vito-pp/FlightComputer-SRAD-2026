@@ -30,6 +30,7 @@ add_executable(flight_computer
 
 target_include_directories(flight_computer PRIVATE
     ${CMAKE_CURRENT_LIST_DIR}/include
+    ${CMAKE_CURRENT_LIST_DIR}/include/drvs
 )
 
 target_link_libraries(flight_computer
