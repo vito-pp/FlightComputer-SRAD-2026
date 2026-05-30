@@ -67,8 +67,12 @@ static uint32_t frame_number = 0;
 int main(void)
 {
 	buzz_init();
-	adc_bat_lvl_init();
 	// buzz_alarm(true);
+	gpio_init(BLUE_LED);
+	gpio_set_dir(BLUE_LED, GPIO_OUT);
+	gpio_put(BLUE_LED, 1);
+
+	adc_bat_lvl_init();
 
 	stdio_init_all();
 	sleep_ms(2000);
@@ -112,7 +116,8 @@ int main(void)
 	multicore_launch_core1(core1_entry);
 
 	// sleep_ms(1000);
-	// buzz_alarm(false);
+	buzz_alarm(false);
+	gpio_put(BLUE_LED, 0);
 
 	for EVER {
 		uint64_t now = time_us_64();
