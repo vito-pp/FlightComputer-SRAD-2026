@@ -28,7 +28,7 @@
 #define FRAME_BARO_FRESH  (1u << 2)
 #define FRAME_GNSS_FRESH  (1u << 3)
 
-#define FRAME_PERIOD_US 500000 // 2 Hz
+#define FRAME_PERIOD_US 10000 // 100 Hz
 
 void core1_entry(void);
 void error_handler(void);
