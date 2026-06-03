@@ -67,7 +67,8 @@ static uint32_t frame_number = 0;
 int main(void)
 {
 	buzz_init();
-	// buzz_alarm(true);
+	buzz_alarm(true);
+
 	gpio_init(BLUE_LED);
 	gpio_set_dir(BLUE_LED, GPIO_OUT);
 	gpio_put(BLUE_LED, 1);
@@ -115,7 +116,7 @@ int main(void)
 
 	multicore_launch_core1(core1_entry);
 
-	// sleep_ms(1000);
+	sleep_ms(1000);
 	buzz_alarm(false);
 	gpio_put(BLUE_LED, 0);
 
@@ -169,24 +170,8 @@ int main(void)
 			frame.baro = latest_baro.sample;
 
 			// frame.gnss = latest_gnss.sample;
-			frame.battery_mv = latest_battery.sample_mv;
 
-			// /* Dummy GNSS values */
-			// frame.gnss.iTOW_ms = 0;
-			// frame.gnss.lon_deg_e7 = -583815923;  // -58.3815923 deg
-			// frame.gnss.lat_deg_e7 = -346037220;  // -34.6037220 deg
-			// frame.gnss.height_mm = 25000;        // 25 m
-			// frame.gnss.hMSL_mm = 25000;
-			// frame.gnss.velN_mm_s = 0;
-			// frame.gnss.velE_mm_s = 0;
-			// frame.gnss.velD_mm_s = 0;
-			// frame.gnss.gSpeed_mm_s = 0;
-			// frame.gnss.hAcc_mm = 999999;
-			// frame.gnss.vAcc_mm = 999999;
-			// frame.gnss.sAcc_mm_s = 999999;
-			// frame.gnss.fixType = 0;              // no fix
-			// frame.gnss.numSV = 0;
-			// frame.gnss.flags = 0;
+			frame.battery_mv = latest_battery.sample_mv;
 
 			if (latest_imu.fresh) {
 				frame.freshness |= FRAME_IMU_FRESH;
@@ -225,7 +210,7 @@ void core1_entry(void)
 		if (frame_ring_pop(&frame_rb, &frame)) {
 			frame.crc16 = crc16_ccitt_false(&frame);
 
-			serial_debug_print(&frame);
+			// serial_debug_print(&frame);
 			log_frame_to_sd(&frame);
 			xbee_transmit(&frame, sizeof(frame));
 		}
