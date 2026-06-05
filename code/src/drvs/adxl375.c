@@ -3,6 +3,8 @@
 #include "hardware/i2c.h"
 #include "pico/stdlib.h"
 
+#include <math.h>
+
 #define REG_DEVID          0x00
 #define REG_BW_RATE        0x2C
 #define REG_POWER_CTL      0x2D
@@ -15,14 +17,7 @@
 
 #define INT_DATA_READY     0x80
 
-// From bench readings: +Z ~= 1.95 g and -Z ~= 0.00 g before correction.
-#define ADXL375_Z_OFFSET_G 0.975f
-#define ADXL375_Z_SPAN_G   0.975f
-
-static float g_x_offset_g = 0.0f;
-static float g_y_offset_g = 0.0f;
-static float g_z_offset_g = ADXL375_Z_OFFSET_G;
-static float g_z_span_g = ADXL375_Z_SPAN_G;
+static float g_accel_lsb_per_g = ADXL375_LSB_PER_G;
 
 static bool write_reg(uint8_t reg, uint8_t value) {
 	uint8_t buf[2] = { reg, value };
@@ -155,9 +150,9 @@ bool adxl375_init(void) {
 }
 
 bool adxl375_calibrate(void) {
-	float x_sum = 0.0f;
-	float y_sum = 0.0f;
-	float z_sum = 0.0f;
+	int64_t x_sum = 0;
+	int64_t y_sum = 0;
+	int64_t z_sum = 0;
 
 	for (uint16_t i = 0; i < ADXL375_CAL_SAMPLES; i++) {
 		int16_t x;
@@ -169,9 +164,9 @@ bool adxl375_calibrate(void) {
 		}
 
 		// These are the same board-axis corrections used for normal samples.
-		x_sum += (float)y / ADXL375_LSB_PER_G;
-		y_sum += (float)-x / ADXL375_LSB_PER_G;
-		z_sum += (float)z / ADXL375_LSB_PER_G;
+		x_sum += y;
+		y_sum += -x;
+		z_sum += z;
 
 		sleep_ms(ADXL375_CAL_SAMPLE_DELAY_MS);
 	}
@@ -180,17 +175,11 @@ bool adxl375_calibrate(void) {
 	float y_avg = (float)y_sum / ADXL375_CAL_SAMPLES;
 	float z_avg = (float)z_sum / ADXL375_CAL_SAMPLES;
 
-	if (g_z_span_g <= 0.0f) {
-		return false;
-	}
-
-	g_x_offset_g = x_avg;
-	g_y_offset_g = y_avg;
-
-	float expected_z_g = (z_avg >= ADXL375_Z_OFFSET_G) ?
-		ADXL375_Z_SPAN_G :
-		-ADXL375_Z_SPAN_G;
-	g_z_offset_g = z_avg - expected_z_g;
+	g_accel_lsb_per_g = sqrtf(
+		x_avg * x_avg +
+		y_avg * y_avg +
+		z_avg * z_avg
+	);
 
 	return true;
 }
@@ -217,9 +206,9 @@ adxl375_poll_result_t adxl375_poll_sample(adxl375_sample_t *sample) {
 	if (!read_raw_axes(&x, &y, &z)) return ADXL375_POLL_ERROR;
 
 	// this are ad hoc corrections to make the adxl axis match the iim's
-	sample->x_g = ((float)y / ADXL375_LSB_PER_G) - g_x_offset_g;
-	sample->y_g = ((float)-x / ADXL375_LSB_PER_G) - g_y_offset_g;
-	sample->z_g = (((float)z / ADXL375_LSB_PER_G) - g_z_offset_g) / g_z_span_g;
+	sample->x_g = (float)y / g_accel_lsb_per_g;
+	sample->y_g = (float)-x / g_accel_lsb_per_g;
+	sample->z_g = (float)z / g_accel_lsb_per_g;
 
 	return ADXL375_POLL_OK;
 }

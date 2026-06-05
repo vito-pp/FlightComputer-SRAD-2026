@@ -73,6 +73,10 @@ int main(void)
 	gpio_set_dir(BLUE_LED, GPIO_OUT);
 	gpio_put(BLUE_LED, 1);
 
+	gpio_init(RED_LED);
+	gpio_set_dir(RED_LED, GPIO_OUT);
+	gpio_put(RED_LED, 0);
+
 	adc_bat_lvl_init();
 
 	stdio_init_all();
@@ -210,7 +214,7 @@ void core1_entry(void)
 		if (frame_ring_pop(&frame_rb, &frame)) {
 			frame.crc16 = crc16_ccitt_false(&frame);
 
-			// serial_debug_print(&frame);
+			serial_debug_print(&frame);
 			log_frame_to_sd(&frame);
 			xbee_transmit(&frame, sizeof(frame));
 		}
@@ -222,8 +226,8 @@ void core1_entry(void)
 
 void error_handler(void) 
 {
-	// gpio_put(BLUE_LED, 0);
-	// gpio_put(RED_LED, 1);
+	gpio_put(BLUE_LED, 0);
+	gpio_put(RED_LED, 1);
 	for EVER {
 		sleep_ms(1000);
 		printf("Error loop");

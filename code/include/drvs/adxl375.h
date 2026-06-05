@@ -96,11 +96,12 @@ typedef enum {
 bool adxl375_init(void);
 
 /**
- * @brief Calibrate ADXL375 board-frame acceleration offsets at startup.
+ * @brief Calibrate ADXL375 acceleration scale at startup.
  *
  * This averages raw XYZ samples with the same board-axis mapping used by
- * adxl375_poll_sample(). X and Y are zeroed from the still reading, while Z
- * uses the measured +Z/-Z midpoint and span so both signs report near +/-1 g.
+ * adxl375_poll_sample(). The measured still-vector magnitude becomes the
+ * accel LSB-per-g scale, matching iim_calibrate(). The startup pose is not
+ * subtracted as an offset.
  *
  * @return true if calibration succeeded.
  * @return false if a sensor read failed or the measured vector was invalid.
@@ -111,7 +112,7 @@ bool adxl375_calibrate(void);
  * @brief Poll the ADXL375 for a new acceleration sample.
  *
  * This checks the DATA_READY bit and returns immediately if no new sample is
- * available. The output g values use the calibrated board-frame correction.
+ * available. The output g values use the calibrated board-frame scale.
  *
  * @param sample Pointer to output sample structure.
  *
